@@ -130,7 +130,12 @@ public class RestfulController {
 	public void likecreate(LikeVO likeVO) {
 		likes_service.likecreate(likeVO);
 	}
+	@PostMapping("/likedelete")
+	public int likedelete(LikeVO likeVO) {
+		return likes_service.likedelete(likeVO);
+	}
 	
+
 	
 	
 	

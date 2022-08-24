@@ -105,6 +105,7 @@ body{ background-color:  #e0e0e0;}
 	    $("#alert-success").hide();
 	    $("#alert-danger").hide();
 	    $("input").keyup(function(){
+	    	
 	        var pwd1=$("#mpw").val();
 	        var pwd2=$("#mpw1").val();
 	        if(pwd1 != "" || pwd2 != ""){

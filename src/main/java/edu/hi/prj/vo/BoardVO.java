@@ -30,6 +30,7 @@ public class BoardVO{
    
    private int reply;
    private int count;
+   private int likecount;
    
   
    

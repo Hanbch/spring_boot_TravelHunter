@@ -110,6 +110,12 @@
                 where reply.board_id = board.id group by board.id order by board.id desc
        ]]>
     </select>
+    <select id="likeCount" resultType="int">
+       <![CDATA[
+            select count(num) likecount from likes, board
+            where likes.board_id = board.id group by likes.board_id order by likes.board_id desc
+       ]]>
+    </select>
     
     <select id="img" resultType="int">
        <![CDATA[
@@ -127,6 +133,10 @@
        <result property="reply" column="reply"/>    
    </resultMap>
    
+   <resultMap id="likeCount" type="int">
+       <result property="likecount" column="likecount"/>    
+   </resultMap>
+   
    <resultMap id="img" type="String">
        <result property="iname" column="iname"/>    
    </resultMap>
@@ -142,13 +152,15 @@
         <result property="bgrade" column="bgrade"/>
         <result property="bview" column="bview"/>
        	<collection property="reply" resultMap="replyCount"></collection>
+       	<collection property="likecount" resultMap="likeCount"></collection>
    </resultMap>
    
    <select id="getList" resultType="BoardVO">
        <![CDATA[ 
-           select id,board.member_id,place_num,board_type_num,btitle,bcontent,bdate,bgrade,bview,reply from board,
-           (select r.board_id, count(reply) reply from reply r, board b where r.board_id = b.id group by b.id order by b.id) R
-           where board.id = R.board_id(+) and board_type_num = #{board_type_num} order by id desc
+           select id,board.member_id,place_num,board_type_num,btitle,bcontent,bdate,bgrade,bview,reply,likecount from board,
+           (select r.board_id, count(reply) reply from reply r, board b where r.board_id = b.id group by b.id order by b.id) R,
+           (select l.board_id, count(l.num) likecount from likes l, board b where l.board_id = b.id group by b.id order by b.id)L
+           where L.board_id(+) = board.id and board.id = R.board_id(+) and board_type_num = 0 order by id desc
        ]]>
     </select>
     
