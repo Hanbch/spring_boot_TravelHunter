@@ -32,7 +32,7 @@ public interface BoardService{
 	int getTotalCount(SearchCriteria scri);
 	List<BoardVO> pagingList(SearchCriteria scri);
 	int pheedCount();
-	List<BoardVO> pheedpaging(PheedCriteria cri);
+	List<BoardVO> pheedpaging(PheedCriteria cri,String member_id);
 	
 	
 	List<BoardVO> getReview(int place_num);

@@ -143,7 +143,14 @@
 											<li><span>${data.likecount}</span>likes</li>
 										</ul>
 										
-										<div class="like" value="${data.id}"></div>
+										
+										<c:if test="${data.active == 0}">
+											<div class="like" value="${data.id}"></div>
+										</c:if>
+										<c:if test="${data.active != 0}">
+											<div class="like active" value="${data.id}"></div>
+										</c:if>
+										
 										<sec:authorize access="isAuthenticated()">
 											<input type="hidden" id="member_id" name="member_id" value=<sec:authentication property="principal.username"/> />
 										</sec:authorize>
@@ -286,6 +293,8 @@
 		}
 		
 	});
+	
+	
 	////////////////////
 	function likes(board_id){
 		$.ajax({
@@ -317,7 +326,8 @@
 		      
 		   });
 		}
-
+	
+	
 	//좋아요 아이콘
 	var like = document.getElementsByClassName("like");
 	

@@ -29,7 +29,7 @@ public interface BoardMapper{
 	int getTotalCount(SearchCriteria scri);
 	List<BoardVO> pagingList(SearchCriteria scri);
 	int pheedCount();
-	List<BoardVO> pheedpaging(PheedCriteria cri);
+	List<BoardVO> pheedpaging(PheedCriteria cri,String member_id);
 	
 	
 	List<BoardVO> getReview(int num);//해당 캠핑장의 리뷰글 불러오기

@@ -113,9 +113,9 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public List<BoardVO> pheedpaging(PheedCriteria cri) {
+	public List<BoardVO> pheedpaging(PheedCriteria cri, String member_id) {
 		
-		return mapper.pheedpaging(cri);
+		return mapper.pheedpaging(cri,member_id);
 	}
 
 	@Override

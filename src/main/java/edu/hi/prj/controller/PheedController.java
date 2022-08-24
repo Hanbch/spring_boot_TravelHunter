@@ -6,6 +6,8 @@ import java.util.UUID;
 
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +25,7 @@ import edu.hi.prj.vo.LikeVO;
 import edu.hi.prj.vo.PheedCriteria;
 import edu.hi.prj.vo.PheedPagingVO;
 import edu.hi.prj.vo.ReplyVO;
+import edu.hi.prj.vo.UserDetailsVO;
 
 @RequestMapping("/pheed")
 @Controller
@@ -38,9 +41,11 @@ public class PheedController {
 	private LikesService likes_service;
 	
 	@GetMapping("")
-	public String pheed(Model model, PheedCriteria cri) {
+	public String pheed(Model model, PheedCriteria cri,@AuthenticationPrincipal UserDetailsVO userDetails) {
 		
-		model.addAttribute("boardList", service.pheedpaging(cri));
+		String member_id = userDetails.getUsername(); 
+		
+		model.addAttribute("boardList", service.pheedpaging(cri,member_id));
 		model.addAttribute("boardImg", service.getBoardImg());
 		int total =service.pheedCount();
 		model.addAttribute("pageMaker", new PheedPagingVO(cri, total));

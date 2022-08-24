@@ -145,7 +145,8 @@
         <result property="bdate" column="bdate"/> 
         <result property="bgrade" column="bgrade"/>
         <result property="bview" column="bview"/>
-         <result property="likecount" column="likecount"/>
+        <result property="active" column="active"/>
+        <result property="likecount" column="likecount"/>
        	<collection property="reply" resultMap="replyCount"></collection>
        	
    </resultMap>
@@ -177,18 +178,19 @@
     </select>
     
     <select id="pheedpaging" resultType="BoardVO">
-       <![CDATA[ 
+       <![CDATA[
        
        		SELECT * FROM (
-	           SELECT ROWNUM AS RNUM, A.* FROM (SELECT * FROM
-		           (select * from 
-		           		board,
-		                (select r.board_id, count(reply) reply from reply r, board b where r.board_id = b.id group by b.id order by b.id) reply,
-                        (select l.board_id b, count(l.num) likecount from likes l, board b where l.board_id = b.id group by b.id order by b.id)L
-		           	where L.b(+) = board.id and board.id = reply.board_id(+) and board_type_num = 0 order by id desc)
-		       		board order by id desc
-	           ) A WHERE ROWNUM <= #{pageNum} * #{amount}
-           ) WHERE RNUM > (#{pageNum}-1) * #{amount}	
+			    SELECT ROWNUM AS RNUM, A.* FROM (SELECT * FROM
+			       (select * from 
+			            board,
+			            (select r.board_id, count(reply) reply from reply r, board b where r.board_id = b.id group by b.id order by b.id) reply,
+			            (select l.board_id likes, count(l.num) likecount from likes l, board b where l.board_id = b.id group by b.id order by b.id)L,
+			            (select num active,board_id b from likes where member_id = #{member_id})A
+			        where A.b(+) = board.id and L.likes(+) = board.id and board.id = reply.board_id(+) and board_type_num = 0 order by id desc)
+			        board order by id desc
+			    ) A WHERE ROWNUM <= 1 * 6
+           ) WHERE RNUM > 0 * 6
        ]]>
     </select>
     <sql id="search">
