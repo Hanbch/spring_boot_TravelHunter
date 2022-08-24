@@ -11,12 +11,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import edu.hi.prj.service.BoardService;
+import edu.hi.prj.service.LikesService;
 import edu.hi.prj.service.ReplyService;
 import edu.hi.prj.vo.BoardVO;
 import edu.hi.prj.vo.ImageVO;
+import edu.hi.prj.vo.LikeVO;
 import edu.hi.prj.vo.PheedCriteria;
 import edu.hi.prj.vo.PheedPagingVO;
 import edu.hi.prj.vo.ReplyVO;
@@ -30,6 +33,9 @@ public class PheedController {
 	
 	@Autowired
 	private ReplyService reply_service;
+	
+	@Autowired
+	private LikesService likes_service;
 	
 	@GetMapping("")
 	public String pheed(Model model, PheedCriteria cri) {
@@ -113,7 +119,18 @@ public class PheedController {
 		return "redirect:/pheed";
 	}
 	
+
 	
+	@ResponseBody
+	@PostMapping("/likedelete")
+	public int likedelete(LikeVO likeVO) {
+		return likes_service.likedelete(likeVO);
+	}
+	@ResponseBody
+	@PostMapping("/likeread")
+	public int likeread(LikeVO likeVO) {
+		return likes_service.likeread(likeVO);
+	}
 	
 	
 	

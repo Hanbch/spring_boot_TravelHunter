@@ -68,6 +68,7 @@ ul.product li.current{
 	<section style="padding:200px 0 0 100px">
 		<sec:authorize access="isAuthenticated()">
 		<sec:authentication property="principal.mname"/>
+		
 		 </sec:authorize>
 		
 		<ul class="tabs">
@@ -83,7 +84,7 @@ ul.product li.current{
        			   
    				  
 				<label for="id">아이디</label>
-				<input type="text" id="id" name="id" value="${member.id}" readonly="readonly" /><br>
+				<input type="text" id="id" name="id" value=<sec:authentication property="principal.username"/> readonly="readonly" /><br>
 				<label for="mpw">비밀번호</label>
 				<input type="password" id="mpw" name="mpw" /><br>
 				<label for="mname">이름</label>

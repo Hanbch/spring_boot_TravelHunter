@@ -125,9 +125,10 @@
 										<div class="user_info">
 											<div class="p_id">${data.member_id}</div>
 											<div class="date">${data.bdate}</div>
+											<input type="text" id="board_id" name="board_id" value="${data.id }" />
+											<input type="hidden" id="member_id" name="member_id" value=<sec:authentication property="principal.username"/> />
 										</div>
 									</div>
-									
 									<div class="context">
 										<div class="title">${data.btitle}</div>
 										<div class="content">${data.bcontent}</div>
@@ -146,6 +147,7 @@
 								</div>
 							</a>
 						</li>
+					
 					</c:forEach>
 					<script>
 						
@@ -214,6 +216,28 @@
 			</div>
 	</section>
 <%@include file ="../include/footer.jsp" %>
+<script>
+var like = document.getElementsByClassName("like");
+$(".like").click(function(){
+	console.log($("#board_id").val(), $("#member_id").val());
+	$.ajax({
+		type : "post",
+		url : "/json/likecreate",
+		dataType : "json",
+		data : {"board_id" : $("#board_id").val(),				
+				"member_id" : $("#member_id").val()},
+		success : function(data){
+			alert("좋아요");
+		}, error : function(){
+			alert("실패");
+		}
+		
+	});
+});
+
+
+</script>
+
 
 <script>
 	//상세페이지 정보 가져오기
@@ -282,6 +306,9 @@
 		}
 		
 	});
+	
+	
+	
 	
 	//좋아요 아이콘
 	var like = document.getElementsByClassName("like");
