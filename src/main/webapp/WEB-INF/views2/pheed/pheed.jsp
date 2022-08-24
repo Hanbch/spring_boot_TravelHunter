@@ -143,13 +143,7 @@
 											<li><span>${data.likecount}</span>likes</li>
 										</ul>
 										
-										<c:forEach items="${like}" var="like">
-											<c:if test="${like.board_id == data.id}">
-											
-											</c:if>
-										</c:forEach>
-										
-										<div class="like active" value="${data.id}"></div>
+										<div class="like" value="${data.id}"></div>
 										<sec:authorize access="isAuthenticated()">
 											<input type="hidden" id="member_id" name="member_id" value=<sec:authentication property="principal.username"/> />
 										</sec:authorize>
@@ -157,7 +151,7 @@
 								</div>
 							</a>
 						</li>
-					
+						
 					</c:forEach>
 				</ul>
 			</div>
