@@ -126,7 +126,9 @@
 											<div class="p_id">${data.member_id}</div>
 											<div class="date">${data.bdate}</div>
 											<input type="text" id="board_id" name="board_id" value="${data.id }" />
-											<input type="hidden" id="member_id" name="member_id" value=<sec:authentication property="principal.username"/> />
+											<sec:authorize access="isAuthenticated()">
+												<input type="hidden" id="member_id" name="member_id" value=<sec:authentication property="principal.username"/> />
+											</sec:authorize>
 										</div>
 									</div>
 									<div class="context">
@@ -217,22 +219,26 @@
 	</section>
 <%@include file ="../include/footer.jsp" %>
 <script>
-var like = document.getElementsByClassName("like");
-$(".like").click(function(){
-	console.log($("#board_id").val(), $("#member_id").val());
+function likes(){
 	$.ajax({
 		type : "post",
 		url : "/json/likecreate",
-		dataType : "json",
 		data : {"board_id" : $("#board_id").val(),				
 				"member_id" : $("#member_id").val()},
 		success : function(data){
 			alert("좋아요");
-		}, error : function(){
+		}, 
+		error : function(){
 			alert("실패");
 		}
 		
 	});
+}
+var like = document.getElementsByClassName("like");
+$(".like").click(function(){
+	//console.log($("#board_id").val(), $("#member_id").val());
+	
+	//likes();
 });
 
 
@@ -323,6 +329,7 @@ $(".like").click(function(){
 				if(n == j){
 					if(like[j].classList.contains("active") == false){
 						like[j].classList.add("active");
+						likes();
 					}else{
 						like[j].classList.remove("active");
 					}
