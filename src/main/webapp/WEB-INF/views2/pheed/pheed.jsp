@@ -140,7 +140,7 @@
 											<li>
 												<span class="reply_count_${data.id}">${data.reply}</span>comments
 											</li>
-											<li><span>0</span>likes</li>
+											<li><span>${data.likecount}</span>likes</li>
 										</ul>
 										
 										<c:forEach items="${like}" var="like">

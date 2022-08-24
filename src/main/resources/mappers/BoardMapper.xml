@@ -110,12 +110,6 @@
                 where reply.board_id = board.id group by board.id order by board.id desc
        ]]>
     </select>
-    <select id="likeCount" resultType="int">
-       <![CDATA[
-            select count(num) likecount from likes, board
-            where likes.board_id = board.id group by likes.board_id order by likes.board_id desc
-       ]]>
-    </select>
     
     <select id="img" resultType="int">
        <![CDATA[
@@ -151,8 +145,9 @@
         <result property="bdate" column="bdate"/> 
         <result property="bgrade" column="bgrade"/>
         <result property="bview" column="bview"/>
+         <result property="likecount" column="likecount"/>
        	<collection property="reply" resultMap="replyCount"></collection>
-       	<collection property="likecount" resultMap="likeCount"></collection>
+       	
    </resultMap>
    
    <select id="getList" resultType="BoardVO">
