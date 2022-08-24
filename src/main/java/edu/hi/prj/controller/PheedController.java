@@ -44,6 +44,7 @@ public class PheedController {
 		model.addAttribute("boardImg", service.getBoardImg());
 		int total =service.pheedCount();
 		model.addAttribute("pageMaker", new PheedPagingVO(cri, total));
+		model.addAttribute("like",likes_service.likeread("manager"));
 		return "/pheed/pheed";
 	}
 	
@@ -62,8 +63,6 @@ public class PheedController {
 		public String write() {
 			
 			return "/pheed/pheedwrite";
-		
-		
 	}
 	
 	@PostMapping("/complete")
@@ -126,10 +125,11 @@ public class PheedController {
 	public int likedelete(LikeVO likeVO) {
 		return likes_service.likedelete(likeVO);
 	}
+	
 	@ResponseBody
 	@PostMapping("/likeread")
-	public int likeread(LikeVO likeVO) {
-		return likes_service.likeread(likeVO);
+	public int likeread() {
+		return 1;
 	}
 	
 	

@@ -52,7 +52,7 @@
 						   htmls += '<table>';
 		                   htmls += '<tr>';
 		                   for(var i=0; i<(this.indent - 1); i++){
-		                   		htmls += "[re]";
+		                   		htmls += "<td>[re]</td>";
 		                   }
 		                   htmls += '<td>'+ this.member_id + '</td>';
 		                   htmls += '<td>'+ this.reply + '</td>';
@@ -136,7 +136,7 @@
 						   htmls += '<table>';
 		                   htmls += '<tr>';
 		                   for(var i=0; i<(this.indent - 1); i++){
-		                   		htmls += "[re]";
+		                   		htmls += "<td>[re]</td>";
 		                   }
 		                   htmls += '<td>'+ this.member_id + '</td>';
 		                   htmls += '<td>'+ this.reply + '</td>';

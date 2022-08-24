@@ -1,5 +1,7 @@
 package edu.hi.prj.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,8 +21,8 @@ public class LikesServicelmpl implements LikesService{
 	}
 
 	@Override
-	public int likeread(LikeVO likeVO) {
-		return mapper.likeread(likeVO);
+	public List<LikeVO> likeread(String member_id) {
+		return mapper.likeread(member_id);
 	}
 
 	@Override

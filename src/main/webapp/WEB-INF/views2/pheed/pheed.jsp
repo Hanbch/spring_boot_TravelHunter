@@ -93,6 +93,7 @@
 		
 			<div class="pheed_list">
 				<ul>
+					
 					<c:forEach var="data" items="${boardList}">
 						<li>
 							<a href="#" class="view_detail" id="${data.id}">
@@ -125,10 +126,7 @@
 										<div class="user_info">
 											<div class="p_id">${data.member_id}</div>
 											<div class="date">${data.bdate}</div>
-											<input type="text" id="board_id" name="board_id" value="${data.id }" />
-											<sec:authorize access="isAuthenticated()">
-												<input type="hidden" id="member_id" name="member_id" value=<sec:authentication property="principal.username"/> />
-											</sec:authorize>
+											<input type="text" class="board_id" name="board_id" value="${data.id }" />
 										</div>
 									</div>
 									<div class="context">
@@ -144,17 +142,23 @@
 											</li>
 											<li><span>0</span>likes</li>
 										</ul>
-										<div class="like"></div>
+										
+										<c:forEach items="${like}" var="like">
+											<c:if test="${like.board_id == data.id}">
+											
+											</c:if>
+										</c:forEach>
+										
+										<div class="like active" value="${data.id}"></div>
+										<sec:authorize access="isAuthenticated()">
+											<input type="hidden" id="member_id" name="member_id" value=<sec:authentication property="principal.username"/> />
+										</sec:authorize>
 									</div>
 								</div>
 							</a>
 						</li>
 					
 					</c:forEach>
-					<script>
-						
-						
-					</script>
 				</ul>
 			</div>
 		</div>
@@ -218,31 +222,7 @@
 			</div>
 	</section>
 <%@include file ="../include/footer.jsp" %>
-<script>
-function likes(){
-	$.ajax({
-		type : "post",
-		url : "/json/likecreate",
-		data : {"board_id" : $("#board_id").val(),				
-				"member_id" : $("#member_id").val()},
-		success : function(data){
-			alert("좋아요");
-		}, 
-		error : function(){
-			alert("실패");
-		}
-		
-	});
-}
-var like = document.getElementsByClassName("like");
-$(".like").click(function(){
-	//console.log($("#board_id").val(), $("#member_id").val());
-	
-	//likes();
-});
 
-
-</script>
 
 
 <script>
@@ -312,10 +292,38 @@ $(".like").click(function(){
 		}
 		
 	});
-	
-	
-	
-	
+	////////////////////
+	function likes(board_id){
+		$.ajax({
+			type : "post",
+			url : "/json/likecreate",
+			data : {"board_id" : board_id,				
+					"member_id" : $("#member_id").val()},
+			success : function(data){
+				alert("좋아요");
+			}, 
+			error : function(){
+				alert("실패");
+			}
+			
+		});
+	}
+	function off(board_id){
+		   $.ajax({
+		      type : "post",
+		      url : "/json/likedelete",
+		      data : {"board_id" : board_id,            
+		            "member_id" : $("#member_id").val()},
+		      success : function(data){
+		         alert("좋아요취소");
+		      }, 
+		      error : function(){
+		         alert("실패");
+		      }
+		      
+		   });
+		}
+
 	//좋아요 아이콘
 	var like = document.getElementsByClassName("like");
 	
@@ -324,14 +332,19 @@ $(".like").click(function(){
 		like[i].addEventListener("click",function(e){
 			e.preventDefault();
 			e.stopPropagation();//상위 이벤트 차단
+	
+			var board_id = e.target.getAttribute("value");
+			console.log(board_id,"likesBtn");
+			
 			var n = e.currentTarget.idx;
 			for(var j=0; j<like.length; j++){
 				if(n == j){
 					if(like[j].classList.contains("active") == false){
 						like[j].classList.add("active");
-						likes();
+						likes(board_id);
 					}else{
 						like[j].classList.remove("active");
+						off(board_id);
 					}
 					
 				}
