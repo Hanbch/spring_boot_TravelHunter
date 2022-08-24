@@ -2,13 +2,13 @@ package edu.hi.prj.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.hi.prj.mapper.BoardMapper;
 import edu.hi.prj.vo.BoardImgVO;
 import edu.hi.prj.vo.BoardVO;
-import edu.hi.prj.vo.Criteria;
 import edu.hi.prj.vo.ImageVO;
 import edu.hi.prj.vo.PheedCriteria;
 import edu.hi.prj.vo.ReviewImgVO;
@@ -113,7 +113,7 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public List<BoardVO> pheedpaging(PheedCriteria cri, String member_id) {
+	public List<BoardVO> pheedpaging(@Param("cri") PheedCriteria cri,String member_id) {
 		
 		return mapper.pheedpaging(cri,member_id);
 	}

@@ -41,9 +41,9 @@ public class PheedController {
 	private LikesService likes_service;
 	
 	@GetMapping("")
-	public String pheed(Model model, PheedCriteria cri,@AuthenticationPrincipal UserDetailsVO userDetails) {
+	public String pheed(Model model, PheedCriteria cri, Authentication authentication) {
 		
-		String member_id = userDetails.getUsername(); 
+		String member_id = authentication.getName(); 
 		
 		model.addAttribute("boardList", service.pheedpaging(cri,member_id));
 		model.addAttribute("boardImg", service.getBoardImg());

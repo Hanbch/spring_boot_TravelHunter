@@ -2,9 +2,8 @@ package edu.hi.prj.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.ibatis.annotations.Param;
 
-import edu.hi.prj.mapper.UserMapper;
 import edu.hi.prj.vo.BoardImgVO;
 import edu.hi.prj.vo.BoardVO;
 import edu.hi.prj.vo.ImageVO;
@@ -32,7 +31,7 @@ public interface BoardService{
 	int getTotalCount(SearchCriteria scri);
 	List<BoardVO> pagingList(SearchCriteria scri);
 	int pheedCount();
-	List<BoardVO> pheedpaging(PheedCriteria cri,String member_id);
+	List<BoardVO> pheedpaging(@Param("cri") PheedCriteria cri,String member_id);
 	
 	
 	List<BoardVO> getReview(int place_num);

@@ -189,8 +189,8 @@
 			            (select num active,board_id b from likes where member_id = #{member_id})A
 			        where A.b(+) = board.id and L.likes(+) = board.id and board.id = reply.board_id(+) and board_type_num = 0 order by id desc)
 			        board order by id desc
-			    ) A WHERE ROWNUM <= 1 * 6
-           ) WHERE RNUM > 0 * 6
+			    ) A WHERE ROWNUM <= #{cri.pageNum} * #{cri.amount}
+           ) WHERE RNUM > (#{cri.pageNum}-1) * #{cri.amount}	
        ]]>
     </select>
     <sql id="search">
