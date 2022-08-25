@@ -43,7 +43,14 @@ public class PheedController {
 	@GetMapping("")
 	public String pheed(Model model, PheedCriteria cri, Authentication authentication) {
 		
-		String member_id = authentication.getName(); 
+		String member_id;
+		
+		if(authentication != null) {
+			 member_id = authentication.getName(); 
+		 }else {
+			 member_id = "";
+		 }
+		
 		
 		model.addAttribute("boardList", service.pheedpaging(cri,member_id));
 		model.addAttribute("boardImg", service.getBoardImg());
