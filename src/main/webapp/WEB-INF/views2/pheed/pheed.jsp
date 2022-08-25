@@ -209,11 +209,8 @@
 						<input id="id" type="hidden" name="id"/>
 						<input id="step" type="hidden" name="step" value="0"/>
 						<input id="indent" type="hidden" name="indent" value="0"/>
-						<sec:authorize access="isAuthenticated()">
-							<input type="hidden" id="member_id" name="member_id" value="<sec:authentication property='principal.username'/>"/>
 							댓글: <input id="reply" type="text" name="reply"/>
 							<button id="write_btn">게시</button>
-						</sec:authorize><br>
 						<sec:authorize access="isAnonymous()">
 							<p><a href="<c:url value="/login" />">로그인</a></p>
 						</sec:authorize>
@@ -306,7 +303,8 @@
 				alert("좋아요");
 			}, 
 			error : function(){
-				alert("실패");
+				alert("로그인 후 사용가능");
+				location.replace("/login");
 			}
 			
 		});
@@ -321,7 +319,8 @@
 		         alert("좋아요취소");
 		      }, 
 		      error : function(){
-		         alert("실패");
+		         alert("로그인 후 사용가능");
+		         location.replace("/login");
 		      }
 		      
 		   });

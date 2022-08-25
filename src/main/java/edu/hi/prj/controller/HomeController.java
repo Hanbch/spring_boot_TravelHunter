@@ -49,13 +49,12 @@ public class HomeController {
 	@ResponseBody
 	@GetMapping("/test/login")
 	public String loginTest(Authentication authentication, @AuthenticationPrincipal UserDetailsVO userDetails) {
-		
-		
 		System.out.println("test/login ===============");
 
 		UserDetailsVO userDetailsVO = (UserDetailsVO) authentication.getPrincipal();
 		System.out.println("authentication : " + authentication.getPrincipal());
 		System.out.println("userDetails : " + userDetails.getUserVO());
+		System.out.println(userDetails.getUsername());
 		
 	
 

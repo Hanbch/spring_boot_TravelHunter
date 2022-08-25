@@ -45,8 +45,7 @@ public class ManagerController {
 	}
 	
 	@GetMapping("/myplace")
-	public String myplace(Model model, RoomVO roomVO, Authentication authentication) {
-		
+	public String myplace(Model model, RoomVO roomVO, Authentication authentication) {	
 		String member_id = authentication.getName(); 
 		model.addAttribute("placeData",place_service.getMyPlaceList(member_id));
 		//model.addAttribute("reviewList",board_service.getReview(10));
