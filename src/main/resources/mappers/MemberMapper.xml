@@ -67,7 +67,11 @@
 	</resultMap>
 	
 	
-	
+	<select id="getmember" resultType="MemberVO">
+		<![CDATA[ 
+            select* from member where id = #{id}  	
+       ]]> 
+	</select>
 			
 	
    

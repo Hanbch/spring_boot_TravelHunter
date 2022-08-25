@@ -1,15 +1,18 @@
 package edu.hi.prj.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import edu.hi.prj.service.BoardService;
+import edu.hi.prj.service.MemberService;
 import edu.hi.prj.service.PlaceService;
 import edu.hi.prj.service.RoomService;
 import edu.hi.prj.vo.BookingVO;
+import edu.hi.prj.vo.MemberVO;
 import edu.hi.prj.vo.PlaceVO;
 import edu.hi.prj.vo.Place_TypeVO;
 import edu.hi.prj.vo.RoomVO;
@@ -27,6 +30,9 @@ public class ProductController {
 	
 	@Autowired
 	private BoardService bservice;
+	
+	@Autowired
+	private MemberService mservice;
 	
 	@GetMapping("")
 	public String reservation(Model model,BookingVO bookingVO,Place_TypeVO place_TypeVO,RoomVO roomVO,PlaceVO placeVO ) {
@@ -59,6 +65,13 @@ public class ProductController {
 		model.addAttribute("reviewImgList",bservice.getReviewImgList(num));
 		
 		return "/product/detail";
+	}
+	
+	@GetMapping("/test")
+	public String ImportTest(Model model, MemberVO memberVO, Authentication authentication) {
+		String id = authentication.getName();
+		model.addAttribute("test", mservice.getmember(id));
+		return "/product/ImportTest";
 	}
 	
 	

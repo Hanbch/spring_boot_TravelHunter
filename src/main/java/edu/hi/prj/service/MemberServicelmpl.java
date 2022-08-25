@@ -52,6 +52,12 @@ public class MemberServicelmpl implements MemberService{
 		return mapper.memberBoardList(id);
 	}
 
+	@Override
+	public MemberVO getmember(String id) {
+		
+		return mapper.getmember(id);
+	}
+
 
 	
 	

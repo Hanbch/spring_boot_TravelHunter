@@ -199,7 +199,7 @@
 		     						<div class="check_in">체크인  15:00</div>
 		     						<div class="check_out">체크아웃 11:00</div>
 		     						<div class="price">${room.price}원</div>
-		     						<button>예약하기</button>
+		     						<a href="/product/test"><button>예약하기</button></a>
 		     					</div>
 		     				</li>
 		     			</c:forEach>

@@ -12,4 +12,5 @@ public interface MemberService{
 	void memberDelete(MemberVO memberVO);
 	int delpwcheck(MemberVO memberVO);
 	List<MemberVO> memberBoardList(String id);
+	MemberVO getmember(String id);
 }
