@@ -20,4 +20,6 @@ public class BookingVO{
 	private int place_num;
 	private String startdate;
 	private String enddate;
+	private String cname;
+	private int cphnoe;
 }

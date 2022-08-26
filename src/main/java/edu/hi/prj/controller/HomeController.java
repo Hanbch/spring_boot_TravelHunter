@@ -52,7 +52,7 @@ public class HomeController {
 	@ResponseBody
 	@GetMapping("/date")
 	public String dateinsert() {
-		booking_mapper.dateinsert();
+		
 		return "test";
 	}
 	

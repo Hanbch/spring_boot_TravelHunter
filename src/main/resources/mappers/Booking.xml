@@ -3,39 +3,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.hi.prj.mapper.BookingMapper">
-    
-    <select id="getRoom" resultType="RoomVO">
-       <![CDATA[ 
-           select * from room where place_num = #{num} and num not in
-           		(select distinct num from 
-				        room r, 
-				     reserved rsv 
-				where r.place_num = #{num} and rsv.room_num = r.num and rdate between to_date(#{startdate},'mm-dd-yyyy') and to_date(#{enddate},'mm-dd-yyyy')-1) 
-			order by price,num
-       ]]>
-    </select> 
-    
-    <insert id="insert">
+
+    <insert id="booking">
            <![CDATA[
-           		insert into booking(num, member_id, place_num, room_num, startdate, enddate, cname)
-           		values(booking_seq.nextval, #{member_id}, #{place_num}, #{room_num}, #{startdate}, #{enddate}, #{cname})
+           		insert into booking(num, member_id, place_num, room_num, startdate, enddate, cname, cphone)
+           		values(booking_seq.nextval, #{member_id}, #{place_num}, #{room_num}, #{startdate}, #{enddate}, #{cname}, #{cphone})
    			]]>
     </insert>
     
-    <insert id="dateinsert" parameterType="Map">
-           		declare
-				  start_date varchar2(8)
-				  end_date varchar2(8)
-				begin
-				  start_date := to_number(to_char(to_date('20220825', 'yyyyMMdd'), 'j'))
-				  end_date := to_number(to_char(to_date('20220830', 'yyyyMMdd'), 'j'))
-				  for a in start_date..end_date loop
-				    insert into reserved(room_num, rdate) values(27, to_char(to_date(a, 'j'), 'yyyyMMdd'))
-				  end loop
-				end
+    <insert id="reserved">
+           <![CDATA[
+           		insert into reservation (room_num,rdate)
+           		values(#{room_num, #{rdate})
+   			]]>
     </insert>
-    
-    
-    
     
 </mapper>
