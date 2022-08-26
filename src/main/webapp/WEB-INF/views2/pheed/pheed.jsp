@@ -126,7 +126,7 @@
 										<div class="user_info">
 											<div class="p_id">${data.member_id}</div>
 											<div class="date">${data.bdate}</div>
-											<input type="text" class="board_id" name="board_id" value="${data.id }" />
+											<input type="hidden" class="board_id" name="board_id" value="${data.id }" />
 										</div>
 									</div>
 									<div class="context">
@@ -140,7 +140,7 @@
 											<li>
 												<span class="reply_count_${data.id}">${data.reply}</span>comments
 											</li>
-											<li><span>${data.likecount}</span>likes</li>
+											<li><span class="likes_count">${data.likecount}</span>likes</li>
 										</ul>
 										
 										
@@ -209,8 +209,10 @@
 						<input id="id" type="hidden" name="id"/>
 						<input id="step" type="hidden" name="step" value="0"/>
 						<input id="indent" type="hidden" name="indent" value="0"/>
+						<sec:authorize access="isAuthenticated()">
 							댓글: <input id="reply" type="text" name="reply"/>
 							<button id="write_btn">게시</button>
+						</sec:authorize>
 						<sec:authorize access="isAnonymous()">
 							<p><a href="<c:url value="/login" />">로그인</a></p>
 						</sec:authorize>
@@ -301,6 +303,7 @@
 					"member_id" : $("#member_id").val()},
 			success : function(data){
 				alert("좋아요");
+				$("#" + board_id + " .likes_count").text(Number($("#" + board_id + " .likes_count").text()) + 1);// like_count view 최신화
 			}, 
 			error : function(){
 				alert("로그인 후 사용가능");
@@ -317,6 +320,7 @@
 		            "member_id" : $("#member_id").val()},
 		      success : function(data){
 		         alert("좋아요취소");
+		         $("#" + board_id + " .likes_count").text(Number($("#" + board_id + " .likes_count").text()) - 1);// like_count view 최신화
 		      }, 
 		      error : function(){
 		         alert("로그인 후 사용가능");

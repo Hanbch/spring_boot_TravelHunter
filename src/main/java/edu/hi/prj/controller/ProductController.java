@@ -67,11 +67,11 @@ public class ProductController {
 		return "/product/detail";
 	}
 	
-	@GetMapping("/test")
+	@GetMapping("/reservation")
 	public String ImportTest(Model model, MemberVO memberVO, Authentication authentication) {
 		String id = authentication.getName();
 		model.addAttribute("test", mservice.getmember(id));
-		return "/product/ImportTest";
+		return "/product/reservation";
 	}
 	
 	
