@@ -27,7 +27,7 @@ public class BoardServiceImpl implements BoardService{
 	
 	@Override
 	public List<BoardVO> getHotList(int type) {
-		
+	
 		return mapper.getHotList(type);
 	}
 	

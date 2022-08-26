@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import edu.hi.prj.mapper.BookingMapper;
 import edu.hi.prj.mapper.UserMapper;
 import edu.hi.prj.service.BoardServiceImpl;
 import edu.hi.prj.service.MemberService;
@@ -44,6 +45,16 @@ public class HomeController {
 	
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
+	@Autowired
+	private BookingMapper booking_mapper;
+	
+	@ResponseBody
+	@GetMapping("/date")
+	public String dateinsert() {
+		booking_mapper.dateinsert();
+		return "test";
+	}
 	
 	
 	@ResponseBody
