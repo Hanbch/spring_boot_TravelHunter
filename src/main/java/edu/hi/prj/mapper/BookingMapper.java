@@ -8,5 +8,5 @@ import edu.hi.prj.vo.BookingVO;
 public interface BookingMapper{
 	
 	void booking(BookingVO bookingVO);
-	void reserved(String date);
+	void reserved(int room_num,String rdate);
 }

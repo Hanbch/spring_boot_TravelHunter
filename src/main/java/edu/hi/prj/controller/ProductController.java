@@ -5,9 +5,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import edu.hi.prj.service.BoardService;
+import edu.hi.prj.service.BookingService;
 import edu.hi.prj.service.MemberService;
 import edu.hi.prj.service.PlaceService;
 import edu.hi.prj.service.RoomService;
@@ -33,6 +35,9 @@ public class ProductController {
 	
 	@Autowired
 	private MemberService mservice;
+	
+	@Autowired
+	private BookingService booking_service;
 	
 	@GetMapping("")
 	public String reservation(Model model,BookingVO bookingVO,Place_TypeVO place_TypeVO,RoomVO roomVO,PlaceVO placeVO ) {
@@ -67,10 +72,25 @@ public class ProductController {
 		return "/product/detail";
 	}
 	
+	
 	@GetMapping("/reservation")
-	public String ImportTest(Model model, MemberVO memberVO, Authentication authentication) {
+	public String reservation(Model model,PlaceVO PlaceVO placeVO, RoomVO roomVO,, RoomVO roomVO,Authentication authentication) {
+		//String id = authentication.getName();
+		
+		model.addAttribute("place",placeVO.getNum());
+		return "/product/reservation";
+	}
+	
+	@PostMapping("/booking")
+	public String booking(BookingVO bookingVO,PlaceVO placeVO, RoomVO roomVO, Authentication authentication) throws Exception{
 		String id = authentication.getName();
-		model.addAttribute("test", mservice.getmember(id));
+		int cphone = bookingVO.getCphone();
+		String cname = bookingVO.getCname();
+		int room_num = bookingVO.getRoom_num();
+		String startdate = bookingVO.getStartdate();
+		String enddate = bookingVO.getEnddate();
+		
+		booking_service.reserved(27,"08/20/2022","08/25/2022");
 		return "/product/reservation";
 	}
 	

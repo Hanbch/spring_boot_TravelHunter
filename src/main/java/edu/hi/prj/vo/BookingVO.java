@@ -21,5 +21,5 @@ public class BookingVO{
 	private String startdate;
 	private String enddate;
 	private String cname;
-	private int cphnoe;
+	private int cphone;
 }

@@ -5,6 +5,6 @@ import edu.hi.prj.vo.BookingVO;
 public interface BookingService{
 	
 	void booking(BookingVO bookingVO);
-	void reserved(String startdate,String enddate) throws Exception;
+	void reserved(int room_num,String startdate,String enddate)throws Exception;
 	
 }

@@ -1,16 +1,15 @@
-package edu.hi.prj.mapper;
+package edu.hi.prj.service;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import edu.hi.prj.service.BookingService;
-
 @SpringBootTest
-class BookingMapperTest {
+class BookingServiceImplTest {
 
-	
+	@Test
+	void test() {
+		
+	}
 
 }

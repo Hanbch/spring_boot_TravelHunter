@@ -1,19 +1,16 @@
 package edu.hi.prj.service;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
-class MemberServicelmplTest {
-	
+class BookingServiceTest {
 	@Autowired
-	private BookingService bookingservice;
+	private BookingService service;
 	
 	@Test
-	void test() {
-		bookingservice.reserved("08/26/2022", "08/27/2022") throws Exception;
+	void test()throws Exception {
+		service.reserved(27,"08/20/2022","08/25/2022");
 	}
 
 }

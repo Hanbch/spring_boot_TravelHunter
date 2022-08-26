@@ -13,8 +13,8 @@
     
     <insert id="reserved">
            <![CDATA[
-           		insert into reservation (room_num,rdate)
-           		values(#{room_num, #{rdate})
+           		insert into reserved (room_num,rdate)
+           		values(#{room_num}, to_date(#{rdate},'mm-dd-yy'))
    			]]>
     </insert>
     
