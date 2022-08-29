@@ -33,6 +33,5 @@ public class BoardVO{
    private int active;
    private int likecount;
    
-  
    
 }
