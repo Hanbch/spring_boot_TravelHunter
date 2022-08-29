@@ -86,11 +86,15 @@ ul.product li.current {
 			<ul>
 				<c:forEach items="${rsvList}" var="rsvList">
 					<li>
+						<form action="/mypage/rsvdelete?num=${rsvList.num}" method="POST">
 						예약번호:${rsvList.num}<br>
 						예약장소:${rsvList.place_num}<br>
 						방:${rsvList.room_num}<br>
 						체크인:${rsvList.startdate}<br>
-						체크아웃:${rsvList.enddate}<br>
+						체크아웃:${rsvList.enddate}
+						<button type="submit">예약취소</button>
+						<br>
+						</form>
 					</li>
 				</c:forEach>
 				

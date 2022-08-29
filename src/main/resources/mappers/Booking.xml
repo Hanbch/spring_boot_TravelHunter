@@ -29,5 +29,11 @@
            		select * from Booking where member_id = #{member_id}
    			]]>
 	</select>
+	
+	 <delete id="rsvdelete">
+       <![CDATA[
+          delete  from booking where num = #{num}
+       ]]>
+    </delete>
 
 </mapper>

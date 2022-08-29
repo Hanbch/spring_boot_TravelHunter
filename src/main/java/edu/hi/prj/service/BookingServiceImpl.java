@@ -61,4 +61,10 @@ public class BookingServiceImpl implements BookingService {
 		return mapper.getRsvList(member_id);//회원ID로 예약정보List 가져오기;
 	}
 
+	@Override
+	public int rsvdelete(BookingVO bookingVO) {
+		
+		return mapper.rsvdelete(bookingVO);
+	}
+
 }

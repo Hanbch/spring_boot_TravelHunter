@@ -15,5 +15,7 @@ public interface BookingService {
 	List<BookingVO> getRsvList(String member_id);//회원ID로 예약정보List 가져오기
 
 	BookingInfoVO getBookingInfo(int room_num);
+	
+	int rsvdelete(BookingVO bookingVO);
 
 }

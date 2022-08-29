@@ -19,4 +19,6 @@ public interface BookingMapper {
 	List<BookingVO> getRsvList(String member_id);//회원ID로 예약정보List 가져오기
 	
 	BookingVO getRsvInfo(int room_num);//예약번호로 예약정보 가져오기
+	
+	int rsvdelete(BookingVO bookingVO);
 }

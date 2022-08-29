@@ -169,7 +169,7 @@ section.reservation .offset-lg-1 {
 		        pay_method : 'card',
 		        merchant_uid : 'merchant_' + new Date().getTime(),
 		        name : 'TravelHunter',
-		        amount : "1000",
+		        amount :  '1000',
 		        buyer_name : $("#cname").val(),
 		        buyer_tel : $("#cphone").val(),
 		    }, function(rsp) {

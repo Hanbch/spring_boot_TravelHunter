@@ -5,6 +5,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import edu.hi.prj.service.BookingService;
@@ -30,6 +31,12 @@ public class MypageController {
 		
 		model.addAttribute("rsvList",booking_service.getRsvList(member_id));
 		return "/mypage/reservations";
+	}
+	
+	@PostMapping("rsvdelete")
+	public String RsvDelete(BookingVO bookingVO) {
+		booking_service.rsvdelete(bookingVO);
+		return "redirect:";
 	}
 
 }
