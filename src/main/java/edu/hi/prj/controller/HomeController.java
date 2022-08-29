@@ -24,6 +24,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import edu.hi.prj.mapper.BookingMapper;
 import edu.hi.prj.mapper.UserMapper;
 import edu.hi.prj.service.BoardServiceImpl;
+import edu.hi.prj.service.BookingService;
 import edu.hi.prj.service.MemberService;
 import edu.hi.prj.vo.MemberVO;
 import edu.hi.prj.vo.UserDetailsVO;
@@ -49,12 +50,10 @@ public class HomeController {
 	@Autowired
 	private BookingMapper booking_mapper;
 	
-	@ResponseBody
-	@GetMapping("/date")
-	public String dateinsert() {
-		
-		return "test";
-	}
+	@Autowired
+	private BookingService booking_service;
+	
+
 	
 	
 	@ResponseBody
