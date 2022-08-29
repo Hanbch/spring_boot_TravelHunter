@@ -26,7 +26,7 @@
 	
 	<select id="getRsvList" resultType="BookingVO">
            <![CDATA[
-           		select * from Booking where member_id = #{member_id}
+           		select * from booking b,place p,room r where b.member_id = #{member_id} and b.room_num = r.num and p.num = r.place_num
    			]]>
 	</select>
 	
