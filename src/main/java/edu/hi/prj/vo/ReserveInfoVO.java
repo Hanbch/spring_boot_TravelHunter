@@ -15,11 +15,10 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class ReservationVO {
-	private int num;
-	private String member_id;
-	private int room_num;
+public class ReserveInfoVO {
 	private int place_num;
-	private Timestamp startdate;
-	private Timestamp enddate;
+	private int room_num;
+	private String pname;
+	private String rname;
+	private int price;
 }

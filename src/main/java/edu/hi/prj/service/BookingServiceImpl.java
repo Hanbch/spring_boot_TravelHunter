@@ -7,15 +7,14 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.nimbusds.jose.shaded.json.parser.ParseException;
-
 import edu.hi.prj.mapper.BookingMapper;
 import edu.hi.prj.vo.BookingVO;
+import edu.hi.prj.vo.ReserveInfoVO;
 
 @Service
 public class BookingServiceImpl implements BookingService{
 	@Autowired
-	BookingMapper mapper;
+	private BookingMapper mapper;
 
 	@Override
 	public void booking(BookingVO bookingVO) {
@@ -24,18 +23,18 @@ public class BookingServiceImpl implements BookingService{
 	}
 
 	@Override
-	   public void reserved(int room_num,String startdate, String enddate) throws Exception {
+	   public void reserved(BookingVO bookingVO) throws Exception {
 	     
-	        
+	      int room_num = bookingVO.getRoom_num(); 
 	          
 	       Date checkout;
 	       Date checkin;
 	      
-	         checkout = new SimpleDateFormat("MM/dd/yyyy").parse(enddate);
-	         checkin = new SimpleDateFormat("MM/dd/yyyy").parse(startdate);
+	         checkout = new SimpleDateFormat("MM/dd/yyyy").parse(bookingVO.getEnddate());
+	         checkin = new SimpleDateFormat("MM/dd/yyyy").parse(bookingVO.getStartdate());
 	         
 	           long diffSec = (checkout.getTime() - checkin.getTime()) / 1000;
-	            long diffDays = diffSec / (24*60*60); //일자수 차이
+	           long diffDays = diffSec / (24*60*60); //일자수 차이
 	         
 	            
 	            SimpleDateFormat dateFormat = new SimpleDateFormat("MMddyyyy");
@@ -48,6 +47,12 @@ public class BookingServiceImpl implements BookingService{
 	               System.out.println(rdate);
 	               mapper.reserved(room_num,rdate);
 	            }
+	}
+
+	@Override
+	public ReserveInfoVO getRsvInfo(int room_num) {
+		
+		return mapper.getRsvInfo(room_num);
 	}
 	
 

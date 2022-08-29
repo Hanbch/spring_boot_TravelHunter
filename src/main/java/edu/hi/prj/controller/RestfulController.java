@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -13,15 +14,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.hi.prj.service.BoardService;
+import edu.hi.prj.service.BookingService;
 import edu.hi.prj.service.LikesService;
 import edu.hi.prj.service.PlaceService;
 import edu.hi.prj.service.ReplyService;
 import edu.hi.prj.service.RoomService;
 import edu.hi.prj.vo.BoardVO;
+import edu.hi.prj.vo.BookingVO;
 import edu.hi.prj.vo.LikeVO;
 import edu.hi.prj.vo.PlaceDetailVO;
 import edu.hi.prj.vo.PlaceVO;
 import edu.hi.prj.vo.ReplyVO;
+import edu.hi.prj.vo.ReserveInfoVO;
 import edu.hi.prj.vo.ReviewImgVO;
 import edu.hi.prj.vo.RoomImgVO;
 import edu.hi.prj.vo.RoomVO;
@@ -46,6 +50,9 @@ public class RestfulController {
 	
 	@Autowired
 	private LikesService likes_service;
+	
+	@Autowired
+	private BookingService booking_service;
 	
 	@GetMapping("/boards/{id}")
 	public BoardVO getBoard(BoardVO boardVO) {
@@ -136,8 +143,7 @@ public class RestfulController {
 	}
 	
 
-	
-	
+
 	
 	}
 

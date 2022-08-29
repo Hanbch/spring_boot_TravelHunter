@@ -199,7 +199,7 @@
 		     						<div class="check_in">체크인  15:00</div>
 		     						<div class="check_out">체크아웃 11:00</div>
 		     						<div class="price">${room.price}원</div>
-		     						<a href="/product/reservation?place_num=${room.capacity}&room_num=${room.num}"><button>예약하기</button></a>
+		     						<a href="/product/reservation?place_num=${room.place_num}&room_num=${room.num}&rname=${room.rname}&startdate=${bookingVO.startdate}&enddate=${bookingVO.enddate}"><button>예약하기</button></a>
 		     					</div>
 		     				</li>
 		     			</c:forEach>

@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import edu.hi.prj.mapper.AdminMapper;
+import edu.hi.prj.vo.BookingVO;
 import edu.hi.prj.vo.MemberVO;
 import edu.hi.prj.vo.PlaceVO;
-import edu.hi.prj.vo.ReservationVO;
 import edu.hi.prj.vo.RoomVO;
 
 @Service
@@ -55,17 +55,17 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public List<ReservationVO> getReservationList(String id) {
+	public List<BookingVO> getReservationList(String id) {
 		try {
 			int num = Integer.parseInt(id);
 			return mapper.searchReservationList(num);
 		} catch (Exception e) {
-		return mapper.getReservationList();
+			return mapper.getReservationList();
 		}
 	}
 
 	@Override
-	public ReservationVO selectReservation(int id) {
+	public BookingVO selectReservation(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

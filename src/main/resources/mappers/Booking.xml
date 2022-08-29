@@ -18,4 +18,10 @@
    			]]>
     </insert>
     
+    <select id="getRsvInfo" resultType="ReserveInfoVO">
+           <![CDATA[
+           		select p.num place_num, r.num room_num, pname,rname,price,capacity,rinfo from place p,room r where p.num = r.place_num and r.num = #{room_num}
+   			]]>
+    </select>
+    
 </mapper>

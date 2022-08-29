@@ -6,7 +6,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import edu.hi.prj.service.BoardService;
 import edu.hi.prj.service.BookingService;
@@ -14,9 +16,9 @@ import edu.hi.prj.service.MemberService;
 import edu.hi.prj.service.PlaceService;
 import edu.hi.prj.service.RoomService;
 import edu.hi.prj.vo.BookingVO;
-import edu.hi.prj.vo.MemberVO;
 import edu.hi.prj.vo.PlaceVO;
 import edu.hi.prj.vo.Place_TypeVO;
+import edu.hi.prj.vo.ReserveInfoVO;
 import edu.hi.prj.vo.RoomVO;
 
 
@@ -74,24 +76,30 @@ public class ProductController {
 	
 	
 	@GetMapping("/reservation")
-	public String reservation(Model model,PlaceVO PlaceVO placeVO, RoomVO roomVO,, RoomVO roomVO,Authentication authentication) {
-		//String id = authentication.getName();
+	public String reservation(Model model,ReserveInfoVO reservedInfoVO, BookingVO bookingVO, Authentication authentication) {
 		
-		model.addAttribute("place",placeVO.getNum());
-		return "/product/reservation";
-	}
-	
-	@PostMapping("/booking")
-	public String booking(BookingVO bookingVO,PlaceVO placeVO, RoomVO roomVO, Authentication authentication) throws Exception{
-		String id = authentication.getName();
-		int cphone = bookingVO.getCphone();
-		String cname = bookingVO.getCname();
-		int room_num = bookingVO.getRoom_num();
+		int room_num = reservedInfoVO.getRoom_num();
 		String startdate = bookingVO.getStartdate();
 		String enddate = bookingVO.getEnddate();
 		
-		booking_service.reserved(27,"08/20/2022","08/25/2022");
+		model.addAttribute("rsvInfo",booking_service.getRsvInfo(room_num));
+		model.addAttribute("startdate",startdate);
+		model.addAttribute("enddate",enddate);
 		return "/product/reservation";
+	}
+	
+	@ResponseBody
+	@PostMapping("/booking")
+	public String booking( @RequestBody BookingVO bookingVO, Authentication authentication) throws Exception{
+		
+		//int room_num = bookingVO.getRoom_num();
+		//String startdate = bookingVO.getStartdate();
+		//String enddate = bookingVO.getEnddate();
+		
+		System.out.println(bookingVO + "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
+		
+		booking_service.reserved(bookingVO);
+		return "/product";
 	}
 	
 	

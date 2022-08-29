@@ -4,10 +4,9 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import edu.hi.prj.vo.BoardVO;
+import edu.hi.prj.vo.BookingVO;
 import edu.hi.prj.vo.MemberVO;
 import edu.hi.prj.vo.PlaceVO;
-import edu.hi.prj.vo.ReservationVO;
 import edu.hi.prj.vo.RoomVO;
 
 @Mapper
@@ -32,8 +31,8 @@ public interface AdminMapper{
 	
 	
 	//예약 관리 페이지
-	List<ReservationVO> getReservationList();	//전체 예약 리스트 불러오기
-	List<ReservationVO> searchReservationList(int id);
+	List<BookingVO> getReservationList();	//전체 예약 리스트 불러오기
+	List<BookingVO> searchReservationList(int id);
 	
 	
 	

@@ -48,13 +48,13 @@
        ]]>  
     </select>
     
-    <select id="getReservationList" resultType="ReservationVO">
+    <select id="getReservationList" resultType="BookingVO">
     	<![CDATA[
            select * from reservation
        ]]>  
     </select>
     
-    <select id="searchReservationList" resultType="ReservationVO">
+    <select id="searchReservationList" resultType="BookingVO">
     	<![CDATA[
            select * from reservation where num like '%'||#{num}||'%' order by num asc
        ]]>  
