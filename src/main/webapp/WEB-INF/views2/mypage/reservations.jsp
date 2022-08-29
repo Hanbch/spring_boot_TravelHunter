@@ -69,72 +69,37 @@ ul.product li.current {
 
 <section style="padding: 200px 0; width:1200px; margin:0 auto;">
 	<ul class="tabs">
-		<li class="tab-link current" data-tab="tab-1">내정보</li>
-		<li class="tab-link " data-tab="tab-2"><a href="/mypage/reservations">예약내역</a></li>
+		<li class="tab-link" data-tab="tab-1">내정보</li>
+		<li class="tab-link current" data-tab="tab-2">예약내역</li>
 		<li class="tab-link" data-tab="tab-3">내기록</li>
 		<li class="tab-link" data-tab="tab-4">회원탈퇴</li>
 	</ul>
-	<div id="tab-1" class="tab-content current">
-		<h1>
-			내정보
-			(
-				<sec:authorize access="isAuthenticated()">
-					<sec:authentication property="principal.username" />
-				</sec:authorize>
-			)
-		</h1>
-		<form action="/memberUpdate" method="post">
-
-
-
-			<label for="id">아이디</label> <input type="text" id="id" name="id"
-				value=<sec:authentication property="principal.username"/>
-				readonly="readonly" /><br> <label for="mpw">비밀번호</label> <input
-				type="password" id="mpw" name="mpw" /><br> <label for="mname">이름</label>
-			<input type="text" id="mname" name="mname" value="${member.mname}" /><br>
-			<label for="nick_name">닉네임</label> <input type="text" id="nick_name"
-				name="nick_name" value="${member.nick_name }" /><br> <label
-				for="memail">이메일</label> <input type="text" id="memail"
-				name="memail" value="${member.memail }" /><br> <label
-				for="mphone">전화번호</label> <input type="text" id="mphone"
-				name="mphone" value="${member.mphone}" /><br>
-			<button type="submit">수정</button>
-			<a href="/memberUpdateView"><input type="button" value="회원정보수정"></a>
-			<a href="/memberDeleteView"><input type="button" value="회원탈퇴"></a>
-		</form>
-
-	</div>
-	<div id="tab-2" class="tab-content">
+	
+	<div id="tab-2" class="tab-content current">
 		<ul class="product">
 			<li class="product-link current" data-tab="product-1">예약완료</li>
 			<li class="product-link" data-tab="product-2">취소내역</li>
 			<li class="product-link" data-tab="product-3">이용완료</li>
 		</ul>
-		<div id="product-1" class="product-content current">예약완료내용</div>
+		<div id="product-1" class="product-content current">
+			<h1>예약완료내용</h1>
+			<ul>
+				<c:forEach items="${rsvList}" var="rsvList">
+					<li>
+						예약번호:${rsvList.num}<br>
+						예약장소:${rsvList.place_num}<br>
+						방:${rsvList.room_num}<br>
+						체크인:${rsvList.startdate}<br>
+						체크아웃:${rsvList.enddate}<br>
+					</li>
+				</c:forEach>
+				
+			</ul>
+		</div>
 		<div id="product-2" class="product-content">취소내역내용</div>
 		<div id="product-3" class="product-content">이용완료내용</div>
 	</div>
-	<div id="tab-3" class="tab-content">
-		<h1>내기록</h1>
-		<p>${member.id }</p>
-
-	</div>
-	<div id="tab-4" class="tab-content">
-		<h1>회원탈퇴</h1>
-		<form action="/memberDelete" method="post" id="delForm">
-			<label for="id">아이디</label> <input type="text" id="id" name="id"
-				value="${member.id}" readonly="readonly" /><br> <label
-				for="delpw">비밀번호</label> <input type="password" id="delpw"
-				name="mpw" /><br> <label for="mname">이름</label> <input
-				type="text" id="mname" name="mname" value="${member.mname}"
-				readonly="readonly" /><br>
-		</form>
-		<button type="button" id="submit">회원탈퇴</button>
-		<c:if test="${msg == false }"> 
-					비밀번호가 맞지 않습니다.
-				</c:if>
-
-	</div>
+	
 
 
 
