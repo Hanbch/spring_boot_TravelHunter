@@ -14,8 +14,8 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BookingVO{
-	private int num;
-	private int member_id;
+	//private int num;
+	private String member_id;
 	private int room_num;
 	private int place_num;
 	private String startdate;

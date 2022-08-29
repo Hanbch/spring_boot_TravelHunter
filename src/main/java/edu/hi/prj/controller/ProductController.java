@@ -90,15 +90,11 @@ public class ProductController {
 	
 	@ResponseBody
 	@PostMapping("/booking")
-	public String booking( @RequestBody BookingVO bookingVO, Authentication authentication) throws Exception{
+	public String booking(@RequestBody BookingVO bookingVO) throws Exception{
 		
-		//int room_num = bookingVO.getRoom_num();
-		//String startdate = bookingVO.getStartdate();
-		//String enddate = bookingVO.getEnddate();
-		
-		System.out.println(bookingVO + "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
-		
+		booking_service.booking(bookingVO);
 		booking_service.reserved(bookingVO);
+		
 		return "/product";
 	}
 	

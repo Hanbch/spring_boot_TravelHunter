@@ -111,7 +111,7 @@
 		        	
 		        	var count = $(".reply_count_" + board_id).text();
 		        	$(".reply_count_" + board_id).text(Number(count) + 1);
-		    		console.log(result);
+		    		//console.log(result);
 		        
 		    	}, 
 		    	error : function(){

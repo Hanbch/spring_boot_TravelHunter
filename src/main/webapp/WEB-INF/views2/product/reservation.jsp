@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %> 
 <%@include file ="../include/header.jsp" %>
 
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
@@ -20,16 +21,25 @@
                 <div class="row">
                     <div class="col-lg-8">
                     	<h2 class="contact-title">예약자 정보입력</h2>
-                        <form class="form-contact contact_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
+                        <form class="form-contact contact_form" id="complete" name="rsvInfo" action="/product/booking" method="POST">
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                    	<h3>예약자 이름</h3>
-                                        <input class="form-control valid" name="cname" id="cname_form" type="text" placeholder="체크인시 필요한 정보입니다.">
-                                        <br>
-                                        <h3>예약자 전화번호</h3>
-                                    	<input class="form-control valid" name="cphone" id="cphone_form" type="text" placeholder="체크인시 필요한 정보입니다.">
-                                    	<br>
+									<input type="hidden" name="place_num" id="place_num" value="${rsvInfo.place_num}"/>
+									<input type="hidden" name="room_num" id="room_num" value="${rsvInfo.room_num}"/>
+									<input type="hidden" name=startdate id="startdate" value="${startdate}"/>
+									<input type="hidden" name="enddate" id="enddate" value="${enddate}"/>
+									<sec:authorize access="isAuthenticated()">
+										<input type="hidden" name="member_id" id="member_id" value=<sec:authentication property="principal.username"/> />
+									</sec:authorize>
+											
+									<h3>예약자 이름</h3>
+                                    <input class="form-control valid" name="cname" id="cname" type="text" placeholder="체크인시 필요한 정보입니다.">
+                                    <br>
+                                    <h3>예약자 전화번호</h3>
+                                   	<input class="form-control valid" name="cphone" id="cphone" type="text" placeholder="체크인시 필요한 정보입니다.">
+                                   	<br>
+                                    	
                                     </div>
                                 </div>
                              </div>
@@ -74,15 +84,6 @@
                     </div>
                 </div>
             </div>
-            <form id="complete" name="rsvInfo" action="/product/booking" method="POST">
-            	  <input type="hidden" name="place_num" id="place_num" value="${rsvInfo.place_num}"/>
-            	  <input type="hidden" name="room_num" id="room_num" value="${rsvInfo.room_num}"/>
-            	  <input type="hidden" name=startdate id="startdate" value="${startdate}"/>
-            	  <input type="hidden" name="enddate" id="enddate" value="${enddate}"/>
-            	  <input type="hidden" name="cname" id="cname" value="홍길똥"/>
-            	  <input type="hidden" name="cphone" id="cphone" value="010"/>
-            	  <input type="hidden" name="member_id" id="member_id" value="manager"/>
-            </form>
         </section>
     <!-- ================ contact section end ================= -->
 
@@ -107,6 +108,7 @@
 		var enddate = $("#enddate").val();
 		var cname = $("#cname").val();
 		var cphone = $("#cphone").val();
+		var member_id = $("#member_id").val();
 		
 		var form = {
 				place_num : place_num,
@@ -115,21 +117,8 @@
 				enddate : enddate,
 				cname : cname,
 				cphone :cphone,
-				memeber_id : member_id
+				member_id : member_id
 		}
-		
-		$.ajax({
-			type : "POST",
-			url : "/product/booking",
-			data : JSON.stringify(form),
-			success : function(data){
-				alert("예약완료");
-			}, 
-			error : function(){
-				alert("예약실패");
-			}
-			
-		});
 		
 		$(function(){
 			
@@ -175,8 +164,25 @@
 		                    //[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
 		                }
 		            });
-		            //성공시 이동할 페이지
 		            
+		          	//예약정보 DB전송
+		            $.ajax({
+		    			type : "POST",
+		    			url : "/product/booking",
+		    			cashe: false,
+		    		    contentType:'application/json;charset=utf-8',
+		    			data : JSON.stringify(form),
+		    			success : function(data){
+		    				alert("예약완료");
+		    			}, 
+		    			error : function(){
+		    				alert("예약실패");
+		    			}
+		    			
+		    		});
+		          	
+		            //성공시 이동할 페이지
+		            location.href="/product";
 		            
 		            
 		        } else {
