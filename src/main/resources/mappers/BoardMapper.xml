@@ -21,7 +21,6 @@
     <select id="getBoard" resultType="BoardVO">
        <![CDATA[
            select * from board where id = #{id}
-          
        ]]>
     </select>
     
@@ -37,7 +36,7 @@
     <insert id="insert">
            <![CDATA[
            insert into board (id,member_id,place_num,board_type_num,btitle,bcontent,bdate,bgrade,bview)
-               values (board_seq.nextval,#{member_id},#{place_num, jdbcType=INTEGER},#{board_type_num},#{btitle},#{bcontent},sysdate,#{bgrade, jdbcType=DOUBLE},0)
+               values (board_seq.nextval,#{member_id},#{place_num, jdbcType=INTEGER},#{board_type_num},#{btitle},#{bcontent},to_char(sysdate,'yy-mm-dd'),#{bgrade, jdbcType=DOUBLE},0)
    			]]>
     </insert>
     
