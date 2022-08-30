@@ -36,8 +36,8 @@ public class MemberServicelmpl implements MemberService{
 	}
 
 	@Override
-	public void memberDelete(MemberVO memberVO) {
-		mapper.memberDelete(memberVO);
+	public void memberDelete(String id) {
+		mapper.memberDelete(id);
 	}
 
 	@Override

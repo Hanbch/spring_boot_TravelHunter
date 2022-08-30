@@ -42,8 +42,7 @@
 	<delete id="memberDelete">
 		<![CDATA[ 
             delete from member
-            where id = #{id}
-            and mpw = #{mpw}    	
+            where id = #{id}  	
        ]]> 
 	
 	</delete>

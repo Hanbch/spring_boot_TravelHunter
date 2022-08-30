@@ -2,26 +2,52 @@ package edu.hi.prj.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import edu.hi.prj.service.BookingService;
+import edu.hi.prj.service.MemberService;
 import edu.hi.prj.vo.BookingVO;
+import edu.hi.prj.vo.MemberVO;
+import edu.hi.prj.vo.UserVO;
 
 @Controller
 @RequestMapping("/mypage")
 public class MypageController {
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
-	@Autowired BookingService booking_service;
-
+	@Autowired
+	private BookingService booking_service;
+	
+	@Autowired
+	private MemberService member_service; 
+	
+	@ResponseBody
+	@GetMapping("/test")
+	public String tests(MemberVO memberVO, UserVO userVO) {
+		System.out.println(memberVO);
+		System.out.println(userVO);
+		
+		
+		return "aa";
+	}
+	
+	
+	
 	@GetMapping("")
-	public String maypage() {
-
+	public String maypage(Model model, Authentication authentication, MemberVO memberVO) {
+		String id = authentication.getName();
+		model.addAttribute("member",  member_service.getmember(id));
 		return "/mypage/mypage";
 	}
+	
+
 	
 	@GetMapping("/reservations")
 	public String reservations(Model model,BookingVO bookingVO,Authentication authentication) {
@@ -41,8 +67,9 @@ public class MypageController {
 	}
 	
 	@GetMapping("/widthdraw")
-	public String widthdraw() {
-		
+	public String widthdraw(Model model, Authentication authentication, MemberVO memberVO) {
+		String id = authentication.getName();
+		model.addAttribute("member",  member_service.getmember(id));
 		return "/mypage/widthdraw";
 	}
 	

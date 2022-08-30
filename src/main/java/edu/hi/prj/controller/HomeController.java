@@ -132,12 +132,16 @@ public class HomeController {
 
 	@GetMapping("/memberUpdateView")
 	public String memberUpdateView() {
-
+		
 		return "/mypage/memberUpdateView";
 	}
 
 	@PostMapping("/memberUpdate")
-	public String memberUpdate(MemberVO memberVO) {
+	public String memberUpdate(MemberVO memberVO, UserVO userVO) {
+		String rawPassword = memberVO.getMpw();
+		String encPassword = bCryptPasswordEncoder.encode(rawPassword);
+		memberVO.setMpw(encPassword);
+		
 		member_service.memberUpdate(memberVO);
 		return "/main/main";
 	}
@@ -148,26 +152,34 @@ public class HomeController {
 	}
 
 	@PostMapping("/memberDelete")
-	public String memberDelete(MemberVO memberVO, HttpSession session, RedirectAttributes rttr) {
-		MemberVO member = (MemberVO) session.getAttribute("member");
-		String sessionpw = member.getMpw();
-		String vopw = memberVO.getMpw();
-
-		if (!(sessionpw.equals(vopw))) {
-			rttr.addFlashAttribute("msg", false);
-		}
-		member_service.memberDelete(memberVO);
-
-		session.invalidate();
+	public String memberDelete(MemberVO memberVO) {
+		String id = memberVO.getId();
+		System.out.println(id);
+		member_service.memberDelete(id);
 		return "/main/main";
 	}
 
+	
+	
+	
+	
+	
 	@ResponseBody
 	@PostMapping("/delpwcheck")
-	public int delpwcheck(MemberVO memberVO) {
+	public int delpwcheck(MemberVO memberVO, Authentication authentication, @AuthenticationPrincipal UserDetailsVO userDetails) {
+		String mpw = memberVO.getMpw();
+		UserDetailsVO userDetailsVO = (UserDetailsVO) authentication.getPrincipal();
+		String encPassword = userDetails.getPassword();
+		System.out.println(mpw);
+		System.out.println(encPassword);
+
+		boolean password = bCryptPasswordEncoder.matches(mpw, encPassword);
+		if(password) {
+			memberVO.setMpw(encPassword);
+		}
+		
 		int result = member_service.delpwcheck(memberVO);
 		return result;
-
 	}
 
 	@GetMapping("/loginInfo")
@@ -206,6 +218,7 @@ public class HomeController {
 		System.out.println("authentication : " + authentication.getPrincipal());
 		System.out.println("userDetails : " + userDetails.getUserVO());
 		System.out.println(userDetails.getUsername());
+		System.out.println(userDetails.getPassword());
 
 		return "세션정보확인";
 	}

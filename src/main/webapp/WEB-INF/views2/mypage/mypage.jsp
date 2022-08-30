@@ -24,22 +24,19 @@
 			)
 		</h1>
 		<form action="/memberUpdate" method="post">
-
-
-
-			<label for="id">아이디</label> <input type="text" id="id" name="id"
-				value=<sec:authentication property="principal.username"/>
-				readonly="readonly" /><br> <label for="mpw">비밀번호</label> <input
-				type="password" id="mpw" name="mpw" /><br> <label for="mname">이름</label>
+			<label for="id">아이디</label> 
+			<input type="text" id="id" name="id" value=<sec:authentication property="principal.username"/> readonly="readonly" /><br> 
+			<label for="mpw">비밀번호</label> 
+			<input type="password" id="mpw" name="mpw" /><br> 
+			<label for="mname">이름</label>
 			<input type="text" id="mname" name="mname" value="${member.mname}" /><br>
-			<label for="nick_name">닉네임</label> <input type="text" id="nick_name"
-				name="nick_name" value="${member.nick_name }" /><br> <label
-				for="memail">이메일</label> <input type="text" id="memail"
-				name="memail" value="${member.memail }" /><br> <label
-				for="mphone">전화번호</label> <input type="text" id="mphone"
-				name="mphone" value="${member.mphone}" /><br>
-			<button type="submit">수정</button>
-			<a href="/memberUpdateView"><input type="button" value="회원정보수정"></a>
+			<label for="nick_name">닉네임</label> 
+			<input type="text" id="nick_name" name="nick_name" value="${member.nick_name }" /><br> 
+			<label for="memail">이메일</label> 
+			<input type="text" id="memail"name="memail" value="${member.memail }" /><br> 
+			<label for="mphone">전화번호</label> 
+			<input type="text" id="mphone"name="mphone" value="${member.mphone}" /><br>
+			<button type="submit">회원정보수정</button>
 			<a href="/memberDeleteView"><input type="button" value="회원탈퇴"></a>
 		</form>
 

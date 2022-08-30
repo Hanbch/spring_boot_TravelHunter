@@ -9,7 +9,7 @@ public interface MemberService{
 	MemberVO logincheck(MemberVO memberVO);
 	int idcheck(MemberVO memberVO);
 	void memberUpdate(MemberVO memberVO);
-	void memberDelete(MemberVO memberVO);
+	void memberDelete(String id);
 	int delpwcheck(MemberVO memberVO);
 	List<MemberVO> memberBoardList(String id);
 	MemberVO getmember(String id);
