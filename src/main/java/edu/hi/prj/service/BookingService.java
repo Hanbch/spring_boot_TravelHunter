@@ -13,6 +13,8 @@ public interface BookingService {
 	void reserved(BookingVO bookingVO) throws Exception;
 	
 	List<BookingVO> getRsvList(String member_id);//회원ID로 예약정보List 가져오기
+	
+	List<BookingVO> getRsvedList(String member_id);//회원ID로 지난예약정보List 가져오기
 
 	BookingInfoVO getBookingInfo(int room_num);
 	

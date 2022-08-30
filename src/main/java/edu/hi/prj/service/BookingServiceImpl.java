@@ -77,4 +77,10 @@ public class BookingServiceImpl implements BookingService {
 		return mapper.withdraworderList(member_id);
 	}
 
+	@Override
+	public List<BookingVO> getRsvedList(String member_id) {
+		
+		return mapper.getRsvedList(member_id);//회원ID로 예약정보List 가져오기;
+	}
+
 }

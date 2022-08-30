@@ -26,7 +26,7 @@
 			<ul>
 				<c:forEach items="${rsvList}" var="rsvList">
 					<li style="background-color: #fff; margin-bottom: 20px;">
-						 <form action="/mypage/rsvdelete?num=${rsvList.num}&place_num=${rsvList.place_num}&startdate=${rsvList.startdate}&enddate=${rsvList.enddate}
+						 <form id="canelPay" action="/mypage/rsvdelete?num=${rsvList.num}&place_num=${rsvList.place_num}&startdate=${rsvList.startdate}&enddate=${rsvList.enddate}
                   			&cname=${rsvList.cname}&cphone=${rsvList.cphone}&member_id=${rsvList.member_id}&pname=${rsvList.pname}" method="POST">
 							예약번호:${rsvList.num}<br> 
 							<input type="hidden" name="num" id="num" value="${rsvList.num}" /> 예약자 이름:${rsvList.cname}<br>
@@ -35,8 +35,9 @@
 							방:${rsvList.rname}(${rsvList.room_num})<br>
 							가격:${rsvList.price}원<br> 체크인:${rsvList.startdate}<br>
 							체크아웃:${rsvList.enddate}<br>
-
-							<button type="" onclick="cancelPay()">환불하기</button>
+							
+							<a href="#" onclick="cancelPay()">환불하기</a>
+							<input type="submit" onsubmit="return false" onclick="cancelPay()" value="환불하기"/>
 						</form>
 					</li>
 				</c:forEach>
@@ -62,11 +63,45 @@
 		
 		
 		</div>
-		<div id="product-3" class="product-content">이용완료내용</div>
+		<div id="product-3" class="product-content">
+			<h1>이용완료내용</h1>
+			<ul>
+				<c:forEach items="${rsvedList}" var="rsvedList">
+					<li style="background-color: #fff; margin-bottom: 20px;">
+						 <form action="/mypage/rsvdelete?num=${rsvedList.num}&place_num=${rsvedList.place_num}&startdate=${rsvedList.startdate}&enddate=${rsvedList.enddate}
+                  			&cname=${rsvedList.cname}&cphone=${rsvedList.cphone}&member_id=${rsvedList.member_id}&pname=${rsvedList.pname}" method="POST">
+							예약번호:${rsvedList.num}<br> 
+							<input type="hidden" name="num" id="num" value="${rsvedList.num}" /> 예약자 이름:${rsvedList.cname}<br>
+							예약자 전화번호:${rsvedList.cphone}<br>
+							예약장소:${rsvedList.pname}(${rsvedList.place_num})<br>
+							방:${rsvedList.rname}(${rsvedList.room_num})<br>
+							가격:${rsvedList.price}원<br> 체크인:${rsvedList.startdate}<br>
+							체크아웃:${rsvedList.enddate}<br>
+							
+							
+						</form>
+					</li>
+				</c:forEach>
+			</ul>
+		</div>
 	</div>
 </section>
 <%@include file="../include/footer.jsp"%>
 <script>
+	//var check = confirm("예약취소하시겠습니까?");
+	//console.log(check);
+	
+	function cancelPay(){
+		
+		var check = confirm("예약취소하시겠습니까?");
+		console.log(check);
+		
+		if(check){
+			$("#cancelPay").submit();
+		}
+		
+		
+	}
 	//예약탭
 	$(document).ready(function() {
 
