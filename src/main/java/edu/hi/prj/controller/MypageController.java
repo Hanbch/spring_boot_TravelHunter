@@ -33,6 +33,18 @@ public class MypageController {
 		return "/mypage/reservations";
 	}
 	
+	@GetMapping("/activity")
+	public String activity() {
+		
+		return "/mypage/activity";
+	}
+	
+	@GetMapping("/widthdraw")
+	public String widthdraw() {
+		
+		return "/mypage/widthdraw";
+	}
+	
 	@PostMapping("rsvdelete")
 	public String RsvDelete(BookingVO bookingVO) {
 		

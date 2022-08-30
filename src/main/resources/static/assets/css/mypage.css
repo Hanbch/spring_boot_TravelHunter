@@ -1,0 +1,64 @@
+@charset "utf-8";
+
+ul.tabs {
+	float: left;
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+ul.tabs li {
+	line-height: 50px;
+	margin-bottom: 1px;
+	text-align: center;
+	background: #898989;
+	color: white;
+	cursor: pointer;
+}
+
+.tab-link a {
+	display: block;
+	padding: 10px 30px;
+}
+
+ul.tabs li.current {
+	background: #e0e0e0;
+	color: #222;
+}
+
+.tab-content {
+	width: 1000px;
+	min-height:500px;
+	padding: 30px;
+	display: none;
+	background: #e0e0e0;
+	margin-left: 168px;
+}
+
+.tab-content.current {
+	display: inherit;
+}
+
+ul.product li {
+	text-align: center;
+	width: 300px;
+	display: inline-block;
+	background: #898989;
+	color: white;
+	padding: 10px 15px;
+	cursor: pointer;
+}
+
+ul.product li.current {
+	background: #e0e0e0;
+	color: #222;
+}
+
+.product-content {
+	display: none;
+}
+
+.product-content.current {
+	display: inherit;
+}
+</style>

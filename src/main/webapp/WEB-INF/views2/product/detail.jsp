@@ -161,10 +161,10 @@
      			<form action="/product/detail" method="GET">
 	     			<div class="datepicker_wrapp">
 		     			<div class="startdate">
-			     			<input id="datepicker1" name="startdate" placeholder="${bookingVO.startdate}"/>
+			     			<input id="datepicker1" name="startdate" placeholder="${bookingVO.startdate}" value="${bookingVO.startdate}"/>
 			     		</div>	
 			     		<div class="enddate">
-			     			<input id="datepicker2" name="enddate" placeholder="${bookingVO.enddate}"/>
+			     			<input id="datepicker2" name="enddate" placeholder="${bookingVO.enddate}" value="${bookingVO.enddate}"/>
 			     		</div>
 			     		<div class="single-select-box mt-20">
 	                        <a href="#" class="btn select-btn">선택</a>

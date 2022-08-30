@@ -50,7 +50,7 @@ public class ProductController {
 		String startdate = bookingVO.getStartdate();
 		String enddate = bookingVO.getEnddate();
 		
-		//오늘,내일 날짜구하기
+		//오늘,내일 날짜구하기(필터링 default 날짜)
 		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 	    Calendar cal = Calendar.getInstance();
 
