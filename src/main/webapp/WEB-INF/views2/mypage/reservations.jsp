@@ -26,7 +26,7 @@
 			<ul>
 				<c:forEach items="${rsvList}" var="rsvList">
 					<li style="background-color: #fff; margin-bottom: 20px;">
-						 <form id="canelPay" action="/mypage/rsvdelete?num=${rsvList.num}&place_num=${rsvList.place_num}&startdate=${rsvList.startdate}&enddate=${rsvList.enddate}
+						 <form id="cancelPay" action="/mypage/rsvdelete?num=${rsvList.num}&place_num=${rsvList.place_num}&startdate=${rsvList.startdate}&enddate=${rsvList.enddate}
                   			&cname=${rsvList.cname}&cphone=${rsvList.cphone}&member_id=${rsvList.member_id}&pname=${rsvList.pname}" method="POST">
 							예약번호:${rsvList.num}<br> 
 							<input type="hidden" name="num" id="num" value="${rsvList.num}" /> 예약자 이름:${rsvList.cname}<br>
@@ -35,10 +35,11 @@
 							방:${rsvList.rname}(${rsvList.room_num})<br>
 							가격:${rsvList.price}원<br> 체크인:${rsvList.startdate}<br>
 							체크아웃:${rsvList.enddate}<br>
-							
 							<a href="#" onclick="cancelPay()">환불하기</a>
-							<input type="submit" onsubmit="return false" onclick="cancelPay()" value="환불하기"/>
 						</form>
+						
+						<input type="submit" onclick="cancelPay()" value="환불하기"/>
+						
 					</li>
 				</c:forEach>
 
