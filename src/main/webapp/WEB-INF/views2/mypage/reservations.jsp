@@ -27,7 +27,7 @@
 				<c:forEach items="${rsvList}" var="rsvList">
 					<li style="background-color: #fff; margin-bottom: 20px;">
 						 <form action="/mypage/rsvdelete?num=${rsvList.num}&place_num=${rsvList.place_num}&startdate=${rsvList.startdate}&enddate=${rsvList.enddate}
-                  			&cname=${rsvList.cname}&cphone=${rsvList.cphone}" method="POST">
+                  			&cname=${rsvList.cname}&cphone=${rsvList.cphone}&member_id=${rsvList.member_id}&pname=${rsvList.pname}" method="POST">
 							예약번호:${rsvList.num}<br> 
 							<input type="hidden" name="num" id="num" value="${rsvList.num}" /> 예약자 이름:${rsvList.cname}<br>
 							예약자 전화번호:${rsvList.cphone}<br>
@@ -43,7 +43,25 @@
 
 			</ul>
 		</div>
-		<div id="product-2" class="product-content">취소내역내용</div>
+		<div id="product-2" class="product-content">
+			<h1>취소내역</h1>
+				<ul>
+					<c:forEach items="${delList}" var="delList">
+						<li style="background-color: #fff; margin-bottom: 20px;">
+							 
+								예약번호 : ${delList.num}<br> 
+								예약장소 : ${delList.pname}<br>
+								예약자 이름 : ${delList.cname}<br>
+								예약자 전화번호 : 0${delList.cphone}<br>
+								체크인 : ${delList.startdate}<br>
+								체크아웃 : ${delList.enddate}<br>
+						</li>
+					</c:forEach>
+	
+				</ul>
+		
+		
+		</div>
 		<div id="product-3" class="product-content">이용완료내용</div>
 	</div>
 </section>

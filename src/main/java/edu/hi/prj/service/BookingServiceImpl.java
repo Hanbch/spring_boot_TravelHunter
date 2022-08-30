@@ -72,4 +72,9 @@ public class BookingServiceImpl implements BookingService {
 		mapper.withdraworder(bookingVO);
 	}
 
+	@Override
+	public List<BookingVO> withdraworderList(String member_id) {
+		return mapper.withdraworderList(member_id);
+	}
+
 }

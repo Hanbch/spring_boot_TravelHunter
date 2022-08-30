@@ -30,6 +30,7 @@ public class MypageController {
 		int booking_num = bookingVO.getNum();
 		
 		model.addAttribute("rsvList",booking_service.getRsvList(member_id));
+		model.addAttribute("delList", booking_service.withdraworderList(member_id));
 		return "/mypage/reservations";
 	}
 	

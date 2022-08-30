@@ -19,5 +19,7 @@ public interface BookingService {
 	int rsvdelete(BookingVO bookingVO);
 	
 	void withdraworder(BookingVO bookingVO);
+	
+	List<BookingVO> withdraworderList(String member_id);
 
 }

@@ -38,9 +38,16 @@
     
     <insert id="withdraworder">
            <![CDATA[
-           		insert into withdraworder(booking_num, place_num, startdate, enddate, cname, cphone)
-                 values(#{num}, #{place_num}, to_date(#{startdate},'yyyy-mm-dd HH24:MI:SS'), to_date(#{enddate},'yyyy-mm-dd HH24:MI:SS'), #{cname}, #{cphone})
+           		insert into withdraworder(booking_num, member_id, place_num, startdate, enddate, cname, cphone, pname)
+           		values(#{num}, #{member_id}, #{place_num}, to_date(#{startdate},'yyyy-mm-dd HH24:MI:SS'), to_date(#{enddate},'yyyy-mm-dd HH24:MI:SS'), #{cname}, #{cphone}, #{pname})
    			]]>
 	</insert>
+	
+	<select id="withdraworderList" resultType="BookingVO">
+           <![CDATA[
+           		select booking_num num, place_num, startdate, enddate, cname, cphone, member_id, pname 
+           		from withdraworder where member_id = #{member_id}
+   			]]>
+	</select>
 
 </mapper>
