@@ -14,7 +14,6 @@ ul.tabs {
 
 ul.tabs li {
 	width: 120px;
-	height: 50px;
 	line-height: 50px;
 	margin-bottom: 1px;
 	text-align: center;
@@ -23,6 +22,8 @@ ul.tabs li {
 	padding: 10px 15px;
 	cursor: pointer;
 }
+
+.tab-link a{display:block}
 
 ul.tabs li.current {
 	background: #e0e0e0;

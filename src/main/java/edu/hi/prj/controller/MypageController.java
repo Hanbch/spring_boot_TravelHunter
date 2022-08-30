@@ -35,8 +35,9 @@ public class MypageController {
 	
 	@PostMapping("rsvdelete")
 	public String RsvDelete(BookingVO bookingVO) {
+		
 		booking_service.rsvdelete(bookingVO);
-		return "redirect:";
+		return "redirect:/mypage/reservations";
 	}
 
 }

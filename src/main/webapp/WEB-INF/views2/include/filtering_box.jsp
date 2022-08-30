@@ -14,7 +14,7 @@
                         <span> Check In Date:</span>
                     </div>
                     <div class="boking-datepicker">
-                        <input id="datepicker1" name="startdate" placeholder="날짜선택" />
+                        <input id="datepicker1" name="startdate" placeholder="${startdate}" value="${startdate}" />
                     </div>
                </div>
                 <!-- Single Select Box -->
@@ -24,7 +24,7 @@
                         <span>Check OutDate:</span>
                     </div>
                     <div class="boking-datepicker">
-                        <input id="datepicker2" name="enddate" placeholder="날짜선택" />
+                        <input id="datepicker2" name="enddate" placeholder="${enddate}" value="${enddate}" />
                     </div>
                </div>
                 <!-- Single Select Box -->

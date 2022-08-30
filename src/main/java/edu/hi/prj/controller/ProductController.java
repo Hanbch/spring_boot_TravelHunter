@@ -1,5 +1,8 @@
 package edu.hi.prj.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -46,16 +49,31 @@ public class ProductController {
 
 		String startdate = bookingVO.getStartdate();
 		String enddate = bookingVO.getEnddate();
+		
+		//오늘,내일 날짜구하기
+		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+	    Calendar cal = Calendar.getInstance();
+
+	    String today = sdf.format(cal.getTime());
+	    cal.add(cal.DATE, +1);
+	    String afterday = sdf.format(cal.getTime());
+	    
+		//startdate,enddate null 일시 오늘, 내일 날짜로 지정
+		if(startdate == "" || startdate == null) {
+			startdate = today;
+		}
+		if(enddate == "" || enddate == null) {
+			enddate = afterday;
+		}
+		
 		String place_type_group_num = place_TypeVO.getPlace_type_group_num();
 		int capacity = roomVO.getCapacity();
 		String location = placeVO.getLocation();
 
-		System.out.println("pt" + place_type_group_num + "::::::::::::::::::::::::::::::::::::::::::");
-		System.out.println("location" + location + "::::::::::::::::::::::::::::::::::::::::::");
-		System.out.println("capacity" + capacity + "::::::::::::::::::::::::::::::::::::::::::");
 		model.addAttribute("getPlaceData", service.getPlaceData());
-		model.addAttribute("filtering",
-				service.filtering(startdate, enddate, place_type_group_num, capacity, location));
+		model.addAttribute("filtering", service.filtering(startdate, enddate, place_type_group_num, capacity, location));
+		model.addAttribute("startdate", startdate);
+		model.addAttribute("enddate", enddate);
 		return "/product/product";
 	}
 

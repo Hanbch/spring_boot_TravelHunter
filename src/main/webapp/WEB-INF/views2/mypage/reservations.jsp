@@ -6,63 +6,63 @@
    uri="http://www.springframework.org/security/tags"%>
 <style>
 ul.tabs {
-   float: left;
-   margin: 0px;
-   padding: 0px;
-   list-style: none;
+	float: left;
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
 }
 
 ul.tabs li {
-   width: 120px;
-   height: 50px;
-   line-height: 50px;
-   margin-bottom: 1px;
-   text-align: center;
-   background: #898989;
-   color: white;
-   padding: 10px 15px;
-   cursor: pointer;
+	width: 120px;
+	line-height: 50px;
+	margin-bottom: 1px;
+	text-align: center;
+	background: #898989;
+	color: white;
+	padding: 10px 15px;
+	cursor: pointer;
 }
 
+.tab-link a{display:block}
+
 ul.tabs li.current {
-   background: #e0e0e0;
-   color: #222;
+	background: #e0e0e0;
+	color: #222;
 }
 
 .tab-content {
-   width: 1000px;
-   height: 500px;
-   padding:30px;
-   display: none;
-   background: #e0e0e0;
-   margin-left: 160px;
+	width: 1000px;
+	padding:30px;
+	display: none;
+	background: #e0e0e0;
+	margin-left: 160px;
 }
 
 .tab-content.current {
-   display: inherit;
+	display: inherit;
 }
 
 ul.product li {
-   text-align: center;
-   width: 300px;
-   display: inline-block;
-   background: #898989;
-   color: white;
-   padding: 10px 15px;
-   cursor: pointer;
+	text-align: center;
+	width: 300px;
+	display: inline-block;
+	background: #898989;
+	color: white;
+	padding: 10px 15px;
+	cursor: pointer;
 }
 
 ul.product li.current {
-   background: #e0e0e0;
-   color: #222;
+	background: #e0e0e0;
+	color: #222;
 }
 
 .product-content {
-   display: none;
+	display: none;
 }
 
 .product-content.current {
-   display: inherit;
+	display: inherit;
 }
 </style>
 
@@ -87,17 +87,17 @@ ul.product li.current {
             <c:forEach items="${rsvList}" var="rsvList">
                <li style="padding 20px; background-color:#fff;margin-bottom:20px;">
                   <form action="/mypage/rsvdelete?num=${rsvList.num}" method="POST">
-                  예약번호:${rsvList.num}<br>
-                  <input type="hidden" name="num" id="num" value="${rsvList.num}"/>
-                  예약자 이름:${rsvList.cname}<br>
-                  예약자 전화번호:${rsvList.cphone}<br>
-                  예약장소:${rsvList.pname}(${rsvList.place_num})<br>
-                  방:${rsvList.rname}(${rsvList.room_num})<br>
-                  가격:${rsvList.price}원<br>
-                  체크인:${rsvList.startdate}<br>
-                  체크아웃:${rsvList.enddate}<br>
-                  
-                  <button type="submit">환불하기</button>
+	                  예약번호:${rsvList.num}<br>
+	                  <input type="hidden" name="num" id="num" value="${rsvList.num}"/>
+	                  예약자 이름:${rsvList.cname}<br>
+	                  예약자 전화번호:${rsvList.cphone}<br>
+	                  예약장소:${rsvList.pname}(${rsvList.place_num})<br>
+	                  방:${rsvList.rname}(${rsvList.room_num})<br>
+	                  가격:${rsvList.price}원<br>
+	                  체크인:${rsvList.startdate}<br>
+	                  체크아웃:${rsvList.enddate}<br>
+	                  
+                 	 <button type="" onclick="cancelPay()">환불하기</button>
                   </form>
                </li>
             </c:forEach>
@@ -116,29 +116,6 @@ ul.product li.current {
 <%@include file="../include/footer.jsp"%>
 
 <script>
-   var num = $("#num").val();
-   
-   
-   function cancelPay(){
-      $.ajax({
-         type : "POST",
-         url : "/mypage/cancelPay",
-         cashe: false,
-          contentType:'application/json;charset=utf-8',
-         data :{"num" : $("#num").val()},
-         success : function(data){
-            alert("환불완료");
-         }, 
-         error : function(){
-            alert("환불실패");
-         }
-         
-      });
-      
-   }
-</script>
-
-<script>
    $(document).ready(function() {
 
       $('ul.tabs li').click(function() {//선택자를 통해 tabs 메뉴를 클릭 이벤트를 지정해줍니다.
@@ -151,9 +128,7 @@ ul.product li.current {
          $("#" + tab_id).addClass('current');
       })
 
-   });
-
-   $(document).ready(function() {
+ 
 
       $('ul.product li').click(function() {
          var tab_id = $(this).attr('data-tab');
@@ -167,41 +142,5 @@ ul.product li.current {
 
    });
 
-   $(document).ready(function() {
-      // 취소
-      $(".cencle").on("click", function() {
 
-         location.href = "/";
-
-      })
-
-      $("#submit").on("click", function() {
-         if ($("#delpw").val() == "") {
-            alert("비밀번호를 입력해주세요.");
-            $("#delpw").focus();
-            return false;
-         }
-         $.ajax({
-            url : "/delpwcheck",
-            type : "post",
-            dataType : "json",
-            data : $("#delForm").serializeArray(),
-            success : function(data) {
-
-               if (data == 0) {
-                  alert("패스워드가 틀렸습니다.");
-
-                  return;
-               } else {
-                  if (confirm("회원탈퇴하시겠습니까?")) {
-                     $("#delForm").submit();
-                  }
-
-               }
-            }
-         })
-
-      });
-
-   })
 </script>
