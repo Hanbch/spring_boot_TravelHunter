@@ -17,5 +17,7 @@ public interface BookingService {
 	BookingInfoVO getBookingInfo(int room_num);
 	
 	int rsvdelete(BookingVO bookingVO);
+	
+	void withdraworder(BookingVO bookingVO);
 
 }

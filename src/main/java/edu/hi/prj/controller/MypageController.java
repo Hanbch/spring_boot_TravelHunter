@@ -37,6 +37,16 @@ public class MypageController {
 	public String RsvDelete(BookingVO bookingVO) {
 		
 		booking_service.rsvdelete(bookingVO);
+		System.out.println("----------------------------------------------------------------------------------------------------");
+		
+		String cname = bookingVO.getCname();
+		int num = bookingVO.getNum();
+		System.out.println(cname);
+		System.out.println(num);
+		booking_service.withdraworder(bookingVO);
+		
+
+		
 		return "redirect:/mypage/reservations";
 	}
 

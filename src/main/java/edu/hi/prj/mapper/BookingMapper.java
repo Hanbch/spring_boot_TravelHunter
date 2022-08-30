@@ -21,4 +21,6 @@ public interface BookingMapper {
 	BookingVO getRsvInfo(int room_num);//예약번호로 예약정보 가져오기
 	
 	int rsvdelete(BookingVO bookingVO);
+	
+	void withdraworder(BookingVO bookingVO);
 }

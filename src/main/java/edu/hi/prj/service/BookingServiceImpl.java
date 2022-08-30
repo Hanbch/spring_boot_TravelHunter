@@ -67,4 +67,9 @@ public class BookingServiceImpl implements BookingService {
 		return mapper.rsvdelete(bookingVO);
 	}
 
+	@Override
+	public void withdraworder(BookingVO bookingVO) {
+		mapper.withdraworder(bookingVO);
+	}
+
 }

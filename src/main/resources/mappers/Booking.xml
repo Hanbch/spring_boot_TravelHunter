@@ -35,5 +35,12 @@
           delete  from booking where num = #{num}
        ]]>
     </delete>
+    
+    <insert id="withdraworder">
+           <![CDATA[
+           		insert into withdraworder(booking_num, place_num, startdate, enddate, cname, cphone)
+           		values(#{num}, #{place_num}, to_date(#{startdate},'yyyy-mm-dd'), to_date(#{enddate},'yyyy-mm-dd'), #{cname}, #{cphone})
+   			]]>
+	</insert>
 
 </mapper>

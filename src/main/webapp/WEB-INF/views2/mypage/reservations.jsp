@@ -86,7 +86,8 @@ ul.product li.current {
          <ul>
             <c:forEach items="${rsvList}" var="rsvList">
                <li style="padding 20px; background-color:#fff;margin-bottom:20px;">
-                  <form action="/mypage/rsvdelete?num=${rsvList.num}" method="POST">
+                  <form action="/mypage/rsvdelete?num=${rsvList.num}&place_num=${rsvList.place_num}&startdate=${rsvList.startdate}&enddate=${rsvList.enddate}
+                  &cname=${rsvList.cname}&cphone=${rsvList.cphone}" method="POST">
 	                  예약번호:${rsvList.num}<br>
 	                  <input type="hidden" name="num" id="num" value="${rsvList.num}"/>
 	                  예약자 이름:${rsvList.cname}<br>
