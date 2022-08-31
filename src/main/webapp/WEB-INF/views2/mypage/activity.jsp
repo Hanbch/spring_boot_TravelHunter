@@ -15,7 +15,18 @@
 	
 	<div id="tab-3" class="tab-content current">
 		<h1>나의 활동기록</h1>
-		<p>${member.id }</p>
+			<ul>
+				<c:forEach items="${actList}" var="actList">
+					<li style="background-color: #fff; margin-bottom: 20px;">
+						 
+							제목 : ${actList.btitle}<br>
+							내용 : ${actList.bcontent}<br>
+							작성일 : ${actList.bdate}<br>
+						
+					</li>
+				</c:forEach>
+
+			</ul>
 
 	</div>
 

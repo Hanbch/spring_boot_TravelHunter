@@ -38,6 +38,7 @@ public interface BoardService{
 	List<ReviewImgVO> getReviewImgList(int num);
 	int replyCount(int num);
 	
+	List<BoardVO> activityList(String member_id);
 	
 	
 }
