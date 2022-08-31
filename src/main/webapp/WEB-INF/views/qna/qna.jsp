@@ -64,7 +64,7 @@ div#qna{
             <th width="70px">번호</th>
             <th>제목</th>
             <th width="100px">작성자</th>
-            <th width="100px">조회수</th>
+            <th width="100px">진행상태</th>
             <th width="200px">작성일</th>
         </tr>
        
@@ -73,7 +73,9 @@ div#qna{
                <td>${data.realrow}</td>
                <td><a href="/qna/detail?id=${data.id}">${data.btitle}</a></td>
                <td>${data.member_id}</td>
-               <td>${data.bview }</td>
+               <td>
+               	진행중
+               </td>
                <td>${data.bdate}</td>
             </tr>
          </c:forEach>

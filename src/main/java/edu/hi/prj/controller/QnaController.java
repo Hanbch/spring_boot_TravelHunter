@@ -1,6 +1,7 @@
 package edu.hi.prj.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,6 +31,7 @@ public class QnaController {
 	
 	@GetMapping("")
 	public String Qna(Model model, @ModelAttribute("scri")SearchCriteria scri, Criteria cri) {
+		model.addAttribute("boardList2", service.getList(2));
 		model.addAttribute("boardList", service.pagingList(scri));
 		
 		model.addAttribute("boardList", service.pagingList(scri));
@@ -75,6 +77,7 @@ public class QnaController {
 		int id = boardVO.getId();
 		
 		model.addAttribute("data",service.getBoard(id));
+		model.addAttribute("qnareply", reply_service.qnagetReply(id));
 		
 		
 		service.updateView(boardVO.getId());
@@ -109,6 +112,13 @@ public class QnaController {
 		return "redirect:/qna;";
 	}
 	
+	@PostMapping("/reply")
+	public String qnareply(ReplyVO replyVO, Authentication authentication) {
+		String member_id = authentication.getName();
+		replyVO.setMember_id(member_id);
+		reply_service.write(replyVO);
+		return "redirect:";
+	}
 
 	
 	

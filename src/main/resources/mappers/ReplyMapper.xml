@@ -44,6 +44,14 @@
        ]]>
     </select>
     
+    <select id="qnagetReply" resultType="ReplyVO">
+       <![CDATA[
+           select * from reply where board_id = #{board_id}
+       ]]>
+    </select>
+    
+    
+
     
     
     

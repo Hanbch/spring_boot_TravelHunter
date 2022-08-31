@@ -48,6 +48,12 @@ public class ReplyServicelmpl implements ReplyService{
 		mapper.updateShape(replyVO);
 		
 	}
+
+	@Override
+	public ReplyVO qnagetReply(int board_id) {
+		// TODO Auto-generated method stub
+		return mapper.qnagetReply(board_id);
+	}
 	
 	
 

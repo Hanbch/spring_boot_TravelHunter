@@ -40,6 +40,18 @@
 			</tr>
 			<tr style="height:300px"><td colspan="2">${data.bcontent}</td></tr>
 		</table>
+		
+		<sec:authorize access="hasRole('ROLE_ADMIN')">
+			<form action="/qna/reply?board_id=${data.id}" method="post">
+				<input type="text" id="reply" name="reply">
+				<button type="submit">답변하기</button>
+			</form>
+		</sec:authorize>
+		<c:if test="${qnareply.reply != null}">
+		작성자 : ${qnareply.member_id}<br>
+		작성일 : ${qnareply.repdate}<br>
+		답변 : ${qnareply.reply}
+		</c:if>
 	</section>
 <%@include file ="../include/footer.jsp" %>
 
