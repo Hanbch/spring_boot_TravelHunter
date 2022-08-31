@@ -83,4 +83,22 @@ public class BookingServiceImpl implements BookingService {
 		return mapper.getRsvedList(member_id);//회원ID로 예약정보List 가져오기;
 	}
 
+	@Override
+	public List<BookingVO> getManagerRsvList(String member_id) {
+		
+		return mapper.getManagerRsvList(member_id);//매니저ID로 예약정보List 가져오기;
+	}
+
+	@Override
+	public List<BookingVO> managerWithdrawOrderList(String member_id) {
+		
+		return mapper.managerWithdrawOrderList(member_id);
+	}
+
+	@Override
+	public List<BookingVO> getManagerRsvedList(String member_id) {
+
+		return mapper.getManagerRsvedList(member_id);//매니저ID로 예약정보List 가져오기;
+	}
+
 }

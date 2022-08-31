@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import edu.hi.prj.service.BoardService;
+import edu.hi.prj.service.BookingService;
 import edu.hi.prj.service.PlaceService;
 import edu.hi.prj.service.RoomService;
 import edu.hi.prj.vo.ImageVO;
@@ -36,6 +37,9 @@ public class ManagerController {
 	
 	@Autowired
 	private BoardService board_service;
+	
+	@Autowired
+	private BookingService booking_service;
 	
 	
 	@GetMapping("")
@@ -78,7 +82,12 @@ public class ManagerController {
 	}
 	
 	@GetMapping("/reservations")
-	public String reservations() {
+	public String reservations(Model model, PlaceVO palceVO, Authentication authentication) {
+		String member_id = authentication.getName();
+		
+		model.addAttribute("rsvList",booking_service.getManagerRsvList(member_id));
+		model.addAttribute("delList",booking_service.managerWithdrawOrderList(member_id));
+		model.addAttribute("rsvedList", booking_service.getManagerRsvedList(member_id));
 		return "/manager/reservations";
 	}
 	

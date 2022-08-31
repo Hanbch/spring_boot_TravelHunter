@@ -47,6 +47,10 @@ section.reservation .offset-lg-1 {
 	background-color: #fbf9ff;
 	padding: 50px 30px;
 }
+
+section.reservation thead th {
+	font-weight:600;
+}
 </style>
 <!-- ================ contact section start ================= -->
 <section class="contact-section reservation">
@@ -71,7 +75,8 @@ section.reservation .offset-lg-1 {
 								<input class="form-control valid" name="cname" id="cname" type="text" placeholder="체크인시 필요한 정보입니다."> <br>
 								<h3>예약자 전화번호</h3>
 								<input class="form-control valid" name="cphone" id="cphone" type="text" placeholder="체크인시 필요한 정보입니다."> <br>
-								<input type="hidden" name="price" id="price" value="${bookingInfo.price}" />
+								<input type="hidden" id="price" value="${bookingInfo.price}" />
+								<input type="hidden" name="totalprice" id="totalPrice" />
 							</div>
 						</div>
 					</div>
@@ -108,7 +113,7 @@ section.reservation .offset-lg-1 {
 				<div class="media contact-info total_price">
 					<div class="media-body">
 						<h3>총결제금액</h3>
-						<p id="totalPrice"></p>
+						<p class="totalPrice"></p>
 					</div>
 				</div>
 				<div class="payment">
@@ -127,11 +132,12 @@ section.reservation .offset-lg-1 {
 	//숙박일수 구하기 & 가격구하기
 	
 	var days = dayCount.getDateDiff($("#enddate").val(),$("#startdate").val());
-	var totalPrice = Number($("#price").val()) * days + "원";
+	var totalPrice = Number($("#price").val()) * days;
 	
 	function init(){
 		$("#days").text(days);
-		$("#totalPrice").text(totalPrice);
+		$(".totalPrice").text(totalPrice + "원");//화면에 총액표시
+		$("#totalPrice").val(totalPrice);//DB로 넘길 총액 셋팅
 	}
 	
 	init();
@@ -149,7 +155,45 @@ section.reservation .offset-lg-1 {
 		}
 		
 		//결제모듈 & 예약정보 DB 업데이트
-		booking.pay();
+		
+		//예약정보 DB전송
+		
+		var place_num = $("#place_num").val();
+			var room_num = $("#room_num").val();
+			var startdate = $("#startdate").val();
+			var enddate = $("#enddate").val();
+			var cname = $("#cname").val();
+			var cphone = $("#cphone").val();
+			var member_id = $("#member_id").val();
+			var totalprice = $("#totalPrice").val();
+			
+			var form = {
+				place_num : place_num,
+				room_num : room_num,
+				startdate : startdate,
+				enddate : enddate,
+				cname : cname,
+				cphone : cphone,
+				member_id : member_id,
+				totalprice : totalprice
+		}
+			
+        $.ajax({
+			type : "POST",
+			url : "/product/booking",
+			cashe: false,
+		    contentType:'application/json;charset=utf-8',
+			data : JSON.stringify(form),
+			success : function(data){
+				alert("예약완료");
+				location.href="/product";
+			}, 
+			error : function(){
+				alert("예약실패");
+			}
+			
+		});
+		//booking.pay();
 		
 	});
 	

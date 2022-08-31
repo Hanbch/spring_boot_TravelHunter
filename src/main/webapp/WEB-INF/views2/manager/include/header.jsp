@@ -25,6 +25,7 @@
 <link href="/assets/admin/css/animate.css" rel="stylesheet" />
 <!-- Custom CSS -->
 <link href="/assets/admin/css/style.css" rel="stylesheet" />
+<link href="/assets/admin/css/sub.css" rel="stylesheet" />
 <!-- color CSS -->
 <link href="/assets/admin/css/colors/blue-dark.css" id="theme"
 	rel="stylesheet" />

@@ -9,7 +9,52 @@
 	<div class="col-sm-12">
 		<div class="white-box">
 			<h3 class="box-title">
-				Recent reservation
+				예약목록
+				<div class="col-md-2 col-sm-4 col-xs-12 pull-right">
+					<select class="form-control pull-right row b-none">
+						<option>이번달</option>
+						<option>이번주</option>
+						<option>오늘</option>
+					</select>
+				</div>
+			</h3>
+			<div class="table-responsive">
+				<table class="table">
+				
+					<thead>
+						<tr>
+							<th>예약번호</th>
+							<th>캠핑장</th>
+							<th>객실</th>
+							<th>예약자(ID)</th>
+							<th>전화번호</th>
+							<th>체크인/체크아웃</th>
+							<th>결제가격</th>
+						</tr>
+					</thead>
+					
+					<c:forEach items="${rsvList}" var="rsvList">	
+					<tbody>
+						<tr>
+							<td class="txt-oflo">${rsvList.num}</td>
+							<td class="txt-oflo">${rsvList.pname}</td>
+							<td>${rsvList.rname}호</td>
+							<td>${rsvList.cname}(${rsvList.member_id})</td>
+							<td>${rsvList.cphone}</td>
+							<td class="txt-oflo">${rsvList.startdate} ~ ${rsvList.enddate}</td>
+							<td><span class="text-success">${rsvList.totalprice}원</span></td>
+						</tr>
+					</tbody>
+					</c:forEach>
+				</table>
+			</div>
+		</div>
+	</div>
+	
+	<div class="col-sm-12">
+		<div class="white-box">
+			<h3 class="box-title">
+				예약취소목록
 				<div class="col-md-2 col-sm-4 col-xs-12 pull-right">
 					<select class="form-control pull-right row b-none">
 						<option>이번달</option>
@@ -22,59 +67,76 @@
 				<table class="table">
 					<thead>
 						<tr>
+							<th>예약번호</th>
 							<th>캠핑장</th>
 							<th>객실</th>
-							<th>체크인</th>
-							<th>체크아웃</th>
+							<th>예약자</th>
+							<th>전화번호</th>
+							<th>체크인/체크아웃</th>
 							<th>결제가격</th>
 						</tr>
 					</thead>
+					
+					<c:forEach items="${delList}" var="delList">
 					<tbody>
 						<tr>
-							<td class="txt-oflo">Pixel admin</td>
-							<td>SALE</td>
-							<td class="txt-oflo">April 18</td>
-							<td><span class="text-success">$24</span></td>
-						</tr>
-						<tr>
-							<td class="txt-oflo">Real Homes</td>
-							<td>EXTENDED</td>
-							<td class="txt-oflo">April 19</td>
-							<td><span class="text-info">$1250</span></td>
-						</tr>
-						<tr>
-							<td class="txt-oflo">Medical Pro</td>
-							<td>TAX</td>
-							<td class="txt-oflo">April 20</td>
-							<td><span class="text-danger">-$24</span></td>
-						</tr>
-						<tr>
-							<td class="txt-oflo">Hosting press</td>
-							<td>SALE</td>
-							<td class="txt-oflo">April 21</td>
-							<td><span class="text-success">$24</span></td>
-						</tr>
-						<tr>
-							<td class="txt-oflo">Helping Hands</td>
-							<td>MEMBER</td>
-							<td class="txt-oflo">April 22</td>
-							<td><span class="text-success">$24</span></td>
-						</tr>
-						<tr>
-							<td class="txt-oflo">Digital Agency</td>
-							<td>SALE</td>
-							<td class="txt-oflo">April 23</td>
-							<td><span class="text-danger">-$14</span></td>
-						</tr>
-						<tr>
-							<td class="txt-oflo">Helping Hands</td>
-							<td>MEMBER</td>
-							<td class="txt-oflo">April 22</td>
-							<td><span class="text-success">$64</span></td>
+							<td class="txt-oflo">${delList.num}</td>
+							<td class="txt-oflo">${delList.pname}</td>
+							<td>${delList.rname}호</td>
+							<td>${delList.cname}(${delList.member_id})</td>
+							<td>${delList.cphone}</td>
+							<td class="txt-oflo">${delList.startdate} ~ ${delList.enddate}</td>
+							<td><span class="text-success">${delList.totalprice}원</span></td>
 						</tr>
 					</tbody>
+					</c:forEach>
+				
 				</table>
-				<a href="#">Check all the sales</a>
+			</div>
+		</div>
+	</div>
+	
+	<div class="col-sm-12">
+		<div class="white-box">
+			<h3 class="box-title">
+				지난예약목록
+				<div class="col-md-2 col-sm-4 col-xs-12 pull-right">
+					<select class="form-control pull-right row b-none">
+						<option>이번달</option>
+						<option>이번주</option>
+						<option>오늘</option>
+					</select>
+				</div>
+			</h3>
+			<div class="table-responsive">
+				<table class="table">
+				
+					<thead>
+						<tr>
+							<th>예약번호</th>
+							<th>캠핑장</th>
+							<th>객실</th>
+							<th>예약자</th>
+							<th>전화번호</th>
+							<th>체크인/체크아웃</th>
+							<th>결제가격</th>
+						</tr>
+					</thead>
+					
+					<c:forEach items="${rsvedList}" var="rsvedList">
+					<tbody>
+						<tr>
+							<td class="txt-oflo">${rsvedList.num}</td>
+							<td class="txt-oflo">${rsvedList.pname}</td>
+							<td>${rsvedList.rname}호</td>
+							<td>${rsvedList.cname}(${rsvedList.member_id})</td>
+							<td>${rsvedList.cphone}</td>
+							<td class="txt-oflo">${rsvedList.startdate} ~ ${rsvedList.enddate}</td>
+							<td><span class="text-success">${rsvedList.totalprice}원</span></td>
+						</tr>
+					</tbody>
+					</c:forEach>
+				</table>
 			</div>
 		</div>
 	</div>

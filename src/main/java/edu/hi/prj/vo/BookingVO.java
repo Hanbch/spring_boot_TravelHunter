@@ -26,4 +26,5 @@ public class BookingVO {
 	    private String rname;
 	    private String pname;
 	    private int price;
+	    private int totalprice;
 }

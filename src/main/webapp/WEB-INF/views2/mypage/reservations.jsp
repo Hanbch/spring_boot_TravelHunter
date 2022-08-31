@@ -26,20 +26,22 @@
 			<ul>
 				<c:forEach items="${rsvList}" var="rsvList">
 					<li style="background-color: #fff; margin-bottom: 20px;">
-						 <form id="cancelPay" action="/mypage/rsvdelete?num=${rsvList.num}&place_num=${rsvList.place_num}&startdate=${rsvList.startdate}&enddate=${rsvList.enddate}
+						 <form class="cancel" action="/mypage/rsvdelete?num=${rsvList.num}&place_num=${rsvList.place_num}&startdate=${rsvList.startdate}&enddate=${rsvList.enddate}
                   			&cname=${rsvList.cname}&cphone=${rsvList.cphone}&member_id=${rsvList.member_id}&pname=${rsvList.pname}" method="POST">
+                  			<input type="hidden" name="room_num" value="${rsvList.room_num}" />
+                  			<input type="hidden" name="num" value="${rsvList.num}" />
+                  			<input type="hidden" name="totalprice" value="${rsvList.totalprice}" />
 							예약번호:${rsvList.num}<br> 
-							<input type="hidden" name="num" id="num" value="${rsvList.num}" /> 예약자 이름:${rsvList.cname}<br>
+							예약자 이름:${rsvList.cname}<br>
 							예약자 전화번호:${rsvList.cphone}<br>
 							예약장소:${rsvList.pname}(${rsvList.place_num})<br>
 							방:${rsvList.rname}(${rsvList.room_num})<br>
-							가격:${rsvList.price}원<br> 체크인:${rsvList.startdate}<br>
+							가격:${rsvList.totalprice}원<br> 
+							체크인:${rsvList.startdate}<br>
 							체크아웃:${rsvList.enddate}<br>
-							<a href="#" onclick="cancelPay()">환불하기</a>
 						</form>
 						
-						<input type="submit" onclick="cancelPay()" value="환불하기"/>
-						
+						<input type="submit" class="cancelPay" value="환불하기"/>
 					</li>
 				</c:forEach>
 
@@ -57,6 +59,7 @@
 								예약자 전화번호 : 0${delList.cphone}<br>
 								체크인 : ${delList.startdate}<br>
 								체크아웃 : ${delList.enddate}<br>
+								가격:${delList.totalprice}원<br> 
 						</li>
 					</c:forEach>
 	
@@ -70,16 +73,17 @@
 				<c:forEach items="${rsvedList}" var="rsvedList">
 					<li style="background-color: #fff; margin-bottom: 20px;">
 						 <form action="/mypage/rsvdelete?num=${rsvedList.num}&place_num=${rsvedList.place_num}&startdate=${rsvedList.startdate}&enddate=${rsvedList.enddate}
-                  			&cname=${rsvedList.cname}&cphone=${rsvedList.cphone}&member_id=${rsvedList.member_id}&pname=${rsvedList.pname}" method="POST">
+                  			&cname=${rsvedList.cname}&cphone=${rsvedList.cphone}&member_id=${rsvedList.member_id}&pname=${rsvedList.pname}&room_num=${rsvedList.room_num}" method="POST">
+                  			
+                  			<input type="hidden" name="num" value="${rsvedList.num}" />
+                  			<input type="hidden" name="room_num" value="${rsvedList.room_num}" />
 							예약번호:${rsvedList.num}<br> 
-							<input type="hidden" name="num" id="num" value="${rsvedList.num}" /> 예약자 이름:${rsvedList.cname}<br>
+							예약자 이름:${rsvedList.cname}<br>
 							예약자 전화번호:${rsvedList.cphone}<br>
 							예약장소:${rsvedList.pname}(${rsvedList.place_num})<br>
 							방:${rsvedList.rname}(${rsvedList.room_num})<br>
-							가격:${rsvedList.price}원<br> 체크인:${rsvedList.startdate}<br>
+							가격:${rsvedList.totalprice}원<br> 체크인:${rsvedList.startdate}<br>
 							체크아웃:${rsvedList.enddate}<br>
-							
-							
 						</form>
 					</li>
 				</c:forEach>
@@ -89,20 +93,21 @@
 </section>
 <%@include file="../include/footer.jsp"%>
 <script>
-	//var check = confirm("예약취소하시겠습니까?");
-	//console.log(check);
 	
-	function cancelPay(){
+	$(document).on("click",".cancelPay",function(){
 		
 		var check = confirm("예약취소하시겠습니까?");
-		console.log(check);
 		
 		if(check){
-			$("#cancelPay").submit();
+			$(this).parent().find(".cancel").submit();
 		}
 		
+	});
 		
-	}
+		
+		
+		
+	
 	//예약탭
 	$(document).ready(function() {
 

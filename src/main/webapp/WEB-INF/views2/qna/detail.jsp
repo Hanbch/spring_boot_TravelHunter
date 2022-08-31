@@ -18,7 +18,7 @@
             </div>
         </div>
         <!-- slider Area End-->
-		<table border="1" style="width:100%">
+		<table border="1" style="width:70%; margin:0 auto;">
 			<tr>
 				<td>번호</td>
 				<td>${data.id}</td>

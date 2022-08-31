@@ -5,7 +5,7 @@
 	var booking = (function() {
 		
 		function pay(){
-			console.log("pay start");
+			
 			var place_num = $("#place_num").val();
 			var room_num = $("#room_num").val();
 			var startdate = $("#startdate").val();
@@ -13,6 +13,7 @@
 			var cname = $("#cname").val();
 			var cphone = $("#cphone").val();
 			var member_id = $("#member_id").val();
+			var totalprice = $("#totalPrice").val();
 			
 			var form = {
 				place_num : place_num,
@@ -20,8 +21,9 @@
 				startdate : startdate,
 				enddate : enddate,
 				cname : cname,
-				cphone :cphone,
-				member_id : member_id
+				cphone : cphone,
+				member_id : member_id,
+				totalprice : totalprice
 			}
 			
 			$(function(){
