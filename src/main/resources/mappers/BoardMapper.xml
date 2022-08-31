@@ -200,6 +200,13 @@
        </if>
     </sql>
     
+     
+    <select id="activityList" resultType="BoardVO">
+       <![CDATA[ 
+          select * from board where member_id = #{member_id} and board_type_num = 0
+       ]]>
+    </select>
+    
     
     
    

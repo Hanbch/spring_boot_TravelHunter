@@ -124,6 +124,12 @@ public class BoardServiceImpl implements BoardService{
 		return mapper.getBoardImg();
 	}
 
+	@Override
+	public List<BoardVO> activityList(String member_id) {
+		// TODO Auto-generated method stub
+		return mapper.activityList(member_id);
+	}
+
 
 	
 

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import edu.hi.prj.service.BoardService;
 import edu.hi.prj.service.BookingService;
 import edu.hi.prj.service.MemberService;
 import edu.hi.prj.vo.BookingVO;
@@ -27,6 +28,9 @@ public class MypageController {
 	
 	@Autowired
 	private MemberService member_service; 
+	
+	@Autowired
+	private BoardService board_service;
 	
 	@ResponseBody
 	@GetMapping("/test")
@@ -62,8 +66,10 @@ public class MypageController {
 	}
 	
 	@GetMapping("/activity")
-	public String activity() {
+	public String activity(Model model, Authentication authentication) {
+		String member_id = authentication.getName();
 		
+		model.addAttribute("actList", board_service.activityList(member_id));
 		return "/mypage/activity";
 	}
 	
