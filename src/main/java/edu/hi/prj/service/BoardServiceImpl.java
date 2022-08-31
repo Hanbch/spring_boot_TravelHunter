@@ -130,6 +130,12 @@ public class BoardServiceImpl implements BoardService{
 		return mapper.activityList(member_id);
 	}
 
+	@Override
+	public void reviewinsert(BoardVO boardVO) {
+		mapper.reviewinsert(boardVO);
+		
+	}
+
 
 	
 

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import edu.hi.prj.service.BoardService;
 import edu.hi.prj.service.BookingService;
 import edu.hi.prj.service.MemberService;
+import edu.hi.prj.vo.BoardVO;
 import edu.hi.prj.vo.BookingVO;
 import edu.hi.prj.vo.MemberVO;
 import edu.hi.prj.vo.UserVO;
@@ -93,6 +94,21 @@ public class MypageController {
 		booking_service.withdraworder(bookingVO);
 		
 
+		
+		return "redirect:/mypage/reservations";
+	}
+	
+	@PostMapping("/review")
+	public String review(BookingVO bookingVO, Model model) {
+		model.addAttribute("pnum", bookingVO.getPlace_num());
+		return "/mypage/review";
+	}
+	@PostMapping("/reviewinsert")
+	public String reviewinsert(BoardVO boardVO, Authentication authentication) {
+		String member_id =  authentication.getName();
+		boardVO.setMember_id(member_id);
+		
+		board_service.reviewinsert(boardVO);
 		
 		return "redirect:/mypage/reservations";
 	}

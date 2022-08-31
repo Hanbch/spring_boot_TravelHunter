@@ -207,10 +207,14 @@
        ]]>
     </select>
     
-    
-    
+
    
-   
+   <insert id="reviewinsert" >
+   <![CDATA[
+          insert into board(id, member_id, place_num, board_type_num, bcontent, bdate, bgrade)
+          values(board_seq.nextval, #{member_id}, #{place_num}, 1, #{bcontent}, sysdate, #{bgrade})
+   ]]>
+   </insert>
    
 
     

@@ -182,5 +182,10 @@ public class ManagerController {
 		return "redirect:/manager/myplace";
 	}
 	
+	@GetMapping("/test")
+	public String charttest() {
+		return "/manager/chart";
+	}
+	
 	
 }

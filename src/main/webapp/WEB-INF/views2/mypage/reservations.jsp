@@ -72,7 +72,7 @@
 			<ul>
 				<c:forEach items="${rsvedList}" var="rsvedList">
 					<li style="background-color: #fff; margin-bottom: 20px;">
-						 <form action="/mypage/rsvdelete?num=${rsvedList.num}&place_num=${rsvedList.place_num}&startdate=${rsvedList.startdate}&enddate=${rsvedList.enddate}
+						 <form action="/mypage/review?num=${rsvedList.num}&place_num=${rsvedList.place_num}&startdate=${rsvedList.startdate}&enddate=${rsvedList.enddate}
                   			&cname=${rsvedList.cname}&cphone=${rsvedList.cphone}&member_id=${rsvedList.member_id}&pname=${rsvedList.pname}&room_num=${rsvedList.room_num}" method="POST">
                   			
                   			<input type="hidden" name="num" value="${rsvedList.num}" />
@@ -84,6 +84,7 @@
 							방:${rsvedList.rname}(${rsvedList.room_num})<br>
 							가격:${rsvedList.totalprice}원<br> 체크인:${rsvedList.startdate}<br>
 							체크아웃:${rsvedList.enddate}<br>
+							<button type="submit">리뷰작성</button>
 						</form>
 					</li>
 				</c:forEach>

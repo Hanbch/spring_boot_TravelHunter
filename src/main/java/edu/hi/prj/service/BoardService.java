@@ -40,5 +40,7 @@ public interface BoardService{
 	
 	List<BoardVO> activityList(String member_id);
 	
+	void reviewinsert(BoardVO boardVO);
+	
 	
 }
