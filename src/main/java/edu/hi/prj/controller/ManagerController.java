@@ -77,6 +77,11 @@ public class ManagerController {
 		return "/manager/registplace";
 	}
 	
+	@GetMapping("/reservations")
+	public String reservations() {
+		return "/manager/reservations";
+	}
+	
 	@PostMapping("/registPlace")
 	public String registPlace(PlaceVO placeVO,MultipartFile file) throws Exception {
 		
