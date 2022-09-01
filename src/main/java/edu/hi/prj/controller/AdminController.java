@@ -50,9 +50,10 @@ public class AdminController {
 	}
 	
 	@PostMapping("updateMem")
-	public String updateMem(@RequestParam(value="id") String id, @RequestParam(value="nick") String nick) throws UnsupportedEncodingException  {
+	public String updateMem(@RequestParam(value="id") String id, @RequestParam(value="nick") String nick, @RequestParam(value="auth_num") int auth_num) throws UnsupportedEncodingException  {
 		System.out.println(id + " 수정...");
 		service.updateMem(id, nick);
+		service.updateMemberauth(id, auth_num);
 		return "redirect:/admin/memdetail?id="+URLEncoder.encode(id,"utf-8");
 	}
 	

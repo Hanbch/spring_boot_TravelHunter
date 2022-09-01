@@ -2,10 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file ="bootStrap.jsp" %>
 
+
 <body>
 
-
-<h2 class="text-dark text-center">관리자메인 페이지입니다.</h2>
+<h2 class="text-dark text-center">유저관리 페이지입니다.</h2>
 
 <div class="container-fluid">
   <div class="row">
@@ -29,7 +29,28 @@
       </div> 
 
     <div class="col-md-10">
-	  
+     
+    <form action="memlist" method="get">
+      <input type="submit" value="검색" class="float-right my-3 mx-2">
+      <input type="text" name="id" class="float-right my-3">
+    </form>
+     
+      <table class="table">
+        <tr class="table-dark">
+            <th>ID</th>
+            <th>이름</th>
+            <th>닉네임</th>
+            <th>자세히</th>
+        </tr>
+		  <c:forEach items="${memberList}" var="data">
+		  <tr>			
+	 		<td>${data.id}</td>
+			<td>${data.mname}</td> 
+			<td>${data.nick_name}</td>
+			<td><button type="button" onclick="location.href='memdetail?id=${data.id}'">자세히</button></td>
+		  </tr>
+		 </c:forEach> 
+      </table>
     </div>
   </div>
 </div>

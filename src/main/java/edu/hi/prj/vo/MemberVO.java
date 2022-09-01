@@ -25,6 +25,7 @@ public class MemberVO{
 	
 	private int bid;
 	private String btitle;
+	private int auth_num;
 	
 
 }

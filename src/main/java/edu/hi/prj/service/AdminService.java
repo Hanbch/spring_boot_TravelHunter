@@ -20,6 +20,7 @@ public interface AdminService{
 	List<BookingVO> getReservationList(String id);
 	BookingVO selectReservation(int id);
 	void updateMem(String id, String nick);
+	void updateMemberauth(String id, int auth_num);
 	
 	List<RoomVO> roomList(String id);
 	void deleteRoom(String id, String room);

@@ -2,10 +2,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file ="bootStrap.jsp" %>
 
+
+
 <body>
 
-
-<h2 class="text-dark text-center">관리자메인 페이지입니다.</h2>
+<h2 class="text-dark text-center">캠핑장관리 페이지입니다.</h2>
 
 <div class="container-fluid">
   <div class="row">
@@ -29,7 +30,29 @@
       </div> 
 
     <div class="col-md-10">
-	  
+    
+      <form action=placelist method="get">
+      	<input type="submit" value="검색" class="float-right my-3 mx-2">
+      	<input type=text name="id" class="float-right my-3">
+      </form>
+     
+      <table class="table">
+        <thead>
+        <tr class="table-dark">
+            <th>캠핑장ID</th>
+            <th>소유자ID</th>
+            <th>캠핑장명</th>
+            <th>자세히</th>
+        </tr>
+		  <c:forEach items="${placeList}" var="data">
+		  <tr>			
+	 		<td>${data.num}</td>
+			<td>${data.member_id}</td> 
+			<td>${data.pname}</td>
+			<td><button type="button" onclick="location.href='placedetail?id=${data.num}'">자세히</button></td>
+		  </tr>
+		 </c:forEach> 
+      </table>
     </div>
   </div>
 </div>

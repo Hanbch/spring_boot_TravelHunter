@@ -20,6 +20,7 @@ public interface AdminMapper{
 	void deleteMember(String id);		// 해당 멤버 삭제
 	void delMemberPlace(String id);	//해당 멤버와 관련된 캠핑장 삭제
 	void updateMemberNick(String id, String nick);	//해당 멤버의 닉네임 수정
+	void updateMemberauth(String id, int auth_num);
 	
 	// 캠핑장 관리 페이지
 	List<PlaceVO> getPlaceList();	// 캠핑장 전체 리스트 불러오기

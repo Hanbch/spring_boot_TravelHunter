@@ -84,9 +84,8 @@
 					<li><a href="" class="waves-effect"><i
 							class="fa fa-user fa-fw" aria-hidden="true"></i><span
 							class="hide-menu">Board</span></a></li>
-					<li><a href="/manager/sales" class="waves-effect"><i
-							class="fa fa-user fa-fw" aria-hidden="true"></i><span
-							class="hide-menu">통계</span></a></li>
+					<li><a href="/manager/test" class="waves-effect"><i class="fa fa-user fa-fw" aria-hidden="true"></i>
+							<span class="hide-menu">통계</span></a></li>
 					<li><a href="profile.html" class="waves-effect"><i
 							class="fa fa-user fa-fw" aria-hidden="true"></i><span
 							class="hide-menu">Profile</span></a></li>

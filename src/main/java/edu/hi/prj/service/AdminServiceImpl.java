@@ -88,6 +88,12 @@ public class AdminServiceImpl implements AdminService{
 		mapper.deleteRoom(id_num, room_num);
 		
 	}
+
+	@Override
+	public void updateMemberauth(String id, int auth_num) {
+		mapper.updateMemberauth(id, auth_num);
+		
+	}
 	
 
 }
