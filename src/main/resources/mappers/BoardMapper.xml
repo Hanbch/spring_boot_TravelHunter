@@ -33,6 +33,12 @@
        ]]>
     </select>
     
+    <select id="getPheedImg" resultType="ImageVO">
+       <![CDATA[
+           select * from board b, image i where b.id = i.board_id and board_id = #{id} order by i.iname
+       ]]>
+    </select>
+    
     <insert id="insert">
            <![CDATA[
            insert into board (id,member_id,place_num,board_type_num,btitle,bcontent,bdate,bgrade,bview)
@@ -118,7 +124,7 @@
     
     <select id="getBoardImg" resultType="BoardImgVO">
        <![CDATA[
-           select i.board_id, iname from image i, board b where i.board_id = b.id order by b.id desc
+           select i.board_id, iname from image i, board b where i.board_id = b.id order by iname
        ]]>
     </select>
     

@@ -70,7 +70,7 @@
 	
 	<select id="managerWithdrawOrderList" resultType="BookingVO">
            <![CDATA[
-           		select booking_num num, w.place_num, startdate, enddate, rname, price,cname, cphone, p.member_id, p.pname, totalprice 
+           		select booking_num num, w.place_num, startdate, enddate, rname, price,cname, cphone, w.member_id, p.pname, totalprice 
            		from withdraworder w, place p, room r 
    					where p.member_id = #{member_id} and w.place_num = p.num and p.num = r.place_num and w.room_num = r.num
    			]]>

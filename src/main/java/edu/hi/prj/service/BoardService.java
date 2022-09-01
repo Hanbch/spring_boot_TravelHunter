@@ -10,37 +10,49 @@ import edu.hi.prj.vo.ImageVO;
 import edu.hi.prj.vo.PheedCriteria;
 import edu.hi.prj.vo.ReviewImgVO;
 import edu.hi.prj.vo.SearchCriteria;
-	
 
+public interface BoardService {
 
-public interface BoardService{
-	
-	
 	List<BoardVO> getList(int type);
+
 	List<BoardVO> getHotList(int type);
+
 	BoardVO getBoard(int id);
+
 	void write(BoardVO boardVO);
+
 	List<BoardVO> searchList(String member_id);
+
 	int update(BoardVO boardVO);
+
 	int delete(BoardVO boardVO);
+
 	int updateView(int id);
+
 	int imginsert(ImageVO imageVO);
+
 	int boardGetid(BoardVO boardVO);
+
 	List<BoardImgVO> getBoardImg();
 	
+	List<ImageVO> getPheedImg(int id);// 글번호로 이미지가져오기
+
 	int getTotalCount(SearchCriteria scri);
+
 	List<BoardVO> pagingList(SearchCriteria scri);
+
 	int pheedCount();
-	List<BoardVO> pheedpaging(@Param("cri") PheedCriteria cri,String member_id);
-	
-	
+
+	List<BoardVO> pheedpaging(@Param("cri") PheedCriteria cri, String member_id);
+
 	List<BoardVO> getReview(int place_num);
+
 	List<ReviewImgVO> getReviewImgList(int num);
+
 	int replyCount(int num);
-	
+
 	List<BoardVO> activityList(String member_id);
-	
+
 	void reviewinsert(BoardVO boardVO);
-	
-	
+
 }

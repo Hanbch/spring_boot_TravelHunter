@@ -268,7 +268,7 @@
 											htmls += "</ul>";
 											htmls += "</div>";
 											htmls += "<div class='room_desc'>";
-											htmls += "<h2><input type='text'name='rname' value='" + this.rname + "'/> 호</h2>";
+											htmls += "<h2><input type='text'name='rname' value='" + this.rname + ")'/> 호(" + this.num + ")</h2>";
 											htmls += "<div class='cpacity'>기준<input type='text' name='capacity' value='" + this.capacity + "'/> 명/최대" + ((this.capacity)+2) + "명</div>";
 											htmls += "<div class=check_in'>체크인  15:00</div>";
 											htmls += "<div class='check_out'>체크아웃 11:00</div>";

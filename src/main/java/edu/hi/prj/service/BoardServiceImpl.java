@@ -126,7 +126,7 @@ public class BoardServiceImpl implements BoardService{
 
 	@Override
 	public List<BoardVO> activityList(String member_id) {
-		// TODO Auto-generated method stub
+		
 		return mapper.activityList(member_id);
 	}
 
@@ -134,6 +134,12 @@ public class BoardServiceImpl implements BoardService{
 	public void reviewinsert(BoardVO boardVO) {
 		mapper.reviewinsert(boardVO);
 		
+	}
+
+	@Override
+	public List<ImageVO> getPheedImg(int id) {
+		
+		return mapper.getPheedImg(id);
 	}
 
 

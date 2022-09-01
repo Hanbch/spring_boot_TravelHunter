@@ -48,25 +48,30 @@
 				success : function(data) {
 					//view화면에 댓글 입력
 					var htmls="";
+					
 					$(data).each(function(){
-						   htmls += '<table>';
-		                   htmls += '<tr>';
+					
+		                   htmls += '<div class="comment-body">';
 		                   for(var i=0; i<(this.indent - 1); i++){
-		                   		htmls += "<td>[re]</td>";
+		                   		htmls += '<div class="user-img"><span style="width:50px"></span></div>';
 		                   }
-		                   htmls += '<td>'+ this.member_id + '</td>';
-		                   htmls += '<td>'+ this.reply + '</td>';
-		                   htmls += '<td>'+ this.repdate + '</td>';
-		                   htmls += '<td><a href="#" class="re_reply">댓글달기</a></td>';
-		                   htmls += '</tr>';
-		                   htmls += "<tr class='reply_form'><td colspan='3'>";
-		                   htmls += "<input type='text' class='reply'/>";
-		                   htmls += "<input type='hidden' class='step' value='" + this.step + "'/>";
-		                   htmls += "<input type='hidden' class='indent' value='" + this.indent + "'/>";
-		                   htmls += "</td><td class='reply_btn'>작성</td></tr>";   
-		                   htmls += '</table>';
+		                   htmls += '<div class="user-img"><img src="/images/profile_img.png"alt="user" class="img-circle"></div>';		            
+		                   htmls += '<div class="mail-contnet">';
+		                   htmls += '<h5>' + this.member_id + '</h5>';
+		                   htmls += '<span class="mail-desc">' + this.reply + '</span>';
+		                   htmls += '<span class="time pull-left">' + this.repdate + '</span>';
+		                   htmls += '<a href="" class="re_reply">답글달기</a>';
+		                   htmls += '<div class="reply_form pull-left">';
+		                   htmls += '<input type="text" class="reply"/>';
+		                   htmls += '<input type="hidden" class="step" value="' + this.step + '"/>';
+		                   htmls += '<input type="hidden" class="indent" value="' + this.indent + '"/>';
+		                   htmls += '<a hrf="#" class="reply_btn pull-right">게시</a>'; 
+		                   htmls += '</div></div></div>';
+		                   
+		                   
 		            });
-					$(".reply_zone").html(htmls);
+		            
+					$(".comment-center").html(htmls);
 				},
 				error : function(){
 					console.log("error");
@@ -74,10 +79,43 @@
 			});
 		}
 		
+		//게시글 이미지List 가져오기
+		function getPheedImg(id){
+		
+			$.ajax({
+				type : "GET",
+				url : "/json/getPheedImg/" + id,
+				success : function(data) {
+					
+					var htmls="";
+					
+					$(data).each(function(){
+					
+						htmls += '<li class="detail_img_list"><img src="/assets/img/boards/' + this.iname + '"></li>';
+					
+					});
+					
+					$(".detail-photo ul").html(htmls);
+					$(".detail_img_list").eq(0).addClass("active");//첫번째 이미지 노출
+					if($(".detail_img_list").length == 1){
+						detail_next[0].style.display = "none";
+					}else{
+						detail_next[0].style.display = "block";
+					}
+					
+				},
+				error : function(){
+					console.log("error");
+				}
+			});
+		
+		}
+		
 		return { 
 	      increaseView : increaseView,
 	      getBoard : getBoard,
-	      getReply : getReply
+	      getReply : getReply,
+	      getPheedImg : getPheedImg
 	   };
 		
 	})();
@@ -133,24 +171,27 @@
 					
 					var htmls="";
 					$(data).each(function(){
-						   htmls += '<table>';
-		                   htmls += '<tr>';
+					
+		                   htmls += '<div class="comment-body">';
 		                   for(var i=0; i<(this.indent - 1); i++){
-		                   		htmls += "<td>[re]</td>";
+		                   		htmls += '<div class="user-img"><span style="width:50px"></span></div>';
 		                   }
-		                   htmls += '<td>'+ this.member_id + '</td>';
-		                   htmls += '<td>'+ this.reply + '</td>';
-		                   htmls += '<td>'+ this.repdate + '</td>';
-		                   htmls += '<td><a href="#" class="re_reply">댓글달기</a></td>';
-		                   htmls += '</tr>';
-		                   htmls += "<tr class='reply_form'><td colspan='3'>";
-		                   htmls += "<input type='text' class='reply'/>";
-		                   htmls += "<input type='hidden' class='step' value='" + this.step + "'/>";
-		                   htmls += "<input type='hidden' class='indent' value='" + this.indent + "'/>";
-		                   htmls += "</td><td class='reply_btn'>작성</td></tr>";   
-		                   htmls += '</table>';
-	                });
-					$(".reply_zone").html(htmls);
+		                   htmls += '<div class="user-img"><img src="/images/profile_img.png"alt="user" class="img-circle"></div>';		            
+		                   htmls += '<div class="mail-contnet">';
+		                   htmls += '<h5>' + this.member_id + '</h5>';
+		                   htmls += '<span class="mail-desc">' + this.reply + '</span>';
+		                   htmls += '<span class="time pull-left">' + this.repdate + '</span>';
+		                   htmls += '<a href="" class="re_reply">답글달기</a>';
+		                   htmls += '<div class="reply_form pull-left">';
+		                   htmls += '<input type="text" class="reply"/>';
+		                   htmls += '<input type="hidden" class="step" value="' + this.step + '"/>';
+		                   htmls += '<input type="hidden" class="indent" value="' + this.indent + '"/>';
+		                   htmls += '<a hrf="#" class="reply_btn pull-right">게시</a>'; 
+		                   htmls += '</div></div></div>';
+		            });
+		            
+					$(".comment-center").html(htmls);
+					
 				},
 				error : function(){
 					console.log("error");

@@ -33,120 +33,110 @@ public class PheedController {
 
 	@Autowired
 	private BoardService service;
-	
+
 	@Autowired
 	private ReplyService reply_service;
-	
+
 	@Autowired
 	private LikesService likes_service;
-	
+
 	@GetMapping("")
 	public String pheed(Model model, PheedCriteria cri, Authentication authentication) {
-		
+
 		String member_id;
-		
-		if(authentication != null) {
-			 member_id = authentication.getName(); 
-		 }else {
-			 member_id = "";
-		 }
-		
-		
-		model.addAttribute("boardList", service.pheedpaging(cri,member_id));
+
+		if (authentication != null) {
+			member_id = authentication.getName();
+		} else {
+			member_id = "";
+		}
+
+		model.addAttribute("boardList", service.pheedpaging(cri, member_id));
 		model.addAttribute("boardImg", service.getBoardImg());
-		int total =service.pheedCount();
+		int total = service.pheedCount();
 		model.addAttribute("pageMaker", new PheedPagingVO(cri, total));
-		model.addAttribute("like",likes_service.likeread("manager"));
+		model.addAttribute("like", likes_service.likeread("manager"));
 		return "/pheed/pheed";
 	}
-	
+
 	@GetMapping("/detail")
-	public String detail(Model model,BoardVO boardVO) {
+	public String detail(Model model, BoardVO boardVO) {
 		model.addAttribute("boardList", service.getList(0));
 		int id = boardVO.getId();
 		service.updateView(id);
-		model.addAttribute("data",service.getBoard(id));
+		model.addAttribute("data", service.getBoard(id));
 		model.addAttribute("reply", reply_service.getList(id));
-		
+
 		return "/pheed/pheeddetail";
 	}
-	
+
 	@GetMapping("/write")
-		public String write() {
-			
-			return "/pheed/pheedwrite";
+	public String write() {
+
+		return "/pheed/pheedwrite";
 	}
-	
+
 	@PostMapping("/complete")
 	public String complete(BoardVO boardVO, List<MultipartFile> files, ImageVO imageVO) throws Exception {
-		 
-		if(files.isEmpty()) {//업로드할파일없을시
-			service.write(boardVO);//작성
-		}else {
-			service.write(boardVO);//작성
-			
-			for(MultipartFile file:files) {
+
+		if (files.isEmpty()) {// 업로드할파일없을시
+			service.write(boardVO);// 작성
+		} else {
+			service.write(boardVO);// 작성
+
+			for (MultipartFile file : files) {
 				String FileName = file.getOriginalFilename();
-				String FileNameExtension = 
-						FilenameUtils.getExtension(FileName).toLowerCase();
+				String FileNameExtension = FilenameUtils.getExtension(FileName).toLowerCase();
 				File destinationFile;
 				String destinationFileName;
 				String fileUrl = "C:\\Temp\\spring_boot_TravelHunter\\src\\main\\resources\\static\\assets\\img\\boards\\";
-				
+
 				do {
 					UUID uuid = UUID.randomUUID();
 					destinationFileName = uuid + "." + FileNameExtension;
 					destinationFile = new File(fileUrl + destinationFileName);
-				} while(destinationFile.exists());
-				
+				} while (destinationFile.exists());
+
 				destinationFile.getParentFile().mkdirs();
 				file.transferTo(destinationFile);
-				
+
 				imageVO.setBoard_id(service.boardGetid(boardVO));
 				imageVO.setIname(destinationFileName);
 				imageVO.setIoriname(FileName);
 				imageVO.setIpath(fileUrl);
-				
-				service.imginsert(imageVO);//img업로드
-				
+
+				service.imginsert(imageVO);// img업로드
+
 			}
-			
-			
+
 		}
 		return "redirect:/pheed";
 	}
-	
+
 	@PostMapping("/replywrite")
 	public String replyWrite(ReplyVO replyVO) {
 		reply_service.write(replyVO);
-		
+
 		return "redirect:";
-		
+
 	}
-	
+
 	@PostMapping("/delete")
 	public String delete(BoardVO boardVO) {
 		service.delete(boardVO);
 		return "redirect:/pheed";
 	}
-	
 
-	
 	@ResponseBody
 	@PostMapping("/likedelete")
 	public int likedelete(LikeVO likeVO) {
 		return likes_service.likedelete(likeVO);
 	}
-	
+
 	@ResponseBody
 	@PostMapping("/likeread")
 	public int likeread() {
 		return 1;
 	}
-	
-	
-	
-	
-	
 
 }

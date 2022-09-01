@@ -91,6 +91,12 @@ public class ManagerController {
 		return "/manager/reservations";
 	}
 	
+	@GetMapping("/sales")
+	public String sales() {
+		
+		return "/manager/sales";
+	}
+	
 	@PostMapping("/registPlace")
 	public String registPlace(PlaceVO placeVO,MultipartFile file) throws Exception {
 		
