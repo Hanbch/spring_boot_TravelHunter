@@ -19,6 +19,7 @@ import edu.hi.prj.service.BookingService;
 import edu.hi.prj.service.PlaceService;
 import edu.hi.prj.service.RoomService;
 import edu.hi.prj.vo.ImageVO;
+import edu.hi.prj.vo.PlaceDetailVO;
 import edu.hi.prj.vo.PlaceVO;
 import edu.hi.prj.vo.Place_TypeVO;
 import edu.hi.prj.vo.RoomVO;
@@ -92,7 +93,13 @@ public class ManagerController {
 	}
 	
 	@GetMapping("/sales")
-	public String sales() {
+	public String sales(Model model, Authentication authentication) {
+		
+		String member_id = authentication.getName();
+		
+		List<PlaceDetailVO> placeList = place_service.getMyPlaceList(member_id);
+		
+		model.addAttribute("placeList",placeList);
 		
 		return "/manager/sales";
 	}

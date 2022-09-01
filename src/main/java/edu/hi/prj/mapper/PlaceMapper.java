@@ -9,6 +9,7 @@ import edu.hi.prj.vo.PlaceDetailVO;
 import edu.hi.prj.vo.PlaceVO;
 import edu.hi.prj.vo.Place_TypeVO;
 import edu.hi.prj.vo.RoomVO;
+import edu.hi.prj.vo.StaticsVO;
 
 @Mapper
 public interface PlaceMapper{
@@ -34,4 +35,6 @@ public interface PlaceMapper{
 	PlaceVO getMyPlaceData(int num);//해당 캠핑장정보 조회
 	
 	void updatePlace(PlaceVO placeVO);//캠핑장 정보수정
+	
+	List<StaticsVO> getSales(int place_num);//캠핑장별 매출가져오기
 }

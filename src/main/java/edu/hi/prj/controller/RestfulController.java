@@ -27,6 +27,7 @@ import edu.hi.prj.vo.ReplyVO;
 import edu.hi.prj.vo.ReviewImgVO;
 import edu.hi.prj.vo.RoomImgVO;
 import edu.hi.prj.vo.RoomVO;
+import edu.hi.prj.vo.StaticsVO;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -100,6 +101,14 @@ public class RestfulController {
 	public List<ImageVO> getPheedImg(BoardVO boardVO) {
 
 		return board_service.getPheedImg(boardVO.getId());
+
+	}
+	
+	@GetMapping("/sales/{place_num}")
+	public List<StaticsVO> getSales(RoomVO roomVO) {
+		
+		int place_num = roomVO.getPlace_num();
+		return place_service.getSales(place_num);
 
 	}
 

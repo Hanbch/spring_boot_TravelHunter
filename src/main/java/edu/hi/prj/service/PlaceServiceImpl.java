@@ -13,6 +13,7 @@ import edu.hi.prj.vo.PlaceDetailVO;
 import edu.hi.prj.vo.PlaceVO;
 import edu.hi.prj.vo.Place_TypeVO;
 import edu.hi.prj.vo.RoomVO;
+import edu.hi.prj.vo.StaticsVO;
 
 @Service
 public class PlaceServiceImpl implements PlaceService{
@@ -138,6 +139,12 @@ public class PlaceServiceImpl implements PlaceService{
 	public void updatePlace(PlaceVO placeVO) {
 		mapper.updatePlace(placeVO);
 		
+	}
+
+	@Override
+	public List<StaticsVO> getSales(int place_num) {
+		
+		return mapper.getSales(place_num);
 	}
 
 
