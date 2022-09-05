@@ -1,6 +1,7 @@
 package edu.hi.prj.config.oauth;
 
 import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -54,7 +55,8 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
 		String provider = oauth2UserInfo.getProbider();
 		String providerId = oauth2UserInfo.getProviderId();
 		String username = provider + "_" + providerId;//google_11111111
-		String password = bCryptPasswordEncoder.encode("123");
+		String uuid = UUID.randomUUID().toString();
+		String password = bCryptPasswordEncoder.encode(uuid);
 		String memail = oauth2UserInfo.getMemail();
 		String mname = oauth2UserInfo.getMname();
 		UserVO user = usermapper.getUser(username);	
