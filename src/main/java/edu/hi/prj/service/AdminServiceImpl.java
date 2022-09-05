@@ -94,6 +94,8 @@ public class AdminServiceImpl implements AdminService{
 		mapper.updateMemberauth(id, auth_num);
 		
 	}
+
+
 	
 
 }

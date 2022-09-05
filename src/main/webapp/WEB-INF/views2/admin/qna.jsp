@@ -5,10 +5,8 @@
 
 
 <body>
-
-<h2 class="text-dark text-center">캠핑장관리 페이지입니다.</h2>
-
-<div class="container-fluid">
+	<h2 class="text-dark text-center">QnA</h2>
+		<div class="container-fluid">
   <div class="row">
 
     <div class="col-md-2">
@@ -19,7 +17,7 @@
         <h3 class="panel-title">목록</h3>
       </div> 
     <!-- 사이드바 메뉴목록1 -->
-        <ul class="list-group">
+       <ul class="list-group">
           <li class="list-group-item list-group-item-action"><a href="/admin">메인화면</a></li>
           <li class="list-group-item list-group-item-action"><a href="/admin/memlist">유저관리</a></li>
           <li class="list-group-item list-group-item-action"><a href="/admin/placelist">캠핑장관리</a></li>
@@ -27,35 +25,34 @@
           <li class="list-group-item list-group-item-action"><a href="#">Null</a></li>
         </ul>
         </div>     
-      </div> 
+      
+      </div>
+       
 
-    <div class="col-md-10">
-    
-      <form action=placelist method="get">
-      	<input type="submit" value="검색" class="float-right my-3 mx-2">
-      	<input type=text name="id" class="float-right my-3">
-      </form>
+   
      
       <table class="table">
-        <thead>
         <tr class="table-dark">
-            <th>캠핑장ID</th>
-            <th>소유자ID</th>
-            <th>캠핑장명</th>
+            <th>글제목</th>
+            <th>ID</th>
+            <th>진행상태</th>
             <th>자세히</th>
         </tr>
-		  <c:forEach items="${placeList}" var="data">
+		  <c:forEach items="${boardList}" var="data">
 		  <tr>			
-	 		<td>${data.num}</td>
+	 		<td>${data.btitle}</td>
 			<td>${data.member_id}</td> 
-			<td>${data.pname}</td>
-			<td><button type="button" onclick="location.href='placedetail?id=${data.num}'">자세히</button></td>
+			<td>
+			<c:if test="${data.reply ==  0}">진행중</c:if>
+			<c:if test="${data.reply ==  1}">답변완료</c:if>
+			</td>
+			<td><button type="button" onclick="location.href='qnadetail?id=${data.id}'">답변하기</button></td>
 		  </tr>
 		 </c:forEach> 
       </table>
     </div>
   </div>
-</div>
+
     
 
 

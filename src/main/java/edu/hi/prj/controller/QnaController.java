@@ -112,14 +112,7 @@ public class QnaController {
 		return "redirect:/qna;";
 	}
 	
-	@PostMapping("/reply")
-	public String qnareply(ReplyVO replyVO, Authentication authentication) {
-		String member_id = authentication.getName();
-		replyVO.setMember_id(member_id);
-		reply_service.write(replyVO);
-		return "redirect:";
-	}
-
+	
 	
 	
 	

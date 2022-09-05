@@ -43,12 +43,7 @@
 			<tr style="height:300px">
 				<td colspan="2" style="padding:20px">
 					${data.bcontent}<br><br><br>
-					<sec:authorize access="hasRole('ROLE_ADMIN')">
-						<form action="/qna/reply?board_id=${data.id}" method="post">
-							<input type="text" id="reply" name="reply" style="width:100%; height:100px">
-							<button type="submit" style="width:100%; height:50px; border:none; margin-top:3px;">답변하기</button>
-						</form>
-					</sec:authorize>
+					
 					<c:if test="${qnareply.reply != null}">
 					작성자 : ${qnareply.member_id}<br>
 					작성일 : ${qnareply.repdate}<br>

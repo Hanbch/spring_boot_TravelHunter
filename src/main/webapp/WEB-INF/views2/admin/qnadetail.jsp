@@ -6,7 +6,7 @@
 
 <body>
 
-<h2 class="text-dark text-center">캠핑장관리 페이지입니다.</h2>
+<h2 class="text-dark text-center">유저세부정보 페이지입니다.</h2>
 
 <div class="container-fluid">
   <div class="row">
@@ -28,36 +28,40 @@
         </ul>
         </div>     
       </div> 
-
-    <div class="col-md-10">
-    
-      <form action=placelist method="get">
-      	<input type="submit" value="검색" class="float-right my-3 mx-2">
-      	<input type=text name="id" class="float-right my-3">
-      </form>
-     
-      <table class="table">
-        <thead>
-        <tr class="table-dark">
-            <th>캠핑장ID</th>
-            <th>소유자ID</th>
-            <th>캠핑장명</th>
-            <th>자세히</th>
-        </tr>
-		  <c:forEach items="${placeList}" var="data">
-		  <tr>			
-	 		<td>${data.num}</td>
-			<td>${data.member_id}</td> 
-			<td>${data.pname}</td>
-			<td><button type="button" onclick="location.href='placedetail?id=${data.num}'">자세히</button></td>
-		  </tr>
-		 </c:forEach> 
-      </table>
-    </div>
-  </div>
-</div>
-    
-
+	 <table border="1" style="width:70%; margin:0 auto;">
+			<tr>
+				<td>번호</td>
+				<td>${data.id}</td>
+			</tr>
+			<tr>
+				<td>제목</td>
+				<td>${data.btitle}</td>
+			</tr>
+			<tr>
+				<td>작성자</td>
+				<td>${data.member_id}</td>
+			</tr>
+			<tr>
+				<td>날짜</td>
+				<td>${data.bdate}</td>
+			</tr>
+			<tr>
+				<td colspan="2" style="text-align:center">내용:</td>
+			</tr>
+			<tr style="height:300px">
+				<td colspan="2" style="padding:20px">
+					${data.bcontent}<br><br><br>					
+						<form action="/admin/reply?board_id=${data.id}" method="post">
+							<input type="text" id="reply" name="reply" style="width:100%; height:100px">
+							<button type="submit" style="width:100%; height:50px; border:none; margin-top:3px;">답변하기</button>
+						</form>
+				
+				</td>
+			</tr>
+		</table>
+  
+  
+  
 
 </body> 
 <%@include file ="../include/footer.jsp" %>

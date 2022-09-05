@@ -19,10 +19,10 @@
       </div> 
     <!-- 사이드바 메뉴목록1 -->
         <ul class="list-group">
-          <li class="list-group-item list-group-item-action"><a href="main">메인화면</a></li>
-          <li class="list-group-item list-group-item-action"><a href="memlist">유저관리</a></li>
-          <li class="list-group-item list-group-item-action"><a href="placelist">캠핑장관리</a></li>
-          <li class="list-group-item list-group-item-action"><a href="reservationlist">예약관리</a></li>
+          <li class="list-group-item list-group-item-action"><a href="/admin">메인화면</a></li>
+          <li class="list-group-item list-group-item-action"><a href="/admin/memlist">유저관리</a></li>
+          <li class="list-group-item list-group-item-action"><a href="/admin/placelist">캠핑장관리</a></li>
+          <li class="list-group-item list-group-item-action"><a href="/admin/qna">qna</a></li>
           <li class="list-group-item list-group-item-action"><a href="#">Null</a></li>
         </ul>
         </div>     

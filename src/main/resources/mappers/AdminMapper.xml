@@ -96,6 +96,8 @@
     	<![CDATA[
     		delete from room where place_num = #{id} and num = #{room}
     	]]>
-    </delete>        
+    </delete>      
+    
+    
        
 </mapper>

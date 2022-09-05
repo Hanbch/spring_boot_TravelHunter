@@ -34,6 +34,7 @@ public interface AdminMapper{
 	//예약 관리 페이지
 	List<BookingVO> getReservationList();	//전체 예약 리스트 불러오기
 	List<BookingVO> searchReservationList(int id);
+
 	
 	
 	
