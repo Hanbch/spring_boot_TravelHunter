@@ -178,22 +178,8 @@ section.reservation thead th {
 				totalprice : totalprice
 		}
 			
-        $.ajax({
-			type : "POST",
-			url : "/product/booking",
-			cashe: false,
-		    contentType:'application/json;charset=utf-8',
-			data : JSON.stringify(form),
-			success : function(data){
-				alert("예약완료");
-				location.href="/product";
-			}, 
-			error : function(){
-				alert("예약실패");
-			}
-			
-		});
-		//booking.pay();
+        
+		booking.pay();
 		
 	});
 	
