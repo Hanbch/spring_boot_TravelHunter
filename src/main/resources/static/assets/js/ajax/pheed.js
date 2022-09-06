@@ -65,7 +65,7 @@
 		                   htmls += '<input type="text" class="reply"/>';
 		                   htmls += '<input type="hidden" class="step" value="' + this.step + '"/>';
 		                   htmls += '<input type="hidden" class="indent" value="' + this.indent + '"/>';
-		                   htmls += '<a hrf="#" class="reply_btn pull-right">게시</a>'; 
+		                   htmls += '<a href="#" class="reply_btn pull-right">게시</a>'; 
 		                   htmls += '</div></div></div>';
 		                   
 		                   
@@ -186,7 +186,7 @@
 		                   htmls += '<input type="text" class="reply"/>';
 		                   htmls += '<input type="hidden" class="step" value="' + this.step + '"/>';
 		                   htmls += '<input type="hidden" class="indent" value="' + this.indent + '"/>';
-		                   htmls += '<a hrf="#" class="reply_btn pull-right">게시</a>'; 
+		                   htmls += '<a href="#" class="reply_btn pull-right">게시</a>'; 
 		                   htmls += '</div></div></div>';
 		            });
 		            

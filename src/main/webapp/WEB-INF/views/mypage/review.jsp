@@ -4,60 +4,7 @@
 <%@include file="../include/header.jsp"%>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
-<style>
-#myform fieldset{
-    display: inline-block;
-    direction: rtl;
-    border:0;
-}
-#myform fieldset legend{
-    text-align: right;
-}
-#myform input[type=radio]{
-    display: none;
-}
-#myform label{
-    font-size: 3em;
-    color: transparent;
-    text-shadow: 0 0 0 #f0f0f0;
-}
-#myform label:hover{
-    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
-}
-#myform label:hover ~ label{
-    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
-}
-#myform input[type=radio]:checked ~ label{
-    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
-}
-#reviewContents {
-    width: 100%;
-    height: 150px;
-    padding: 10px;
-    box-sizing: border-box;
-    border: solid 1.5px #D3D3D3;
-    border-radius: 5px;
-    font-size: 16px;
-    resize: none;
-    margin-bottom: 20px;
-}
-
-#write_btn{
-	width: 100%;
-	padding: 10px;
-    border: solid 1.5px #D3D3D3;
-    border-radius: 5px;
 	
-}
-
-</style>
-
-
-
-
-
-
-
 <section style="padding: 200px 0; width:1200px; margin:0 auto;">
 	리뷰작성${pnum}<br>
 	
@@ -81,10 +28,6 @@
 	</div>
 	<input type="submit" id="write_btn" value="작성하기">
 </form>
-	
-	
-	
-	
 </section>
 <%@include file="../include/footer.jsp"%>
 

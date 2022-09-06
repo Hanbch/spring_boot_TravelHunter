@@ -63,47 +63,35 @@
 					</li>
 				</ul>
 			</div>
-			<!-- /.navbar-header -->
-			<!-- /.navbar-top-links -->
-			<!-- /.navbar-static-side -->
 		</nav>
 		<!-- Left navbar-header -->
 		<div class="navbar-default sidebar" role="navigation">
 			<div class="sidebar-nav navbar-collapse slimscrollsidebar">
 				<ul class="nav" id="side-menu">
-					<li style="padding: 10px 0 0"><a href="/manager"
-						class="waves-effect"><i
-							class="fa fa-clock-o fa-fw" aria-hidden="true"></i><span
-							class="hide-menu">Home</span></a></li>
-					<li><a href="/manager/myplace" class="waves-effect"><i
-							class="fa fa-user fa-fw" aria-hidden="true"></i><span
-							class="hide-menu">업장관리</span></a></li>
-					<li><a href="/manager/reservations" class="waves-effect"><i
-							class="fa fa-user fa-fw" aria-hidden="true"></i><span
-							class="hide-menu">예약관리</span></a></li>
-					<li><a href="/manager/sales" class="waves-effect"><i
-							class="fa fa-user fa-fw" aria-hidden="true"></i><span
-							class="hide-menu">매출관리</span></a></li>
-					<li><a href="/manager/test" class="waves-effect"><i class="fa fa-user fa-fw" aria-hidden="true"></i>
-							<span class="hide-menu">통계</span></a></li>
-					<li><a href="profile.html" class="waves-effect"><i
-							class="fa fa-user fa-fw" aria-hidden="true"></i><span
-							class="hide-menu">Profile</span></a></li>
-					<li><a href="basic-table.html" class="waves-effect"><i
-							class="fa fa-table fa-fw" aria-hidden="true"></i><span
-							class="hide-menu">Basic Table</span></a></li>
-					<li><a href="fontawesome.html" class="waves-effect"><i
-							class="fa fa-font fa-fw" aria-hidden="true"></i><span
-							class="hide-menu">Icons</span></a></li>
-					<li><a href="map-google.html" class="waves-effect"><i
-							class="fa fa-globe fa-fw" aria-hidden="true"></i><span
-							class="hide-menu">Google Map</span></a></li>
-					<li><a href="blank.html" class="waves-effect"><i
-							class="fa fa-columns fa-fw" aria-hidden="true"></i><span
-							class="hide-menu">Blank Page</span></a></li>
-					<li><a href="404.html" class="waves-effect"><i
-							class="fa fa-info-circle fa-fw" aria-hidden="true"></i><span
-							class="hide-menu">Error 404</span></a></li>
+					<li style="padding: 10px 0 0">
+						<a href="/manager" class="waves-effect">
+							<i class="fa fa-clock-o fa-fw" aria-hidden="true"></i>
+							<span class="hide-menu">Home</span>
+						</a>
+					</li>
+					<li>
+						<a href="/manager/myplace" class="waves-effect">
+							<i class="fa fa-user fa-fw" aria-hidden="true"></i>
+							<span class="hide-menu">업장관리</span>
+						</a>
+					</li>
+					<li>
+						<a href="/manager/reservations" class="waves-effect">
+							<i class="fa fa-user fa-fw" aria-hidden="true"></i>
+							<span class="hide-menu">예약관리</span>
+						</a>
+					</li>
+					<li>
+						<a href="/manager/sales" class="waves-effect">
+							<i class="fa fa-user fa-fw" aria-hidden="true"></i>
+							<span class="hide-menu">매출관리</span>
+						</a>
+					</li>
 				</ul>
 
 			</div>

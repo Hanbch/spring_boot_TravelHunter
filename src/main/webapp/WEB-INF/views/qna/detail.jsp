@@ -1,8 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file ="../include/header.jsp" %>
-	<section style="padding:200px 0 0 100px">
-		<table border="1" style="width:100%">
+
+	<!-- slider Area Start-->
+    <div class="slider-area">
+        <div class="single-slider hero-overly slider-height2 d-flex align-items-center" data-background="/assets/img/hero/roomspage_hero.jpg" >
+            <div class="container">
+                <div class="row ">
+                    <div class="col-md-11 offset-xl-1 offset-lg-1 offset-md-1">
+                        <div class="hero-caption">
+                            <span>Board</span>
+                            <h2>Q&A</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- slider Area End-->
+
+	<section style="padding:100px 0">
+		<table border="1" style="width:70%; margin:0 auto;">
 			<tr>
 				<td>번호</td>
 				<td>${data.id}</td>
@@ -22,42 +40,19 @@
 			<tr>
 				<td colspan="2" style="text-align:center">내용:</td>
 			</tr>
-			<tr style="height:300px"><td colspan="2">${data.bcontent}</td></tr>
-			<c:if test="${member.id == data.member_id }">
-			<tr>
-				<td colspan="2">
-					&nbsp;&nbsp;<a href="/qna/edit?id=${data.id }"><input type="button" value="수정하기"></a>&nbsp;&nbsp;
-					<a href="/qna"><input type="button" value="목록보기"></a>
+			<tr style="height:300px">
+				<td colspan="2" style="padding:20px">
+					${data.bcontent}<br><br><br>
+					
+					<c:if test="${qnareply.reply != null}">
+					작성자 : ${qnareply.member_id}<br>
+					작성일 : ${qnareply.repdate}<br>
+					답변 : ${qnareply.reply}
+					</c:if>
 				</td>
 			</tr>
-			</c:if>
-			<c:if test="${member.id != data.member_id }">
-			<tr>
-				<td colspan="2">
-					&nbsp;&nbsp;<a href="/qna"><input type="button" value="목록보기"></a>
-				</td>
-			</tr>
-			</c:if>
 		</table>
+	</section>		
 		
-		<br>
-		
-		<table width="500" cellpadding="0" border="1">
-			<c:forEach var="reply" items="${reply}">
-				<tr>
-					<td>${reply.member_id }</td>
-					<td>${reply.reply }</td>
-					<td>${reply.repdate }</td>
-					<td>삭제</td>
-				</tr>
-			</c:forEach>
-			
-		
-		
-		</table>
-	</section>
 <%@include file ="../include/footer.jsp" %>
 
-<script>
-	
-</script>

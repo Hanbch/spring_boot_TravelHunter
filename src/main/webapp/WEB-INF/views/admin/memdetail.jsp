@@ -20,10 +20,10 @@
       </div> 
     <!-- 사이드바 메뉴목록1 -->
         <ul class="list-group">
-          <li class="list-group-item list-group-item-action"><a href="main">메인화면</a></li>
-          <li class="list-group-item list-group-item-action"><a href="memlist">유저관리</a></li>
-          <li class="list-group-item list-group-item-action"><a href="placelist">캠핑장관리</a></li>
-          <li class="list-group-item list-group-item-action"><a href="reservationlist">예약관리</a></li>
+          <li class="list-group-item list-group-item-action"><a href="/admin">메인화면</a></li>
+          <li class="list-group-item list-group-item-action"><a href="/admin/memlist">유저관리</a></li>
+          <li class="list-group-item list-group-item-action"><a href="/admin/placelist">캠핑장관리</a></li>
+          <li class="list-group-item list-group-item-action"><a href="/admin/qna">qna</a></li>
           <li class="list-group-item list-group-item-action"><a href="#">Null</a></li>
         </ul>
         </div>     
@@ -54,7 +54,10 @@
             </tr>
             <tr>
              <th class="table-dark">생일</th><td>${member.mbirth}</td>
-            </tr>   
+            </tr>
+            <tr>
+             <th class="table-dark">권한</th><td><input type="text" name="auth_num" value="${member.auth_num}"></td>
+            </tr>    
       	  </table>
       	    <input type="hidden" name="id" value="${member.id}">
       	    <input class ="mb-5" type="submit" value="수정">

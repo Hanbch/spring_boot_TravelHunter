@@ -4,55 +4,9 @@
 <%@include file="../include/header.jsp"%>
 
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-<script src="/assets/js/ajax/booking.js"></script>
-<script src="/assets/js/date-count.js"></script>
-<style>
-section.reservation {
-	width: 1200px;
-	margin: 0 auto;
-}
+<script src="/assets/js/ajax/booking.js"></script><!-- 예약관련 비동기처리 -->
+<script src="/assets/js/date-count.js"></script><!-- 숙박일수 구하기 -->
 
-section.reservation .contact-title {
-	margin-bottom: 40px;
-}
-
-section.reservation .contact-info .media-body h3 {
-	font-weight: 600;
-	font-size: 20px;
-}
-
-section.reservation .contact-info.total_price h3 {
-	border-top: 1px solid #ccc;
-	font-weight: 600;
-	font-size: 25px;
-	padding: 20px 0;
-}
-
-section.reservation .contact-info.total_price p {
-	font-weight: 600;
-	font-size: 25px;
-	color: #e61c51;
-}
-
-section.reservation .col-sm-6 {
-	flex: 0 0 100%;
-	max-width: 100%;
-}
-
-section.reservation .boxed-btn {
-	width: 100%;
-}
-
-section.reservation .offset-lg-1 {
-	background-color: #fbf9ff;
-	padding: 50px 30px;
-}
-
-section.reservation thead th {
-	font-weight:600;
-}
-</style>
-<!-- ================ contact section start ================= -->
 <section class="contact-section reservation">
 	<div class="container">
 
@@ -123,24 +77,21 @@ section.reservation thead th {
 		</div>
 	</div>
 </section>
-<!-- ================ contact section end ================= -->
 
 <%@include file="../include/footer.jsp"%>
 
 <script>
-
 	//숙박일수 구하기 & 가격구하기
-	
 	var days = dayCount.getDateDiff($("#enddate").val(),$("#startdate").val());
 	var totalPrice = Number($("#price").val()) * days;
 	
-	function init(){
+	function init(){//초기설정 (숙박일수 및 가격 설정)
 		$("#days").text(days);
 		$(".totalPrice").text(totalPrice + "원");//화면에 총액표시
 		$("#totalPrice").val(totalPrice);//DB로 넘길 총액 셋팅
 	}
 	
-	init();
+	init();//초기설정 호출
 
 	$("#payment").on("click", function(){
 		
@@ -155,30 +106,26 @@ section.reservation thead th {
 		}
 		
 		//결제모듈 & 예약정보 DB 업데이트
-		
-		//예약정보 DB전송
-		
 		var place_num = $("#place_num").val();
-			var room_num = $("#room_num").val();
-			var startdate = $("#startdate").val();
-			var enddate = $("#enddate").val();
-			var cname = $("#cname").val();
-			var cphone = $("#cphone").val();
-			var member_id = $("#member_id").val();
-			var totalprice = $("#totalPrice").val();
+		var room_num = $("#room_num").val();
+		var startdate = $("#startdate").val();
+		var enddate = $("#enddate").val();
+		var cname = $("#cname").val();
+		var cphone = $("#cphone").val();
+		var member_id = $("#member_id").val();
+		var totalprice = $("#totalPrice").val();
 			
-			var form = {
-				place_num : place_num,
-				room_num : room_num,
-				startdate : startdate,
-				enddate : enddate,
-				cname : cname,
-				cphone : cphone,
-				member_id : member_id,
-				totalprice : totalprice
+		var form = {
+			place_num : place_num,
+			room_num : room_num,
+			startdate : startdate,
+			enddate : enddate,
+			cname : cname,
+			cphone : cphone,
+			member_id : member_id,
+			totalprice : totalprice
 		}
-			
-        
+        //예약정보 DB전송
 		booking.pay();
 		
 	});

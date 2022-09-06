@@ -73,10 +73,10 @@ body{ background-color:  #e0e0e0;}
 		<form action="/create" method="post">
 			<h2>회원가입</h2>
 			<label for="id">아이디 : </label>
-			<input type="text" id="id" name="id" />
+			<input type="text" id="id" name="username" />
 			<button class="idchk" type="button" id="idcheck" onclick="fn_idcheck();" value="N">중복확인</button>	<br>
         	<label for="mpw">비밀번호 : </label>
-			<input type="password" name="mpw" id="mpw" required="required" /><br>
+			<input type="password" name="password" id="mpw" required="required" /><br>
        		<label for="mpw1">비밀번호확인 : </label>
 			<input type="password" name="testpw" id="mpw1"><br>
        		<div class="pwchk" id="alert-success">비밀번호가 일치합니다.</div>
@@ -105,6 +105,7 @@ body{ background-color:  #e0e0e0;}
 	    $("#alert-success").hide();
 	    $("#alert-danger").hide();
 	    $("input").keyup(function(){
+	    	
 	        var pwd1=$("#mpw").val();
 	        var pwd2=$("#mpw1").val();
 	        if(pwd1 != "" || pwd2 != ""){
@@ -193,6 +194,7 @@ body{ background-color:  #e0e0e0;}
 			}
 		})
 	}
-	
-	
-	</script>
+		
+		
+		
+</script>

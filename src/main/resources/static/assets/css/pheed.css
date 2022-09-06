@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 section.pheed {
-	
+	padding: 0 0 100px 0
 }
 
 section.pheed .pheed_wrapper {
@@ -526,4 +526,10 @@ section.pheed .content_date {
 
 .pull-right {
 	float: right;
+}
+
+section.pheed #write_btn{
+	width: 78px;
+    line-height: 30px;
+    padding: 0 10px;	
 }
