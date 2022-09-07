@@ -26,7 +26,7 @@
     
     <select id="getReviewImgList" resultType="ReviewImgVO">
        <![CDATA[
-           select id,ipath from
+           select id,ipath, iname from
               image i,
               (select id from place p, board b where p.num = b.place_num and p.num =#{num})B
                   where i.board_id = B.id
@@ -222,10 +222,4 @@
    ]]>
    </insert>
    
-
-    
-
-    
-    
-    
 </mapper>

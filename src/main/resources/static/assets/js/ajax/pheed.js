@@ -60,12 +60,12 @@
 		                   htmls += '<h5>' + this.member_id + '</h5>';
 		                   htmls += '<span class="mail-desc">' + this.reply + '</span>';
 		                   htmls += '<span class="time pull-left">' + this.repdate + '</span>';
-		                   htmls += '<a href="" class="re_reply">답글달기</a>';
+		                   htmls += '<a href="#" class="re_reply">답글달기</a>';
 		                   htmls += '<div class="reply_form pull-left">';
 		                   htmls += '<input type="text" class="reply"/>';
 		                   htmls += '<input type="hidden" class="step" value="' + this.step + '"/>';
 		                   htmls += '<input type="hidden" class="indent" value="' + this.indent + '"/>';
-		                   htmls += '<a href="#" class="reply_btn pull-right">게시</a>'; 
+		                   htmls += '<button class="reply_btn pull-right">게시</button>'; 
 		                   htmls += '</div></div></div>';
 		                   
 		                   
@@ -181,12 +181,12 @@
 		                   htmls += '<h5>' + this.member_id + '</h5>';
 		                   htmls += '<span class="mail-desc">' + this.reply + '</span>';
 		                   htmls += '<span class="time pull-left">' + this.repdate + '</span>';
-		                   htmls += '<a href="" class="re_reply">답글달기</a>';
+		                   htmls += '<a href="#" class="re_reply">답글달기</a>';
 		                   htmls += '<div class="reply_form pull-left">';
 		                   htmls += '<input type="text" class="reply"/>';
 		                   htmls += '<input type="hidden" class="step" value="' + this.step + '"/>';
 		                   htmls += '<input type="hidden" class="indent" value="' + this.indent + '"/>';
-		                   htmls += '<a href="#" class="reply_btn pull-right">게시</a>'; 
+		                   htmls += '<button class="reply_btn pull-right">게시</button>';  
 		                   htmls += '</div></div></div>';
 		            });
 		            

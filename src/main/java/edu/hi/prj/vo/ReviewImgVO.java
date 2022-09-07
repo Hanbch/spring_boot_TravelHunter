@@ -18,5 +18,6 @@ import lombok.ToString;
 public class ReviewImgVO{
 	private int id;
 	private String ipath;
+	private String iname;
 
 }

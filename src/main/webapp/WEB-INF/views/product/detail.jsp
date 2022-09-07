@@ -11,7 +11,7 @@
 					<div class="banner_wrapper">
 						<div class="photo_banner clearfix">
 							<ul>
-								<li  class="room_list"><img class="room_img" src="${placeDetail.mainimg}"></li>
+								<li  class="room_list"><img class="room_img" src="/assets/img/place/${placeDetail.mainimg}"></li>
 								<c:forEach items="${placeDetail.getInameList()}" var="iname">
 									<li  class="room_list"><img class="room_img" src="/assets/img/rooms/${iname}"></li>
 								</c:forEach>
@@ -196,7 +196,7 @@
 											<ul>
 												<c:forEach items="${reviewImgList}" var="data">
 													<c:if test="${data.id == review.id}">
-														<li><img src="${data.ipath}"></li>
+														<li><img src="/assets/img/boards/${data.iname}"></li>
 													</c:if>
 												</c:forEach>
 											</ul>

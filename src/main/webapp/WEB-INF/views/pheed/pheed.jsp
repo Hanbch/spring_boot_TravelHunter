@@ -206,9 +206,7 @@
 		var offsetTop = $(window).scrollTop();
 
 		$("#detail,.dim").addClass("active");
-		$("#detail,.dim").css({
-			top : offsetTop
-		});
+		$("#detail,.dim").css({top : offsetTop});
 		$("body").addClass("fixed");
 
 		pheedDetail.increaseView(id);//조회수 증가 DB 업데이트
@@ -232,7 +230,8 @@
 	});
 
 	//대댓글 게시버튼 클릭시(mousedown) 
-	$(document).on("mousedown", ".reply_btn", function() {
+	$(document).on("mousedown", ".reply_btn", function(e) {
+		
 		//DB에 댓글 데이터 추가
 		$("#reply").val($(this).parent().find(".reply").val());
 		$("#step").val($(this).parent().find(".step").val());
@@ -241,7 +240,7 @@
 	});
 
 	//대댓글 게시버튼 클릭시(mouseup)
-	$(document).on("mouseup", ".reply_btn", function() {
+	$(document).on("mouseup", ".reply_btn", function(e) {
 		//댓글정보 불러와 화면 최신화 
 		registReply.getBoard();
 		$("#reply").val("");
@@ -284,9 +283,7 @@
 			},
 			success : function(data) {
 				alert("좋아요");
-				$("#" + board_id + " .likes_count").text(
-						Number($("#" + board_id + " .likes_count")
-								.text()) + 1);// like_count view 최신화
+				$("#" + board_id + " .likes_count").text(Number($("#" + board_id + " .likes_count").text()) + 1);// like_count view 최신화
 			},
 			error : function() {
 				alert("로그인 후 사용가능");
