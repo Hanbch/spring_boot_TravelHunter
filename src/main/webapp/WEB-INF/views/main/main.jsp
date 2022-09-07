@@ -52,7 +52,7 @@
        	<!-- Booking filter End-->
 
         <!-- Room Start -->
-        <section class="room-area">
+        <section class="room-area" style="padding: 0 0 150px 0">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-xl-8">
@@ -66,90 +66,25 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xl-4 col-lg-6 col-md-6">
-                        <!-- Single Room -->
-                        <div class="single-room mb-50">
-                            <div class="room-img">
-                               <a href="rooms.html"><img src="/assets/img/rooms/room1.jpg" alt=""></a>
-                            </div>
-                            <div class="room-caption">
-                                <h3><a href="rooms.html">Classic Double Bed</a></h3>
-                                <div class="per-night">
-                                    <span><u>$</u>150 <span>/ par night</span></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-6 col-md-6">
-                        <!-- Single Room -->
-                        <div class="single-room mb-50">
-                            <div class="room-img">
-                               <a href="rooms.html"><img src="/assets/img/rooms/room2.jpg" alt=""></a>
-                            </div>
-                            <div class="room-caption">
-                                <h3><a href="rooms.html">Classic Double Bed</a></h3>
-                                <div class="per-night">
-                                    <span><u>$</u>150 <span>/ par night</span></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-6 col-md-6">
-                        <!-- Single Room -->
-                        <div class="single-room mb-50">
-                            <div class="room-img">
-                               <a href="rooms.html"> <img src="/assets/img/rooms/room3.jpg" alt=""></a>
-                            </div>
-                            <div class="room-caption">
-                                <h3><a href="rooms.html">Classic Double Bed</a></h3>
-                                <div class="per-night">
-                                    <span><u>$</u>150 <span>/ par night</span></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-6 col-md-6">
-                        <!-- Single Room -->
-                        <div class="single-room mb-50">
-                            <div class="room-img">
-                                <a href="rooms.html"><img src="/assets/img/rooms/room4.jpg" alt=""></a>
-                            </div>
-                            <div class="room-caption">
-                                <h3><a href="rooms.html">Classic Double Bed</a></h3>
-                                <div class="per-night">
-                                    <span><u>$</u>150 <span>/ par night</span></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-6 col-md-6">
-                        <!-- Single Room -->
-                        <div class="single-room mb-50">
-                            <div class="room-img">
-                                <a href="rooms.html"><img src="/assets/img/rooms/room5.jpg" alt=""></a>
-                            </div>
-                            <div class="room-caption">
-                                <h3><a href="rooms.html">Classic Double Bed</a></h3>
-                                <div class="per-night">
-                                    <span><u>$</u>150 <span>/ par night</span></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-6 col-md-6">
-                        <!-- Single Room -->
-                        <div class="single-room mb-50">
-                            <div class="room-img">
-                               <a href="rooms.html"> <img src="assets/img/rooms/room6.jpg" alt=""></a>
-                            </div>
-                            <div class="room-caption">
-                                <h3><a href="rooms.html">Classic Double Bed</a></h3>
-                                <div class="per-night">
-                                    <span><u>$</u>150 <span>/ par night</span></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                	<c:forEach items="${hotPlace}" var="place" begin="0" end="5">
+	                    <div class="col-xl-4 col-lg-6 col-md-6">
+	                        <!-- Single Room -->
+	                        <div class="single-room mb-50">
+	                            <div class="room-img">
+	                               <a href="/product/detail?num=${place.num}&startdate=&enddate="><img src="/assets/img/place/${place.mainimg}" alt=""></a>
+	                            </div>
+	                            <div class="room-caption">
+	                                <h3><a href="/product/detail?num=${place.num}&startdate=&enddate=">${place.pname}</a></h3>
+	                                <div class="per-night">
+	                                    <span><u>평점 : </u>${place.placeAvgGrade}</span>
+	                                </div>
+	                                <div class="per-night">
+	                                    <a href="/product/detail?num=${place.num}&startdate=&enddate=">자세히 보러가기</a>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+            		</c:forEach>
                 </div>
                 <div class="row justify-content-center">
                     <div class="room-btn pt-70">
@@ -157,55 +92,8 @@
                     </div>
                 </div>
             </div>
-
         </section>
         <!-- Room End -->
-
-        <!-- Pheed Start -->
-       <div class="blog-area" style="padding:150px 0">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-xl-8">
-                        <!-- Seciton Tittle  -->
-                        <div class="font-back-tittle mb-50">
-                            <div class="archivment-front">
-                                <h3>인기 피드</h3>
-                            </div>
-                            <h3 class="archivment-back">pheed</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-               		 <c:forEach begin="0" end="2" var="data" items="${data}">
-               		 	<div class="col-xl-4 col-lg-4 col-md-6">
-	                        <!-- Single Blog -->
-	                        <div class="single-blog mb-30">
-	                            <div class="blog-img">
-	                                <a href="/pheed/detail?id=${data.id}"><img src="assets/img/our_blog/blog-img1.jpg" alt=""></a>
-	                            </div>
-	                            <div class="blog-caption">
-	                                <div class="blog-cap-top d-flex justify-content-between mb-40">
-	                                    <span>${data.bview} views</span>
-	                                    <ul><li>by<a href="#">${data.member_id}</a></li></ul>
-	                                </div>
-	                                <div class="blog-cap-mid">
-	                                    <p><a href="/pheed/detail?id=${data.id}">${data.bcontent}</a></p>
-	                                </div>
-	                                <!-- Comments -->
-	                                <div class="blog-cap-bottom d-flex justify-content-between">
-	                                    <span>${data.bdate}</span>
-	                                    <span><img src="assets/img/our_blog/blog-comments-icon.jpg" alt="">0</span>
-	                                </div>
-	                            </div>
-	                        </div>
-	                    </div>
-               		</c:forEach>
-                    
-                    
-                </div>
-            </div>
-       </div>
-        <!-- Pheed End -->
     </main>
 <%@include file ="../include/footer.jsp" %>
    

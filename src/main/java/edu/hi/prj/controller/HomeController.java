@@ -21,12 +21,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import edu.hi.prj.mapper.BookingMapper;
 import edu.hi.prj.mapper.UserMapper;
 import edu.hi.prj.service.BoardServiceImpl;
 import edu.hi.prj.service.BookingService;
 import edu.hi.prj.service.MemberService;
+import edu.hi.prj.service.PlaceService;
 import edu.hi.prj.vo.MemberVO;
+import edu.hi.prj.vo.PheedCriteria;
 import edu.hi.prj.vo.UserDetailsVO;
 import edu.hi.prj.vo.UserVO;
 
@@ -48,13 +49,14 @@ public class HomeController {
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	@Autowired
-	private BookingMapper booking_mapper;
-
-	@Autowired
 	private BookingService booking_service;
+	
+	@Autowired
+	private PlaceService place_service;
+	
 
 	@GetMapping("/")
-	public String main(Model model) {
+	public String main(Model model, PheedCriteria cri, Authentication authentication) {
 
 		// 오늘,내일 날짜구하기(필터링 default 날짜)
 		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
@@ -66,8 +68,21 @@ public class HomeController {
 
 		String startdate = today;
 		String enddate = afterday;
+		
+		String member_id;
 
-		model.addAttribute("data", service.getHotList(0));
+		if (authentication != null) {
+			member_id = authentication.getName();
+		} else {
+			member_id = "";
+		}
+
+		model.addAttribute("boardList", service.pheedpaging(cri, member_id));
+		model.addAttribute("boardImg", service.getBoardImg());
+		int total = service.pheedCount();
+		
+		model.addAttribute("hotPlace", place_service.hotPlaceList());
+		model.addAttribute("hotPheed", service.getHotList(0));
 		model.addAttribute("startdate", startdate);
 		model.addAttribute("enddate", enddate);
 

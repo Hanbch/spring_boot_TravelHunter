@@ -13,6 +13,15 @@
        ]]>
     </select>
     
+    <select id="hotPlaceList" resultType="PlaceVO">
+       <![CDATA[
+			select * from 
+             	place,
+             	(select p.num,nvl(round(avg(bgrade),1),0) placeAvgGrade from place p,board b where p.num = b.place_num(+) group by p.num order by p.num desc)A 
+         	where place.num = A.num(+) order by placeavggrade desc
+       ]]>
+    </select>
+    
     <!-- 캠핑장별 매출정보가져오기 -->
     <select id="getSales" resultType="StaticsVO">
        <![CDATA[

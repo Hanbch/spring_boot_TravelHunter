@@ -147,6 +147,12 @@ public class PlaceServiceImpl implements PlaceService{
 		return mapper.getSales(place_num);
 	}
 
+	@Override
+	public List<PlaceVO> hotPlaceList() {
+		
+		return mapper.hotPlaceList();
+	}
+
 
 
 }
