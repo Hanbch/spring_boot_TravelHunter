@@ -23,7 +23,6 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
 	UserVO userVO = new UserVO();
 	BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
-	// 구글에서 받은 userRequest데이터에 대한 후처리함수.
 	@Override
 	public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
 		System.out.println("getClientRegistration : " + userRequest.getClientRegistration());
@@ -36,16 +35,16 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
 
 		OAuth2UserInfo oauth2UserInfo = null;
 		if (userRequest.getClientRegistration().getRegistrationId().equals("google")) {
-			System.out.println("google login");
+			System.out.println("google login");//google login
 			oauth2UserInfo = new GoogleUserInfo(oauth2User.getAttributes());
 		} else if (userRequest.getClientRegistration().getRegistrationId().equals("facebook")) {
-			System.out.println("facebook login");
+			System.out.println("facebook login");//facebook login
 			oauth2UserInfo = new FacebookUserInfo(oauth2User.getAttributes());
 		} else if (userRequest.getClientRegistration().getRegistrationId().equals("naver")) {
-			System.out.println("naver login");
+			System.out.println("naver login");//naver login
 			oauth2UserInfo = new NaverUserInfo((Map<String, Object>) oauth2User.getAttributes().get("response"));
 		} else if (userRequest.getClientRegistration().getRegistrationId().equals("kakao")) {
-			System.out.println("kakao login");
+			System.out.println("kakao login");//kakao login
 			oauth2UserInfo = new KakaoUserInfo(oauth2User.getAttributes());
 		} else {
 			System.out.println("login else");
@@ -55,17 +54,10 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
 		String providerId = oauth2UserInfo.getProviderId();
 		String username = provider + "_" + providerId;// google_11111111
 		String uuid = UUID.randomUUID().toString();
-		String password = bCryptPasswordEncoder.encode(uuid);
-		String memail = oauth2UserInfo.getMemail();
-		String mname = oauth2UserInfo.getMname();
+		String password = bCryptPasswordEncoder.encode(uuid);//password
+		String memail = oauth2UserInfo.getMemail();//email
+		String mname = oauth2UserInfo.getMname();//name
 		UserVO user = usermapper.getUser(username);
-
-		System.out.println("-----------------------------------------------------------------------------------");
-		System.out.println("password :   " + password);
-		System.out.println("user .............." + user);
-		System.out.println("username....... " + username);
-		System.out.println("memali....... : " + memail);
-		System.out.println("name ......." + mname);
 
 		if (user == null) {
 			System.out.println("회원가입진행--------------------------------------------------------------------------");

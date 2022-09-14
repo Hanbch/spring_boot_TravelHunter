@@ -94,6 +94,8 @@
 										<input type="hidden" id="member_id" name="member_id"
 											value=<sec:authentication property="principal.username"/> />
 									</sec:authorize>
+								
+								
 								</div>
 							</div>
 					</a></li>
@@ -283,7 +285,10 @@
 			},
 			success : function(data) {
 				alert("좋아요");
-				$("#" + board_id + " .likes_count").text(Number($("#" + board_id + " .likes_count").text()) + 1);// like_count view 최신화
+				$("#" + board_id + " .likes_count")
+				.text(Number($("#" + board_id + " .likes_count")
+				.text()) + 1);// like_count view 최신화
+			
 			},
 			error : function() {
 				alert("로그인 후 사용가능");
