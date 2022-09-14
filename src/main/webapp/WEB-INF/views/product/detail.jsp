@@ -23,38 +23,6 @@
 						</div>
 					</div>
 				</div>
-				<script>
-					//대표사진 설정			
-					var imgNum = 0;
-					var main_photo = document.getElementById("main_photo").firstElementChild;
-					var room_img = document.getElementsByClassName("room_img");
-					var room_list = document.getElementsByClassName("room_list");
-					var ipath = room_img[imgNum].getAttribute("src");
-					var arrow = document.getElementsByClassName("arrow");
-					
-					
-					main_photo.setAttribute("src",ipath);
-					room_list[0].classList.add("active");
-									
-					for(var i=0; i<room_list.length; i++){
-						room_list[i].idx = i;
-						room_list[i].addEventListener("click",function(e){
-							var n = e.currentTarget.idx;
-						
-							for(var j=0; j<room_list.length; j++){
-								if(n == j){
-									room_list[j].classList.add("active");
-									imgNum = j
-									ipath = room_img[imgNum].getAttribute("src");
-									main_photo.setAttribute("src",ipath);
-								}else{
-									room_list[j].classList.remove("active");
-								}
-							}
-						});
-					}
-					//console.log(room_list);
-				</script>
 				
 				<div class="place_desc">
 					<h1>${placeDetail.pname}</h1>
@@ -96,39 +64,47 @@
 			     			<input id="datepicker2" name="enddate" placeholder="${bookingVO.enddate}" value="${bookingVO.enddate}"/>
 			     		</div>
 			     		<div class="single-select-box mt-20">
-	                        <a href="#" class="btn select-btn">선택</a>
+	                        <input type="submit" value="선택" class="btn select-btn"/>
 	                   </div>
 	                   <input type="hidden" name="num" value="${placeDetail.num}"/>
-			     		<div class="submit_btn">
-			     			<input type="submit" value="선택" />
-			     		</div>
 		     		</div>
 	     		</form>
+	     		
+	     		<style>
+		     		.img_inner{height:200px; width:302px; position:relative }
+		     		.img_inner ul {height:200px;}
+		     		.imgList{position:absolute}
+		     		.room_desc{padding:15px;width:896px;height:200px;box-sizing:border-box;position:relative}
+		     		.room_desc .info{line-height:33px;font-size:18px}
+		     		.room_list .price{text-align:right;margin-right: 20px;font-size:25px;position:absolute; right:30px; bottom:80px;}
+		     		.room_list a{width:150px;background-color:#dca73a;text-align:center;padding:0 20px;color:#fff;position:absolute; right:30px; bottom:20px;border-radius:25px;line-height:50px}
+	     		</style>
 	     		
 	     		<div class="room_list">
 	     			<ul>
 		     			<c:forEach items="${room}" var="room">
-		     				
 				     		<li>
 	     						<div class="room_img">
-		     						<ul>
-			     						<c:forEach items="${imgList}" var="img">
-				     						<c:if test="${img.room_num == room.num}">
-				     							<li>
-				     								<img src="/assets/img/rooms/${img.iname}">
-				     							</li>
-				     						</c:if>
-			     						</c:forEach>
-		     						</ul>
+		     						<div class="img_inner">
+		     							<ul>
+				     						<c:forEach items="${imgList}" var="img">
+					     						<c:if test="${img.room_num == room.num}">
+					     							<li class="imgList">
+					     								<img src="/assets/img/rooms/${img.iname}">
+					     							</li>
+					     						</c:if>
+				     						</c:forEach>
+			     						</ul>
+		     						</div>
 	     						</div>
 		     					
 		     					<div class="room_desc">
 		     						<h2>${room.rname}호</h2>
-		     						<div class="cpacity">기준${room.capacity}명/최대${(room.capacity)+2}명</div>
-		     						<div class="check_in">체크인  15:00</div>
-		     						<div class="check_out">체크아웃 11:00</div>
+		     						<div class="info">기준${room.capacity}명/최대${(room.capacity)+2}명</div>
+		     						<div class="info">체크인  15:00</div>
+		     						<div class="info">체크아웃 11:00</div>
 		     						<div class="price">${room.price}원</div>
-		     						<a href="/product/reservation?place_num=${room.place_num}&room_num=${room.num}&rname=${room.rname}&startdate=${bookingVO.startdate}&enddate=${bookingVO.enddate}"><button>예약하기</button></a>
+		     						<a href="/product/reservation?place_num=${room.place_num}&room_num=${room.num}&rname=${room.rname}&startdate=${bookingVO.startdate}&enddate=${bookingVO.enddate}">예약하기</a>
 		     					</div>
 		     				</li>
 		     			</c:forEach>
@@ -221,6 +197,36 @@
     
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	18c8af2570d2edc8abdb783708aa6e7b&libraries=services"></script>
     <script>
+		//대표사진 설정			
+		var imgNum = 0;
+		var main_photo = document.getElementById("main_photo").firstElementChild;
+		var room_img = document.getElementsByClassName("room_img");
+		var room_list = document.getElementsByClassName("room_list");
+		var ipath = room_img[imgNum].getAttribute("src");
+		var arrow = document.getElementsByClassName("arrow");
+		
+		main_photo.setAttribute("src",ipath);
+		room_list[0].classList.add("active");
+						
+		for(var i=0; i<room_list.length; i++){
+			room_list[i].idx = i;
+			room_list[i].addEventListener("click",function(e){
+				var n = e.currentTarget.idx;
+			
+				for(var j=0; j<room_list.length; j++){
+					if(n == j){
+						room_list[j].classList.add("active");
+						imgNum = j
+						ipath = room_img[imgNum].getAttribute("src");
+						main_photo.setAttribute("src",ipath);
+					}else{
+						room_list[j].classList.remove("active");
+					}
+				}
+			});
+		}
+	</script>
+    <script>
     	//tab메뉴 클릭시 컨텐츠변경
     	var tab = document.getElementById("tab");
     	var tabLi = tab.children;
@@ -285,7 +291,11 @@
 		        
 		    } 
 		 
-		}); 
+		});
+		
+		//객실이미지 슬라이드 처리
+		
+		
 	</script>
 	    
     

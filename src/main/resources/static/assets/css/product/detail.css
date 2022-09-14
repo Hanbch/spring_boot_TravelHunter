@@ -8,10 +8,10 @@
 .top_contents .place_photo .banner_wrapper{position: relative;}
 .top_contents .place_photo .photo_banner{margin:20px;overflow:hidden}
 .top_contents .place_photo .photo_banner ul {width:1000%;height:85px}
-.top_contents .place_photo .photo_banner li{float:left;margin-left:10px;width:127px}
+.top_contents .place_photo .photo_banner li{float:left;margin-left:10px;width:127px;height:85px;}
 .top_contents .place_photo .photo_banner li.active{border:2px solid #ffa726;border-radius:5px;padding:2px;}
 .top_contents .place_photo .photo_banner li:first-child{margin-left:0;}
-.top_contents .place_photo .photo_banner img{width:100%;}
+.top_contents .place_photo .photo_banner img{width:100%;height:100%}
 .top_contents .place_photo .photo_banner .arrow{width:572px;position:absolute;left:3px;top:50%;z-index:-1;transform:translateY(-50%);}
 .top_contents .place_photo .photo_banner .arrow .left{float:left;width:10px;height:10px;border:2px solid #000;border-top:none;border-right:none;transform:rotate(45deg);}
 .top_contents .place_photo .photo_banner .arrow .right{float:right;width:10px;height:10px;border:2px solid #000;border-top:none;border-right:none;transform:rotate(-135deg)}
