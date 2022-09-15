@@ -17,6 +17,11 @@ public interface MemberMapper{
 	int delpwcheck(MemberVO memberVO);
 	List<MemberVO> memberBoardList(String id);
 	MemberVO getmember(String id);
+	List<MemberVO> findid(String memail);
+	int findidcheck(String memail);
+	void findPw(String mpw, String memail, String id);
+	int findpwcheck(String memail, String id);
+
 	
 	
 	

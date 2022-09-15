@@ -3,6 +3,7 @@ package edu.hi.prj.controller;
 import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -13,7 +14,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +24,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import edu.hi.prj.mapper.UserMapper;
 import edu.hi.prj.service.BoardServiceImpl;
 import edu.hi.prj.service.BookingService;
+import edu.hi.prj.service.EmailSenderService;
 import edu.hi.prj.service.MemberService;
 import edu.hi.prj.service.PlaceService;
 import edu.hi.prj.vo.MemberVO;
@@ -53,6 +54,9 @@ public class HomeController {
 	
 	@Autowired
 	private PlaceService place_service;
+	
+	@Autowired
+	private EmailSenderService senderservice;
 	
 
 	@GetMapping("/")
@@ -224,32 +228,7 @@ public class HomeController {
 		return "secured테스트";
 	}
 
-	@ResponseBody
-	@GetMapping("/test/login")
-	public String loginTest(Authentication authentication, @AuthenticationPrincipal UserDetailsVO userDetails) {
-		System.out.println("test/login ===============");
 
-		UserDetailsVO userDetailsVO = (UserDetailsVO) authentication.getPrincipal();
-		System.out.println("authentication : " + authentication.getPrincipal());
-		System.out.println("userDetails : " + userDetails.getUserVO());
-		System.out.println(userDetails.getUsername());
-		System.out.println(userDetails.getPassword());
-
-		return "세션정보확인";
-	}
-
-	@ResponseBody
-	@GetMapping("/test/oauth/login")
-	public String loginOAuthTest(Authentication authentication, @AuthenticationPrincipal OAuth2User oauth) {
-
-		System.out.println("test/oauth/login ===============");
-
-		OAuth2User oauth2User = (OAuth2User) authentication.getPrincipal();
-		System.out.println("authentication : " + authentication.getPrincipal());
-		System.out.println("oauth2User : " + oauth.getAttributes());
-
-		return "세션정보확인";
-	}
 
 	@GetMapping("/user")
 	public @ResponseBody String User(@AuthenticationPrincipal UserDetailsVO userdetailsVO) {
@@ -257,5 +236,51 @@ public class HomeController {
 
 		return "user";
 	}
+	
+	@GetMapping("/findidview")
+	public String findidView() {
+		return "login/findidview";
+	}
+	//id찾기
+	@PostMapping("/findid")
+	public String findid(MemberVO memberVO, Model model) {
+		if(member_service.findidcheck(memberVO.getMemail())==0) {
+			model.addAttribute("msg", "이메일을 확인해주세요");
+			return "/login/findidview";
+			}else {
+			model.addAttribute("member", member_service.findid(memberVO.getMemail()));
+			return "/login/findid";
+			}
+	}
 
+
+	@GetMapping("/findpwview")
+	public String findpwview() {
+		return "login/findpwview";
+	}
+	//pw찾기
+	@PostMapping("/findpw")
+	public String findpw(MemberVO memberVO, Model model) {
+		if(member_service.findpwcheck(memberVO.getMemail(), memberVO.getId())==0) {
+			model.addAttribute("msg", "이메일을 확인해주세요");
+			return "/login/findpwview";
+		}else {
+			//임시비밀번호생성
+			String pw = UUID.randomUUID().toString().replaceAll("-", "");
+			pw = pw.substring(0, 10);
+			String body = "[TravelHunter] 임시비밀번호는" + pw + "입니다.";//메일내용
+			String subject = "[TravelHunter]임시비밀번호 발송";//메일제목
+			senderservice.sendEmail(memberVO.getMemail(), subject, body);
+			String mpw = bCryptPasswordEncoder.encode(pw);
+			member_service.findPw(mpw, memberVO.getMemail(), memberVO.getId());
+			return "/login/login";
+		}
+		
+	}
+	
+	
+	
+	
 }
+
+

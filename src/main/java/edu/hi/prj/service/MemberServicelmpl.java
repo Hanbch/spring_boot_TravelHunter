@@ -58,6 +58,29 @@ public class MemberServicelmpl implements MemberService{
 		return mapper.getmember(id);
 	}
 
+	@Override
+	public List<MemberVO> findid(String memail) {
+		return mapper.findid(memail);
+	}
+
+	@Override
+	public int findidcheck(String memail) {
+		return mapper.findidcheck(memail);
+	}
+
+	@Override
+	public void findPw(String mpw, String memail, String id) {
+		mapper.findPw(mpw, memail, id);
+		
+	}
+
+	@Override
+	public int findpwcheck(String memail, String id) {
+		return mapper.findpwcheck(memail, id);
+	}
+
+	
+
 
 	
 	

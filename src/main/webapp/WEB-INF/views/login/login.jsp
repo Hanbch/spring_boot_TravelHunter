@@ -12,7 +12,7 @@
                 <label for="mpw">비밀번호 : </label>
                 <input type="password" id="mpw" name="password"><br>
                 <ul>
-                    <li><a href="">아이디/비밀번호찾기</a></li>
+                    <li><a href="/findidview">아이디/비밀번호찾기</a></li>
                     <li><a href="/join">회원가입</a></li>
                 </ul>
                 <button type="submit">로그인</button>    

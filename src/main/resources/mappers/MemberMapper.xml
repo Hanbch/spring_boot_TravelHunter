@@ -71,6 +71,30 @@
             select* from member where id = #{id}  	
        ]]> 
 	</select>
+	
+	<select id="findid" resultType="MemberVO">
+		<![CDATA[ 
+            select * from member where memail = #{memail}	
+       ]]> 
+	</select>
+	
+	<select id="findidcheck" resultType="int">
+		<![CDATA[ 
+           select count(*) from member where memail = #{meamil}	
+       ]]> 
+	</select>
+	
+	<update id="findPw" >
+		<![CDATA[
+		update member set mpw = #{mpw} where memail = #{memail} and id = #{id}
+		]]>
+	</update>
+	
+	<select id="findpwcheck" resultType="int">
+		<![CDATA[ 
+           select count(*) from member where memail = #{memail} and id = #{id}
+       ]]> 
+	</select>
 			
 	
    
